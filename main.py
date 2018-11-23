@@ -81,7 +81,7 @@ async def on_reaction_add(reaction , user):
     embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
     embed.add_field(name = 'mv!kick(Kick members Permission Required)',value ='Use it like ``mv!kick @user`` to kick any user',inline = False)
     embed.add_field(name = 'mv!roles(Kick members Permission Required) ',value ='Use it to check roles present in server',inline = False)
-    embed.add_field(name = 'mv!clear(Manage Messages Permission Required)',value ='Use it like ``mv!clear <number>`` to clear any message',inline = False)
+    embed.add_field(name = 'mv!clear(Manage Messages Permission Required)',value ='Use it like ``mv!purge <number>`` to clear any message',inline = False)
     embed.add_field(name = 'mv!mute(Mute members Permission Required)',value ='Use it like ``mv!mute @user <time>`` to mute any user',inline = False)
     embed.add_field(name = 'mv!unmute(Mute members Permission Required) ',value ='Use it like ``mv!unmute @user`` to unmute anyone',inline = False)
     embed.add_field(name = 'mv!ban(Ban members Permission Required) ',value ='Use it like ``mv!ban @user`` to ban any user',inline = False)
@@ -345,7 +345,7 @@ async def kick(ctx,user:discord.Member):
 
 @client.command(pass_context = True)
 @commands.has_permissions(manage_messages=True)  
-async def clear(ctx, number):
+async def purge(ctx, number):
  
     if ctx.message.author.server_permissions.manage_messages:
          mgs = [] #Empty list to put all the messages in the log
@@ -355,8 +355,7 @@ async def clear(ctx, number):
        
     try:
         await client.delete_messages(mgs)          
-        await client.say(str(number)+' messages deleted')
-     
+        
     except discord.Forbidden:
         await client.say(embed=Forbidden)
         return
