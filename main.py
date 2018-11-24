@@ -566,13 +566,13 @@ async def reactionroles(ctx, *, msg = None):
 @client.command(pass_context = True)
 async def invite(ctx):
     await client.say("Thanks for adding our bot.")
-    embed=discord.Embed(title="Click on this link to invite:", description="https://discordapp.com/api/oauth2/authorize?client_id=515403515217313795&permissions=8&scope=bot". , color=0xff00f6)
+    embed=discord.Embed(title="Click on this link to invite:", description="https://discordapp.com/api/oauth2/authorize?client_id=515403515217313795&permissions=8&scope=bot" , color=00fd1b)
     await client.say(embed=embed)
 
 @client.command(pass_context = True)
 async def authlink(ctx):
     await client.say("Thanks for adding our bot.")
-    embed=discord.Embed(title="Click on this link to invite:", description="https://discordapp.com/api/oauth2/authorize?client_id=515403515217313795&permissions=8&scope=bot". , color=0xff00f6)
+    embed=discord.Embed(title="Click on this link to invite:", description="https://discordapp.com/api/oauth2/authorize?client_id=515403515217313795&permissions=8&scope=bot" , color=00fd1b)
     await client.say(embed=embed)
 
 @client.command(pass_context = True)
