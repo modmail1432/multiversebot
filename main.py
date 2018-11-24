@@ -99,6 +99,7 @@ async def on_reaction_add(reaction , user):
     embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
     embed.set_author(name='Moderation Commands Help')
     embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
+	embed.add_field(name = 'mv!setupwelcomer(Admin Permission required) ',value ='Simply use it to make a channel named ★彡-welcome-彡★ so that bot will send welcome and leaves logs in that channel.',inline = False)
     embed.add_field(name = 'mv!say(Admin permission required) ',value ='Use it like ``mv!say <text>``',inline = False)
     embed.add_field(name = 'mv!embed(Admin permission required) ',value ='Use it like ``mv!embed <text>``',inline = False)
     embed.add_field(name = 'mv!membercount(Kick members Permission Required) ',value ='Use it like ``mv!membercount`` to get membercount',inline = False)
@@ -168,6 +169,15 @@ async def access(ctx, member: discord.Member):
     await client.say(embed=embed)
     await asyncio.sleep(45*60)
     await client.remove_roles(member, role)
+
+@client.command(pass_context = True)
+@commands.has_permissions(administrator=True)
+async def setupwelcomer(ctx):
+	author = ctx.message.author
+    server = ctx.message.server
+	everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
+    everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
+	await client.create_channel(server, '★彡-welcome-彡★',everyone)
 
 @client.command(pass_context=True)  
 @commands.has_permissions(kick_members=True)
