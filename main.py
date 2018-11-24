@@ -17,7 +17,7 @@ client.remove_command('help')
 
 async def status_task():
     while True:
-        await client.change_presence(game=discord.Game(name='for mv!vhelp'))
+        await client.change_presence(game=discord.Game(name='for mv!help'))
         await asyncio.sleep(5)
         await client.change_presence(game=discord.Game(name='with '+str(len(set(client.get_all_members())))+' users'))
         await asyncio.sleep(5)
@@ -346,9 +346,9 @@ async def help(ctx):
     embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
     embed.set_author(name='Help')
     embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
-    embed.add_field(name = 'Donate us on paypal: https://paypal.me/darklegendgamingc ',value ='that you can use:',inline = False)
-    embed.add_field(name = 'React with M ',value ='Explaines all the commands which are only usable by Those who has moderation permissions. Like- Manage Nicknames, Manage Messages, Kick/Ban Members,etc.',inline = False)
-    embed.add_field(name = 'React with G ',value ='Explaines all the commands which are usable by everyone.',inline = False)
+    embed.add_field(name = 'Having doubts? Join our server and clear your doubts. Server link: https://discord.gg/FrRtyS6 ',value ='that you can use:',inline = False)
+    embed.add_field(name = 'React with 🇲 ',value ='Explaines all the commands which are only usable by Those who has moderation permissions. Like- Manage Nicknames, Manage Messages, Kick/Ban Members,etc.',inline = False)
+    embed.add_field(name = 'React with 🇬 ',value ='Explaines all the commands which are usable by everyone.',inline = False)
     embed.add_field(name = 'React with 🏵 ',value ='Explaines how to setup some stuffs like Giveaway feature and welcomer feature in your server',inline = False)
     react_message = await client.send_message(author,embed=embed)
     reaction1 = '🇲'
