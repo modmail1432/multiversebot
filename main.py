@@ -130,7 +130,6 @@ for channel in member.server.channels:
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     embed = discord.Embed(title="Successfully added", description="Server Developer role", color = discord.Color((r << 16) + (g << 8) + b))
     embed.add_field(name="Enjoy! ", value="Happy Server Development. Here you will get special support from our support team related to server development", inline=True)
-    await client.delete_message(ctx.message)
     role = discord.utils.get(ctx.message.server.roles, name='Server Developer')
     await client.add_roles(ctx.message.author, role)
     print('Added codies role in ' + (ctx.message.author.name))
