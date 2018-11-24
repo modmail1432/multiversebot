@@ -565,13 +565,21 @@ async def reactionroles(ctx, *, msg = None):
 
 @client.command(pass_context = True)
 async def invite(ctx):
-    await client.say('Invite link: https://discordapp.com/api/oauth2/authorize?client_id=515403515217313795&permissions=8&scope=bot')
-    return
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+    embed.set_author(name='Invite our bot')
+    embed.set_image(url = 'Thanks for inviting our bot')
+    embed.add_field(name = 'Click on this link to invite:',value ='https://discordapp.com/api/oauth2/authorize?client_id=515403515217313795&permissions=8&scope=bot',inline = False)
+    await client.send_message(user,embed=embed)
 
 @client.command(pass_context = True)
 async def authlink(ctx):
-    await client.say('Invite link: https://discordapp.com/api/oauth2/authorize?client_id=515403515217313795&permissions=8&scope=bot')
-    return
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+    embed.set_author(name='Invite our bot')
+    embed.set_image(url = 'Thanks for inviting our bot')
+    embed.add_field(name = 'Click on this link to invite:',value ='https://discordapp.com/api/oauth2/authorize?client_id=515403515217313795&permissions=8&scope=bot',inline = False)
+    await client.send_message(user,embed=embed)
 
 @client.command(pass_context = True)
 async def bottutorial(ctx, *, msg = None):
