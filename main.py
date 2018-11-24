@@ -114,7 +114,14 @@ async def on_reaction_add(reaction , user):
     react_message = await client.send_message(user,embed=embed)
     reaction = '⏭'
     await client.add_reaction(react_message, reaction)
-    
+  if reaction.emoji == '🏵':
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+    embed.set_author(name='Setup Help')
+    embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
+    embed.add_field(name = 'Setting up Welcomer log(Admin Permission required) ',value ='Use mv!setupwelcomer. It will add a welcome channel. Just put that channel in your desired category and it will send all logs there.',inline = False)
+    embed.add_field(name = 'Setting up Giveaway bot(Manage roles permission required) ',value ='Just add a role named ``Giveaways`` and give that role to user who wanna be giveaway manager. Then use ``mv!help`` and check giveaway commands.',inline = False)
+    await client.send_message(user,embed=embed)    
 
 @client.event
 async def on_message(message):
@@ -342,11 +349,14 @@ async def help(ctx):
     embed.add_field(name = 'Donate us on paypal: https://paypal.me/darklegendgamingc ',value ='that you can use:',inline = False)
     embed.add_field(name = 'React with M ',value ='Explaines all the commands which are only usable by Those who has moderation permissions. Like- Manage Nicknames, Manage Messages, Kick/Ban Members,etc.',inline = False)
     embed.add_field(name = 'React with G ',value ='Explaines all the commands which are usable by everyone.',inline = False)
+    embed.add_field(name = 'React with 🏵 ',value ='Explaines how to setup some stuffs like Giveaway feature and welcomer feature in your server',inline = False)
     react_message = await client.send_message(author,embed=embed)
     reaction1 = '🇲'
     reaction2 = '🇬'
+    reaction3 = '🏵'
     await client.add_reaction(react_message, reaction1)
     await client.add_reaction(react_message, reaction2)
+    await client.add_reaction(react_message, reaction3)
     await client.say('📨 Check DMs For Information')
 
 @client.command(pass_context=True)  
