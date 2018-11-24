@@ -124,7 +124,11 @@ async def on_reaction_add(reaction , user):
     embed.add_field(name = 'Setting up Welcomer log(Admin Permission required) ',value ='Use mv!setupwelcomer. It will add a welcome channel. Just put that channel in your desired category and it will send all logs there.',inline = False)
     embed.add_field(name = 'Setting up Giveaway bot(Manage roles permission required) ',value ='Just add a role named ``Giveaways`` and give that role to user who wanna be giveaway manager. Then use ``mv!help`` and check giveaway commands.',inline = False)
     await client.send_message(user,embed=embed)    
-
+  for channel in user.server.channels:
+    if channel.name == '★verify-for-chatting★' and reaction.emoji == '🇻':
+      role = discord.utils.get(user.server.roles, name='Verified')
+      await client.add_roles(user, role)
+      print('Added Verified role in ' + (user.name))
 	
 @client.event
 async def on_message(message):
@@ -152,7 +156,20 @@ async def on_member_remove(member):
             embed.set_thumbnail(url=member.avatar_url)
             await client.send_message(channel, embed=embed)
 
-
+@client.command(pass_context = True)
+@commands.has_permissions(administrator=True)
+async def setreactionverify(ctx):
+    author = ctx.message.author
+    server = ctx.message.server
+    everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
+    everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
+    await client.create_channel(server, '★verify-for-chatting★',everyone)
+    for channel in author.server.channels:
+        if channel.name == '★verify-for-chatting★':
+            await client.send_message(channel, 'React with 🇻 to Verify')
+            reaction = '🇻'
+            await client.add_reaction(react_message, reaction)
+	
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
 async def mute(ctx, member: discord.Member):
