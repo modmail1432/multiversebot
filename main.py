@@ -570,7 +570,7 @@ async def invite(ctx):
     embed.set_author(name='Invite our bot')
     embed.set_image(url = 'Thanks for inviting our bot')
     embed.add_field(name = 'Click on this link to invite:',value ='https://discordapp.com/api/oauth2/authorize?client_id=515403515217313795&permissions=8&scope=bot',inline = False)
-    await client.say(embed=embed)
+    await client.send_message(ctx.message.channel , embed=embed)
 
 @client.command(pass_context = True)
 async def authlink(ctx):
@@ -579,7 +579,7 @@ async def authlink(ctx):
     embed.set_author(name='Invite our bot')
     embed.set_image(url = 'Thanks for inviting our bot')
     embed.add_field(name = 'Click on this link to invite:',value ='https://discordapp.com/api/oauth2/authorize?client_id=515403515217313795&permissions=8&scope=bot',inline = False)
-    await client.say(embed=embed)
+    await client.send_message(ctx.message.channel , embed=embed)
 
 @client.command(pass_context = True)
 async def bottutorial(ctx, *, msg = None):
