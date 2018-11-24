@@ -124,7 +124,17 @@ async def on_reaction_add(reaction , user):
     embed.add_field(name = 'Setting up Welcomer log(Admin Permission required) ',value ='Use mv!setupwelcomer. It will add a welcome channel. Just put that channel in your desired category and it will send all logs there.',inline = False)
     embed.add_field(name = 'Setting up Giveaway bot(Manage roles permission required) ',value ='Just add a role named ``Giveaways`` and give that role to user who wanna be giveaway manager. Then use ``mv!help`` and check giveaway commands.',inline = False)
     await client.send_message(user,embed=embed)    
-
+  if channel.name == 'i•-general-chat-•i' and reaction.emoji == '😑':
+    author = ctx.message.author
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(title="Successfully added", description="Server Developer role", color = discord.Color((r << 16) + (g << 8) + b))
+    embed.add_field(name="Enjoy! ", value="Happy Server Development. Here you will get special support from our support team related to server development", inline=True)
+    await client.delete_message(ctx.message)
+    role = discord.utils.get(ctx.message.server.roles, name='Server Developer')
+    await client.add_roles(ctx.message.author, role)
+    print('Added codies role in ' + (ctx.message.author.name))
+    await client.send_message(author, embed=embed)
+	
 @client.event
 async def on_message(message):
 	await client.process_commands(message)
