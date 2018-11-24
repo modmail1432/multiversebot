@@ -122,7 +122,8 @@ async def on_reaction_add(reaction , user):
     embed.set_author(name='Setup Help')
     embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
     embed.add_field(name = 'Setting up Welcomer log(Admin Permission required) ',value ='Use mv!setupwelcomer. It will add a welcome channel. Just put that channel in your desired category and it will send all logs there.',inline = False)
-    embed.add_field(name = 'Setting up Giveaway bot(Manage roles permission required) ',value ='Just add a role named ``Giveaways`` and give that role to user who wanna be giveaway manager. Then use ``mv!help`` and check giveaway commands.',inline = False)
+    embed.add_field(name = 'Setting up Giveaway feature(Manage roles permission required) ',value ='Just add a role named ``Giveaways`` and give that role to user who wanna be giveaway manager. Then use ``mv!help`` and check giveaway commands.',inline = False)
+    embed.add_field(name = 'Setting up Reaction Verification(Admin Permission required) ',value ='Just add a role named ``Verified`` then remove permission from everyone to send message in all channels. Also add permission of verified role to send message in chatting channels. Then use ``mv!setreactionverify`` it will automatically add a channel and post information about verification.',inline = False)
     await client.send_message(user,embed=embed)    
   for channel in user.server.channels:
     if channel.name == '★verify-for-chatting★' and reaction.emoji == '🇻':
