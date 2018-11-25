@@ -496,7 +496,37 @@ async def emojiids(ctx):
 async def wow(ctx):
     await client.delete_message(ctx.message)
     await client.say('<a:WOW:515854429485006848>')
+	
+@client.command(pass_context = True)
+@commands.has_permissions(kick_members=True)
+async def dank(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:OnThaCoco:515853700682743809>')
+	
+@client.command(pass_context = True)
+@commands.has_permissions(kick_members=True)
+async def fearfromme(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:shiroeglassespush:516174320532193289>')
 	   	
+@client.command(pass_context = True)
+@commands.has_permissions(kick_members=True)
+async def angry(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:angear:516174316950388772>')
+	
+@client.command(pass_context = True)
+@commands.has_permissions(kick_members=True)
+async def surprised(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:eyebigger:516174315058626560>')
+		
+@client.command(pass_context = True)
+@commands.has_permissions(kick_members=True)
+async def cat(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:agooglecat:516174312294842389>')
+		
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)
 async def rules(ctx, *, msg = None):
