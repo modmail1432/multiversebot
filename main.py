@@ -496,7 +496,7 @@ async def emojiids(ctx):
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)
 async def emoji(ctx):
-    await client.say('<:WOW:515854429485006848>')
+    await client.say('<a:WOW:515854429485006848>')
     	
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)
