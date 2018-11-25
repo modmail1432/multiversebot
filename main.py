@@ -537,6 +537,21 @@ async def cat(ctx):
     await client.say('<a:agooglecat:516174312294842389>')
 		
 @client.command(pass_context = True)
+async def thinking1(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:thinking:516183328613990400>')
+	
+@client.command(pass_context = True)
+async def thinking2(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:thinking2:516183323127709699>')
+	
+@client.command(pass_context = True)
+async def happy(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:happy:516183323052212236>')
+		
+@client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)
 async def rules(ctx, *, msg = None):
     await client.delete_message(ctx.message)
