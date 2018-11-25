@@ -486,11 +486,18 @@ async def say(ctx, *, msg = None):
 
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)
-async def emoji(ctx):
+async def emojiids(ctx):
   for emoji in ctx.message.author.server.emojis:
     print(f"<:{emoji.name}:{emoji.id}>")
     print(" ")    
 	
+
+		
+@client.command(pass_context = True)
+@commands.has_permissions(kick_members=True)
+async def emoji(ctx):
+    await client.say('<:WOW:515854429485006848>')
+    	
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)
 async def rules(ctx, *, msg = None):
