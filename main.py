@@ -145,7 +145,7 @@ async def on_reaction_add(reaction , user):
     embed.add_field(name = 'mv!happy',value ='Happy emoji <a:happy:516183323052212236>',inline = False)
     await client.send_message(user,embed=embed)
   for channel in user.server.channels:
-    if channel.name == '★verify-for-chatting★' and reaction.emoji == '<a:WOW:515854429485006848>':
+    if channel.name == '★verify-for-chatting★' and str(reaction.emoji) == '<a:WOW:515854429485006848>':
       role = discord.utils.get(user.server.roles, name='Verified')
       await client.add_roles(user, role)
 
