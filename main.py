@@ -134,11 +134,11 @@ async def on_reaction_add(reaction , user):
     embed.set_author(name='Emoji Help')
     embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
     embed.add_field(name = 'mv!wow',value ='WOW emoji <a:WOW:515854429485006848>',inline = False)
-    embed.add_field(name = 'mv!cat',value ='Cat emoji ',inline = False)
-    embed.add_field(name = 'mv!surprised',value ='Surprised emoji',inline = False)
-    embed.add_field(name = 'mv!angry',value ='Angry emoji',inline = False)
-    embed.add_field(name = 'mv!fearfromme',value ='Scary emoji',inline = False)
-    embed.add_field(name = 'mv!dank',value ='DankMemer emoji',inline = False)
+    embed.add_field(name = 'mv!cat',value ='Cat emoji <a:agooglecat:516174312294842389>',inline = False)
+    embed.add_field(name = 'mv!surprised',value ='Surprised emoji <a:eyebigger:516174315058626560>',inline = False)
+    embed.add_field(name = 'mv!angry',value ='Angry emoji <a:angear:516174316950388772>',inline = False)
+    embed.add_field(name = 'mv!fearfromme',value ='Scary emoji <a:shiroeglassespush:516174320532193289>',inline = False)
+    embed.add_field(name = 'mv!dank',value ='DankMemer emoji <a:OnThaCoco:515853700682743809>',inline = False)
     await client.send_message(user,embed=embed)
   for channel in user.server.channels:
     if channel.name == '★verify-for-chatting★' and reaction.emoji == '🇻':
