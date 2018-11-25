@@ -41,7 +41,7 @@ def is_shreyas(ctx):
     return ctx.message.author.id == "376602841625919488"
 
 @client.event
-async def on_reaction_add(reaction , user):
+async def on_reaction_add(reaction, user):
   if reaction.emoji == '🇬':
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
