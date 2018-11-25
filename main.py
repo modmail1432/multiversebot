@@ -41,7 +41,7 @@ def is_shreyas(ctx):
     return ctx.message.author.id == "376602841625919488"
 
 @client.event
-async def on_reaction_add(reaction , user):
+async def on_reaction_add(reaction , user: discord.Member):
   for channel in user.server.channels:
     if channel.name == '★verify-for-chatting★' and reaction.emoji == '🇻':
       role = discord.utils.get(user.server.roles, name='Verified')
