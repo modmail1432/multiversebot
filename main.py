@@ -490,14 +490,13 @@ async def emojiids(ctx):
   for emoji in ctx.message.author.server.emojis:
     print(f"<:{emoji.name}:{emoji.id}>")
     print(" ")    
-	
-
-		
+			
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)
-async def emoji(ctx):
+async def WOW(ctx):
+    await client.delete_message(ctx.message)
     await client.say('<a:WOW:515854429485006848>')
-    	
+	    	
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)
 async def rules(ctx, *, msg = None):
