@@ -386,7 +386,7 @@ async def help(ctx):
     embed.add_field(name = 'React with 🇲 ',value ='Explaines all the commands which are only usable by Those who has moderation permissions. Like- Manage Nicknames, Manage Messages, Kick/Ban Members,etc.',inline = False)
     embed.add_field(name = 'React with 🇬 ',value ='Explaines all the commands which are usable by everyone.',inline = False)
     embed.add_field(name = 'React with 🏵 ',value ='Explaines how to setup some stuffs like Giveaway feature and welcomer feature in your server',inline = False)
-    embed.add_field(name = 'React with 🎦 ',value ='List of Nitro emojis that you can use(Need kick members permission so that people do not misuse it)',inline = False)
+    embed.add_field(name = 'React with 🎦 ',value ='List of Nitro emojis that you can use',inline = False)
     react_message = await client.send_message(author,embed=embed)
     reaction1 = '🇲'
     reaction2 = '🇬'
@@ -507,37 +507,31 @@ async def emojiids(ctx):
     print(" ")    
 			
 @client.command(pass_context = True)
-@commands.has_permissions(kick_members=True)
 async def wow(ctx):
     await client.delete_message(ctx.message)
     await client.say('<a:WOW:515854429485006848>')
 	
 @client.command(pass_context = True)
-@commands.has_permissions(kick_members=True)
 async def dank(ctx):
     await client.delete_message(ctx.message)
     await client.say('<a:OnThaCoco:515853700682743809>')
 	
 @client.command(pass_context = True)
-@commands.has_permissions(kick_members=True)
 async def fearfromme(ctx):
     await client.delete_message(ctx.message)
     await client.say('<a:shiroeglassespush:516174320532193289>')
 	   	
 @client.command(pass_context = True)
-@commands.has_permissions(kick_members=True)
 async def angry(ctx):
     await client.delete_message(ctx.message)
     await client.say('<a:angear:516174316950388772>')
 	
 @client.command(pass_context = True)
-@commands.has_permissions(kick_members=True)
 async def surprised(ctx):
     await client.delete_message(ctx.message)
     await client.say('<a:eyebigger:516174315058626560>')
 		
 @client.command(pass_context = True)
-@commands.has_permissions(kick_members=True)
 async def cat(ctx):
     await client.delete_message(ctx.message)
     await client.say('<a:agooglecat:516174312294842389>')
