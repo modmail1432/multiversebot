@@ -127,7 +127,19 @@ async def on_reaction_add(reaction , user):
     embed.add_field(name = 'Setting up Welcomer log(Admin Permission required) ',value ='Use mv!setupwelcomer. It will add a welcome channel. Just put that channel in your desired category and it will send all logs there.',inline = False)
     embed.add_field(name = 'Setting up Giveaway feature(Manage roles permission required) ',value ='Just add a role named ``Giveaways`` and give that role to user who wanna be giveaway manager. Then use ``mv!help`` and check giveaway commands.',inline = False)
     embed.add_field(name = 'Setting up Reaction Verification(Admin Permission required) ',value ='Just add a role named ``Verified`` then remove permission from everyone to send message in all channels. Also add permission of verified role to send message in chatting channels. Then use ``mv!setreactionverify`` it will automatically add a channel and post information about verification.',inline = False)
-    await client.send_message(user,embed=embed)    
+    await client.send_message(user,embed=embed)
+  if reaction.emoji == '🎦':
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+    embed.set_author(name='Emoji Help')
+    embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
+    embed.add_field(name = 'mv!wow',value ='WOW emoji <a:WOW:515854429485006848>',inline = False)
+    embed.add_field(name = 'mv!cat',value ='Cat emoji ',inline = False)
+    embed.add_field(name = 'mv!surprised',value ='Surprised emoji',inline = False)
+    embed.add_field(name = 'mv!angry',value ='Angry emoji',inline = False)
+    embed.add_field(name = 'mv!fearfromme',value ='Scary emoji',inline = False)
+    embed.add_field(name = 'mv!dank',value ='DankMemer emoji',inline = False)
+    await client.send_message(user,embed=embed)
   for channel in user.server.channels:
     if channel.name == '★verify-for-chatting★' and reaction.emoji == '🇻':
       role = discord.utils.get(user.server.roles, name='Verified')
@@ -374,13 +386,16 @@ async def help(ctx):
     embed.add_field(name = 'React with 🇲 ',value ='Explaines all the commands which are only usable by Those who has moderation permissions. Like- Manage Nicknames, Manage Messages, Kick/Ban Members,etc.',inline = False)
     embed.add_field(name = 'React with 🇬 ',value ='Explaines all the commands which are usable by everyone.',inline = False)
     embed.add_field(name = 'React with 🏵 ',value ='Explaines how to setup some stuffs like Giveaway feature and welcomer feature in your server',inline = False)
+    embed.add_field(name = 'React with 🎦 ',value ='List of Nitro emojis that you can use(Need kick members permission)',inline = False)
     react_message = await client.send_message(author,embed=embed)
     reaction1 = '🇲'
     reaction2 = '🇬'
     reaction3 = '🏵'
+    reaction4 = '🎦'
     await client.add_reaction(react_message, reaction1)
     await client.add_reaction(react_message, reaction2)
     await client.add_reaction(react_message, reaction3)
+    await client.add_reaction(react_message, reaction4)
     await client.say('📨 Check DMs For Information')
 
 @client.command(pass_context=True)  
