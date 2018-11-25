@@ -42,11 +42,6 @@ def is_shreyas(ctx):
 
 @client.event
 async def on_reaction_add(reaction , user):
-  for channel in user.server.channels:
-    if channel.name == '★verify-for-chatting★' and reaction.emoji == '🇻':
-      role = discord.utils.get(user.server.roles, name='Verified')
-      await client.add_roles(user, role)
-	
   if reaction.emoji == '🇬':
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
@@ -149,6 +144,10 @@ async def on_reaction_add(reaction , user):
     embed.add_field(name = 'mv!thinking2',value ='Think emoji2 <a:thinking2:516183323127709699>',inline = False)
     embed.add_field(name = 'mv!happy',value ='Happy emoji <a:happy:516183323052212236>',inline = False)
     await client.send_message(user,embed=embed)
+  for channel in user.server.channels:
+    if channel.name == '★verify-for-chatting★' and reaction.emoji == '🇻':
+      role = discord.utils.get(user.server.roles, name='Verified')
+      await client.add_roles(user, role)
 
 	
 @client.event
