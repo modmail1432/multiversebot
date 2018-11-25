@@ -487,7 +487,7 @@ async def say(ctx, *, msg = None):
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)
 async def emoji(ctx):
-  for emoji in ctx.server.emojis:
+  for emoji in ctx.message.author.server.emojis:
     print(f"<:{emoji.name}:{emoji.id}>")
     print(" ")    
 	
