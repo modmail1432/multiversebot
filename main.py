@@ -386,7 +386,7 @@ async def help(ctx):
     embed.add_field(name = 'React with 🇲 ',value ='Explaines all the commands which are only usable by Those who has moderation permissions. Like- Manage Nicknames, Manage Messages, Kick/Ban Members,etc.',inline = False)
     embed.add_field(name = 'React with 🇬 ',value ='Explaines all the commands which are usable by everyone.',inline = False)
     embed.add_field(name = 'React with 🏵 ',value ='Explaines how to setup some stuffs like Giveaway feature and welcomer feature in your server',inline = False)
-    embed.add_field(name = 'React with 🎦 ',value ='List of Nitro emojis that you can use(Need kick members permission)',inline = False)
+    embed.add_field(name = 'React with 🎦 ',value ='List of Nitro emojis that you can use(Need kick members permission so that people do not misuse it)',inline = False)
     react_message = await client.send_message(author,embed=embed)
     reaction1 = '🇲'
     reaction2 = '🇬'
