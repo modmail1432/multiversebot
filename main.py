@@ -496,13 +496,7 @@ async def emojiids(ctx):
 async def wow(ctx):
     await client.delete_message(ctx.message)
     await client.say('<a:WOW:515854429485006848>')
-	
-@client.command(pass_context = True)
-@commands.has_permissions(kick_members=True)
-async def smile(ctx):
-    await client.delete_message(ctx.message)
-    await client.say('<a:widowmaker:408469943378509830>')
-	    	
+	   	
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)
 async def rules(ctx, *, msg = None):
