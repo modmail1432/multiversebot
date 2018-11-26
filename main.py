@@ -152,7 +152,7 @@ async def on_message(message):
 	
 @client.event
 async def on_socket_raw_receive(self, raw_msg):
-    if not isinstance(raw_msg, str):
+    if not isinstance(raw_msg, "Add reaction"):
         return
     msg = json.loads(raw_msg)
     type = msg.get("t")
