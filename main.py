@@ -11,6 +11,7 @@ import platform
 import os
 import time 
 import json
+import timestamp
 
 Forbidden= discord.Embed(title="Permission Denied", description="1) Please check whether you have permission to perform this action or not. \n2) Please check whether my role has permission to perform this action in this channel or not. \n3) Please check my role position.", color=0x00ff00)
 client = commands.Bot(description="MultiVerse Official Bot", command_prefix="mv!", pm_help = True)
@@ -40,6 +41,27 @@ def is_dark(ctx):
 
 def is_shreyas(ctx):
     return ctx.message.author.id == "376602841625919488"
+
+@client.event
+async def on_message_delete(message):
+  for channel in message.author.server.channels:
+    guild = message.server
+    author = message.author
+    if channel.name == '彡-audit-log-彡':
+        timestamp = datetime.utcnow()
+            embed = discord.Embed(color=red)
+            avatar = author.avatar_url if author.avatar else author.default_avatar_url
+            embed.set_author(name=_("Message removed"), icon_url=avatar)
+            embed.add_field(name=_("Member"), value="{0.display_name}#{0.discriminator} ({0.id})".format(author))
+            embed.add_field(name=_("Channel"), value=message.channel.name)
+            embed.add_field(name=_("Message timestamp"), value=message.created_at.strftime("%Y-%m-%d %H:%M:%S"))
+            embed.add_field(name=_("Removal timestamp"), value=timestamp.strftime("%Y-%m-%d %H:%M:%S"))
+            if message.content:
+                embed.add_field(name=_("Message"), value=message.content, inline=False)
+            if message.attachments:
+                for attachment in message.attachments:
+                  embed.add_field(name=_("Attachment"), value="[{0.filename}]({0.url})".format(attachment), inline=True)
+            await client.send_message(channel, embed=embed)
 
 @client.event
 async def on_reaction_add(reaction, user):
