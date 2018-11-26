@@ -44,7 +44,7 @@ async def on_message(message):
         await client.send_message(message.channel, msg)
         await client.delete_message(message)
         await asyncio.sleep(5)
-	await client.delete_message(msg)
+        await client.delete_message(msg)
 		
 @client.event
 async def on_reaction_add(reaction, user):
