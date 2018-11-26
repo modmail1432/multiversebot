@@ -371,15 +371,15 @@ async def help(ctx):
     embed.add_field(name = 'React with 🇬 ',value ='Explaines all the commands which are usable by everyone.',inline = False)
     embed.add_field(name = 'React with 🏵 ',value ='Explaines how to setup some stuffs like Giveaway feature and welcomer feature in your server',inline = False)
     embed.add_field(name = 'React with 🎦 ',value ='List of Nitro emojis that you can use',inline = False)
-    react_message = await client.send_message(author,embed=embed)
+    dmmessage = await client.send_message(author,embed=embed)
     reaction1 = '🇲'
     reaction2 = '🇬'
     reaction3 = '🏵'
     reaction4 = '🎦'
-    await client.add_reaction(react_message, reaction1)
-    await client.add_reaction(react_message, reaction2)
-    await client.add_reaction(react_message, reaction3)
-    await client.add_reaction(react_message, reaction4)
+    await client.add_reaction(dmmessage, reaction1)
+    await client.add_reaction(dmmessage, reaction2)
+    await client.add_reaction(dmmessage, reaction3)
+    await client.add_reaction(dmmessage, reaction4)
     await client.say('📨 Check DMs For Information')
 
 @client.command(pass_context=True)  
