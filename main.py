@@ -48,7 +48,8 @@ async def on_message_delete(message):
     author = message.author
     if channel.name == '彡-audit-log-彡':
         timestamp = datetime.utcnow()
-        embed = discord.Embed(color=red)
+        r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+        embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
         avatar = author.avatar_url if author.avatar else author.default_avatar_url
         embed.set_author(name=_("Message removed"), icon_url=avatar)
         embed.add_field(name=_("Member"), value="{0.display_name}#{0.discriminator} ({0.id})".format(author))
