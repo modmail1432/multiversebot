@@ -149,7 +149,7 @@ async def on_reaction_add(reaction, user):
       role = discord.utils.get(user.server.roles, name='Verified')
       await client.add_roles(user, role)
 
-	
+      
 @client.event
 async def on_message(message):
 	await client.process_commands(message)
@@ -189,6 +189,8 @@ async def setreactionverify(ctx):
             react_message = await client.send_message(channel, 'React with 🇻 to Verify')
             reaction = '🇻'
             await client.add_reaction(react_message, reaction)
+            reaction1 = await client.wait_for_reaction(emoji="🇻", message=react_message)
+            await client.add_roles(reaction1.message.author, role)
 	
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
