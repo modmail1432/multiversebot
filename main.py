@@ -23,8 +23,8 @@ async def status_task():
 	
 @client.event
 async def on_message(message):
-    if 'fuck' in message.content:
-        msg = 'No bad words! {0.author.mention}'.format(message)
+    if 'hi' in message.content:
+        msg = 'Hello! {0.author.mention}'.format(message)
         await client.send_message(message.channel, msg)
         await client.delete_message(message)
 	await asyncio.sleep(5)
