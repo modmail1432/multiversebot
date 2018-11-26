@@ -152,23 +152,6 @@ async def on_message(message):
 	await client.process_commands(message)
 	
 @client.event
-async def on_socket_raw_receive(self, raw_msg = "Add reaction"):
-    if not isinstance(raw_msg, str):
-        return
-    msg = json.loads(raw_msg)
-    type = msg.get("t")
-    data = msg.get("d")
-    if not data:
-        return
-    emoji = data.get("😃")
-    user_id = data.get("user_id")
-    message_id = data.get("message_id")
-    if type == "MESSAGE_REACTION_ADD":
-        await client.send_message(user_id,"hi")
-    elif type == "MESSAGE_REACTION_REMOVE":
-        await client.send_message(user_id,"bye")
-	
-@client.event
 async def on_member_join(member):
     for channel in member.server.channels:
         if channel.name == '★彡-welcome-彡★':
