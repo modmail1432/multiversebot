@@ -42,25 +42,6 @@ def is_shreyas(ctx):
     return ctx.message.author.id == "376602841625919488"
 
 @client.event
-async def on_message_delete(message):
-  for channel in message.author.server.channels:
-    guild = message.server
-    author = message.author
-    if channel.name == '彡-audit-log-彡':
-        r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-        embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-        avatar = author.avatar_url if author.avatar else author.default_avatar_url
-        embed.set_author(name=("Message removed"))
-        embed.add_field(name=("Member"), value="{0.display_name}#{0.discriminator} ({0.id})".format(author))
-        embed.add_field(name=("Channel"), value=message.channel.name)
-        if message.content:
-            embed.add_field(name=_("Message"), value=message.content, inline=False)
-        if message.attachments:
-            for attachment in message.attachments:
-              embed.add_field(name=_("Attachment"), value="[{0.filename}]({0.url})".format(attachment), inline=True)
-        await client.send_message(channel, embed=embed)
-
-@client.event
 async def on_reaction_add(reaction, user):
   if reaction.emoji == '🇬':
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
