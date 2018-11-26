@@ -22,6 +22,15 @@ async def status_task():
         await asyncio.sleep(5)
 	
 @client.event
+async def on_message(message):
+    if 'fuck' in message.content:
+        msg = 'No bad words! {0.author.mention}'.format(message)
+        await client.send_message(message.channel, msg)
+        await client.delete_message(message)
+	await asyncio.sleep(5)
+	await client.delete_message(msg)
+	
+@client.event
 async def on_ready():
     print('Logged in as '+client.user.name+' (ID:'+client.user.id+') | Connected to '+str(len(client.servers))+' servers | Connected to '+str(len(set(client.get_all_members())))+' users')
     print('--------')
@@ -145,9 +154,6 @@ async def on_reaction_add(reaction, user):
       await client.add_roles(user, role)
       
 
-async def on_message(message):
-	await client.process_commands(message)
-	
 @client.event
 async def on_member_join(member):
     for channel in member.server.channels:
