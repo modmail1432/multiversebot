@@ -30,10 +30,7 @@ async def on_ready():
     print('Created by Utkarsh')
     client.loop.create_task(status_task())
 
-@client.event
-async def on_message(message):
-	await client.process_commands(message)
-	
+
 def is_dark(ctx):
     return ctx.message.author.id == "420525168381657090"
 
@@ -42,12 +39,8 @@ def is_shreyas(ctx):
 
 @client.event
 async def on_message(message):
-    if 'hi' in message.content:
-        msg = 'Hello! {0.author.name}'.format(message)
-        msg2 = await client.send_message(message.channel, msg)
-        await asyncio.sleep(5)
-        await client.delete_message(msg2)
-		
+	await client.process_commands(message)
+	
 @client.event
 async def on_reaction_add(reaction, user):
   if reaction.emoji == '🇬':
