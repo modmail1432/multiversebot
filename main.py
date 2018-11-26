@@ -49,19 +49,19 @@ async def on_message_delete(message):
     author = message.author
     if channel.name == '彡-audit-log-彡':
         timestamp = datetime.utcnow()
-            embed = discord.Embed(color=red)
-            avatar = author.avatar_url if author.avatar else author.default_avatar_url
-            embed.set_author(name=_("Message removed"), icon_url=avatar)
-            embed.add_field(name=_("Member"), value="{0.display_name}#{0.discriminator} ({0.id})".format(author))
-            embed.add_field(name=_("Channel"), value=message.channel.name)
-            embed.add_field(name=_("Message timestamp"), value=message.created_at.strftime("%Y-%m-%d %H:%M:%S"))
-            embed.add_field(name=_("Removal timestamp"), value=timestamp.strftime("%Y-%m-%d %H:%M:%S"))
-            if message.content:
-                embed.add_field(name=_("Message"), value=message.content, inline=False)
-            if message.attachments:
-                for attachment in message.attachments:
-                  embed.add_field(name=_("Attachment"), value="[{0.filename}]({0.url})".format(attachment), inline=True)
-            await client.send_message(channel, embed=embed)
+        embed = discord.Embed(color=red)
+        avatar = author.avatar_url if author.avatar else author.default_avatar_url
+        embed.set_author(name=_("Message removed"), icon_url=avatar)
+        embed.add_field(name=_("Member"), value="{0.display_name}#{0.discriminator} ({0.id})".format(author))
+        embed.add_field(name=_("Channel"), value=message.channel.name)
+        embed.add_field(name=_("Message timestamp"), value=message.created_at.strftime("%Y-%m-%d %H:%M:%S"))
+        embed.add_field(name=_("Removal timestamp"), value=timestamp.strftime("%Y-%m-%d %H:%M:%S"))
+        if message.content:
+            embed.add_field(name=_("Message"), value=message.content, inline=False)
+        if message.attachments:
+            for attachment in message.attachments:
+              embed.add_field(name=_("Attachment"), value="[{0.filename}]({0.url})".format(attachment), inline=True)
+        await client.send_message(channel, embed=embed)
 
 @client.event
 async def on_reaction_add(reaction, user):
