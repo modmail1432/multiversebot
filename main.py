@@ -172,22 +172,7 @@ async def on_member_remove(member):
             embed.set_thumbnail(url=member.avatar_url)
             await client.send_message(channel, embed=embed)
 
-@client.command(pass_context = True)
-@commands.has_permissions(administrator=True)
-async def setreactionverify(ctx):
-    author = ctx.message.author
-    server = ctx.message.server
-    everyone_perms = discord.PermissionOverwrite(send_messages=False,read_messages=True)
-    everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
-    await client.create_channel(server, '★verify-for-chatting★',everyone)
-    for channel in author.server.channels:
-        if channel.name == '★verify-for-chatting★':
-            react_message = await client.send_message(channel, 'React with 🇻 to Verify')
-            reaction = '🇻'
-            await client.add_reaction(react_message, reaction)
-            reaction1 = await client.wait_for_reaction(emoji="🇻", message=react_messagw)
-            await client.add_roles(reaction1.message.author, role)
-            
+           
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
 async def mute(ctx, member: discord.Member):
