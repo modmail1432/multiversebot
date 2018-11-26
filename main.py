@@ -180,7 +180,7 @@ async def on_member_remove(member):
 async def setreactionverify(ctx):
     author = ctx.message.author
     server = ctx.message.server
-    everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
+    everyone_perms = discord.PermissionOverwrite(send_messages=False,read_messages=True)
     everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
     await client.create_channel(server, '★verify-for-chatting★',everyone)
     for channel in author.server.channels:
