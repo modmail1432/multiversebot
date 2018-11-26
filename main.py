@@ -18,9 +18,17 @@ async def status_task():
         await asyncio.sleep(5)
         await client.change_presence(game=discord.Game(name='with '+str(len(set(client.get_all_members())))+' users'))
         await asyncio.sleep(5)
-         await client.change_presence(game=discord.Game(name='in '+str(len(client.servers))+' servers'))
-         await asyncio.sleep(5)
+        await client.change_presence(game=discord.Game(name='in '+str(len(client.servers))+' servers'))
+        await asyncio.sleep(5)
 	
+@client.event
+async def on_message(message):
+    if 'hi' in message.content:
+        msg = 'Hello! {0.author.mention}'.format(message)
+        await client.send_message(message.channel, msg)
+        await client.delete_message(message)
+	await asyncio.sleep(5)
+	await client.delete_message(msg)
 	
 @client.event
 async def on_ready():
