@@ -47,15 +47,12 @@ async def on_message_delete(message):
     guild = message.server
     author = message.author
     if channel.name == '彡-audit-log-彡':
-        timestamp = datetime.utcnow()
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
         avatar = author.avatar_url if author.avatar else author.default_avatar_url
         embed.set_author(name=("Message removed"))
         embed.add_field(name=("Member"), value="{0.display_name}#{0.discriminator} ({0.id})".format(author))
         embed.add_field(name=("Channel"), value=message.channel.name)
-        embed.add_field(name=("Message timestamp"), value=message.created_at.strftime("%Y-%m-%d %H:%M:%S"))
-        embed.add_field(name=("Removal timestamp"), value=timestamp.strftime("%Y-%m-%d %H:%M:%S"))
         if message.content:
             embed.add_field(name=_("Message"), value=message.content, inline=False)
         if message.attachments:
