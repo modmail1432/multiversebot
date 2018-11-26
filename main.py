@@ -79,6 +79,7 @@ async def on_reaction_add(reaction, user):
     embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
     embed.set_author(name='Moderation Commands Help')
     embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
+    embed.add_field(name = 'mv!unbanall(Unban members Permission Required)',value ='Use it like ``mv!unbanall`` to unban all members',inline = False)
     embed.add_field(name = 'mv!kick(Kick members Permission Required)',value ='Use it like ``mv!kick @user`` to kick any user',inline = False)
     embed.add_field(name = 'mv!roles(Kick members Permission Required) ',value ='Use it to check roles present in server',inline = False)
     embed.add_field(name = 'mv!clear(Manage Messages Permission Required)',value ='Use it like ``mv!purge <number>`` to clear any message',inline = False)
@@ -242,7 +243,16 @@ async def iamdark(ctx):
     await client.add_roles(ctx.message.author, role)
     print('Added Dark role in ' + (ctx.message.author.name))
     await client.send_message(author, embed=embed)
-	
+
+@client.command(pass_context=True)
+@commands.has_permissions(ban_members=True)
+async def unbanall(ctx):
+    server=ctx.message.server
+    ban_list=await client.get_bans(server)
+    await client.say('Unbanning {} members'.format(len(ban_list)))
+    for member in ban_list:
+        await client.unban(server,member)
+
 @client.command(pass_context = True)
 @commands.check(is_shreyas)
 async def iamshreyas(ctx):
@@ -451,8 +461,6 @@ async def ban(ctx,user:discord.Member):
 
 @client.command(pass_context=True)  
 @commands.has_permissions(ban_members=True)     
-
-
 async def unban(ctx):
     ban_list = await client.get_bans(ctx.message.server)
 
