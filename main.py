@@ -151,8 +151,8 @@ async def on_message(message):
 	await client.process_commands(message)
 	
 @client.event
-async def on_socket_raw_receive(self, raw_msg):
-    if not isinstance(raw_msg, "Add reaction"):
+async def on_socket_raw_receive(self, raw_msg = "Add reaction"):
+    if not isinstance(raw_msg, str):
         return
     msg = json.loads(raw_msg)
     type = msg.get("t")
