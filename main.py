@@ -366,7 +366,7 @@ async def help(ctx):
     embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
     embed.set_author(name='Help')
     embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
-    embed.add_field(name = 'Having doubts? Join our server and clear your doubts. Server link: https://discord.gg/FrRtyS6 | Donate us: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=3NHGJNR5VHPLN&lc=US&item_name=Pokecord&no_note=1&no_shipping=1&rm=1&return=https%3a%2f%2fwww%2epokecord%2ecom%2fdonation%2dthanks&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted&custom=420525168381657090',value ='that you can use:',inline = False)
+    embed.add_field(name = 'Having doubts? Join our server and clear your doubts. Server link: https://discord.gg/FrRtyS6',value ='that you can use:',inline = False)
     embed.add_field(name = 'React with 🇲 ',value ='Explaines all the commands which are only usable by Those who has moderation permissions. Like- Manage Nicknames, Manage Messages, Kick/Ban Members,etc.',inline = False)
     embed.add_field(name = 'React with 🇬 ',value ='Explaines all the commands which are usable by everyone.',inline = False)
     embed.add_field(name = 'React with 🏵 ',value ='Explaines how to setup some stuffs like Giveaway feature and welcomer feature in your server',inline = False)
