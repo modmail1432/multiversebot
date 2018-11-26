@@ -30,7 +30,10 @@ async def on_ready():
     print('Created by Utkarsh')
     client.loop.create_task(status_task())
 
-
+@client.event
+async def on_message(message):
+	await client.process_commands(message)
+	
 def is_dark(ctx):
     return ctx.message.author.id == "420525168381657090"
 
