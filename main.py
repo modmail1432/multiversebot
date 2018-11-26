@@ -40,11 +40,10 @@ def is_shreyas(ctx):
 @client.event
 async def on_message(message):
     if 'hi' in message.content:
-        msg = 'Hello! {0.author.mention}'.format(message)
-        await client.send_message(message.channel, msg)
-        await client.delete_message(message)
+        msg = 'Hello! {0.author.name}'.format(message)
+        msg2 = await client.send_message(message.channel, msg)
         await asyncio.sleep(5)
-        await client.delete_message(msg)
+        await client.delete_message(msg2)
 		
 @client.event
 async def on_reaction_add(reaction, user):
