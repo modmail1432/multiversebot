@@ -39,7 +39,7 @@ def is_shreyas(ctx):
 
 @client.event
 async def on_message(message):
-    if message.author == client.user:
+    if message.author.bot:
       return
     else:
       await client.process_commands(message)
@@ -179,10 +179,13 @@ async def on_member_remove(member):
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
 async def mute(ctx, member: discord.Member):
-        role = discord.utils.get(member.server.roles, name='Muted')
-        await client.add_roles(member, role)
-        embed=discord.Embed(title="User Muted!", description="**{0}** was muted by **{1}**!".format(member, ctx.message.author), color=0xff00f6)
-        await client.say(embed=embed)
+    if message.author.bot:
+      return
+    else:
+      role = discord.utils.get(member.server.roles, name='Muted')
+      await client.add_roles(member, role)
+      embed=discord.Embed(title="User Muted!", description="**{0}** was muted by **{1}**!".format(member, ctx.message.author), color=0xff00f6)
+      await client.say(embed=embed)
 
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
