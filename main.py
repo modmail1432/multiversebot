@@ -39,7 +39,10 @@ def is_shreyas(ctx):
 
 @client.event
 async def on_message(message):
-	await client.process_commands(message)
+    if message.author != bot.user:
+      await client.process_commands(message)
+    else:
+      return
 	
 @client.event
 async def on_reaction_add(reaction, user):
