@@ -179,7 +179,7 @@ async def on_member_remove(member):
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
 async def mute(ctx, member: discord.Member):
-    if message.author.bot:
+    if ctx.message.author.bot:
       return
     else:
       role = discord.utils.get(member.server.roles, name='Muted')
