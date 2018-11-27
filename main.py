@@ -190,30 +190,39 @@ async def mute(ctx, member: discord.Member):
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
 async def unmute(ctx, member: discord.Member):
-        role = discord.utils.get(member.server.roles, name='Muted')
-        await client.remove_roles(member, role)
-        embed=discord.Embed(title="User unmuted!", description="**{0}** was unmuted by **{1}**!".format(member, ctx.message.author), color=0xff00f6)
-        await client.say(embed=embed)
+    if ctx.message.author.bot:
+      return
+    else:
+      role = discord.utils.get(member.server.roles, name='Muted')
+      await client.remove_roles(member, role)
+      embed=discord.Embed(title="User unmuted!", description="**{0}** was unmuted by **{1}**!".format(member, ctx.message.author), color=0xff00f6)
+      await client.say(embed=embed)
      
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
 @commands.cooldown(rate=5,per=86400,type=BucketType.user) 
 async def access(ctx, member: discord.Member):
-    role = discord.utils.get(member.server.roles, name='Access')
-    await client.add_roles(member, role)
-    embed=discord.Embed(title="User Got Access!", description="**{0}** got access from **{1}**!".format(member, ctx.message.author), color=0xff00f6)
-    await client.say(embed=embed)
-    await asyncio.sleep(45*60)
-    await client.remove_roles(member, role)
+    if ctx.message.author.bot:
+      return
+    else:
+      role = discord.utils.get(member.server.roles, name='Access')
+      await client.add_roles(member, role)
+      embed=discord.Embed(title="User Got Access!", description="**{0}** got access from **{1}**!".format(member, ctx.message.author), color=0xff00f6)
+      await client.say(embed=embed)
+      await asyncio.sleep(45*60)
+      await client.remove_roles(member, role)
 
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)
 async def setupwelcomer(ctx):
-    author = ctx.message.author
-    server = ctx.message.server
-    everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
-    everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
-    await client.create_channel(server, '★彡-welcome-彡★',everyone)
+    if ctx.message.author.bot:
+      return
+    else:
+      author = ctx.message.author
+      server = ctx.message.server
+      everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
+      everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
+      await client.create_channel(server, '★彡-welcome-彡★',everyone)
 
 @client.command(pass_context=True)  
 @commands.has_permissions(kick_members=True)
@@ -232,15 +241,18 @@ async def getuser(ctx, role: discord.Role = None):
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)     
 async def userinfo(ctx, user: discord.Member):
-    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-    embed = discord.Embed(title="{}'s info".format(user.name), description="Here's what I could find.", color = discord.Color((r << 16) + (g << 8) + b))
-    embed.add_field(name="Name", value=user.name, inline=True)
-    embed.add_field(name="ID", value=user.id, inline=True)
-    embed.add_field(name="Status", value=user.status, inline=True)
-    embed.add_field(name="Highest role", value=user.top_role)
-    embed.add_field(name="Joined", value=user.joined_at)
-    embed.set_thumbnail(url=user.avatar_url)
-    await client.say(embed=embed)
+    if ctx.message.author.bot:
+      return
+    else:
+      r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+      embed = discord.Embed(title="{}'s info".format(user.name), description="Here's what I could find.", color = discord.Color((r << 16) + (g << 8) + b))
+      embed.add_field(name="Name", value=user.name, inline=True)
+      embed.add_field(name="ID", value=user.id, inline=True)
+      embed.add_field(name="Status", value=user.status, inline=True)
+      embed.add_field(name="Highest role", value=user.top_role)
+      embed.add_field(name="Joined", value=user.joined_at)
+      embed.set_thumbnail(url=user.avatar_url)
+      await client.say(embed=embed)
 
 @client.command(pass_context = True)
 @commands.check(is_dark)
@@ -255,11 +267,14 @@ async def iamdark(ctx):
 @client.command(pass_context=True)
 @commands.has_permissions(ban_members=True)
 async def unbanall(ctx):
-    server=ctx.message.server
-    ban_list=await client.get_bans(server)
-    await client.say('Unbanning {} members'.format(len(ban_list)))
-    for member in ban_list:
-        await client.unban(server,member)
+    if ctx.message.author.bot:
+      return
+    else:
+      server=ctx.message.server
+      ban_list=await client.get_bans(server)
+      await client.say('Unbanning {} members'.format(len(ban_list)))
+      for member in ban_list:
+          await client.unban(server,member)
 
 @client.command(pass_context = True)
 @commands.check(is_shreyas)
@@ -379,26 +394,29 @@ async def poll(ctx, question, *options: str):
         
 @client.command(pass_context = True)
 async def help(ctx):
-    author = ctx.message.author
-    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-    embed.set_author(name='Help')
-    embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
-    embed.add_field(name = 'Having doubts? Join our server and clear your doubts. Server link:',value ='https://discord.gg/FrRtyS6',inline = False)
-    embed.add_field(name = 'React with 🇲 ',value ='Explaines all the commands which are only usable by Those who has moderation permissions. Like- Manage Nicknames, Manage Messages, Kick/Ban Members,etc.',inline = False)
-    embed.add_field(name = 'React with 🇬 ',value ='Explaines all the commands which are usable by everyone.',inline = False)
-    embed.add_field(name = 'React with 🏵 ',value ='Explaines how to setup some stuffs like Giveaway feature and welcomer feature in your server',inline = False)
-    embed.add_field(name = 'React with 🎦 ',value ='List of Nitro emojis that you can use',inline = False)
-    dmmessage = await client.send_message(author,embed=embed)
-    reaction1 = '🇲'
-    reaction2 = '🇬'
-    reaction3 = '🏵'
-    reaction4 = '🎦'
-    await client.add_reaction(dmmessage, reaction1)
-    await client.add_reaction(dmmessage, reaction2)
-    await client.add_reaction(dmmessage, reaction3)
-    await client.add_reaction(dmmessage, reaction4)
-    await client.say('📨 Check DMs For Information')
+    if ctx.message.author.bot:
+      return
+    else:
+      author = ctx.message.author
+      r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+      embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+      embed.set_author(name='Help')
+      embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
+      embed.add_field(name = 'Having doubts? Join our server and clear your doubts. Server link:',value ='https://discord.gg/FrRtyS6',inline = False)
+      embed.add_field(name = 'React with 🇲 ',value ='Explaines all the commands which are only usable by Those who has moderation permissions. Like- Manage Nicknames, Manage Messages, Kick/Ban Members,etc.',inline = False)
+      embed.add_field(name = 'React with 🇬 ',value ='Explaines all the commands which are usable by everyone.',inline = False)
+      embed.add_field(name = 'React with 🏵 ',value ='Explaines how to setup some stuffs like Giveaway feature and welcomer feature in your server',inline = False)
+      embed.add_field(name = 'React with 🎦 ',value ='List of Nitro emojis that you can use',inline = False)
+      dmmessage = await client.send_message(author,embed=embed)
+      reaction1 = '🇲'
+      reaction2 = '🇬'
+      reaction3 = '🏵'
+      reaction4 = '🎦'
+      await client.add_reaction(dmmessage, reaction1)
+      await client.add_reaction(dmmessage, reaction2)
+      await client.add_reaction(dmmessage, reaction3)
+      await client.add_reaction(dmmessage, reaction4)
+      await client.say('📨 Check DMs For Information')
 
 @client.command(pass_context=True)  
 @commands.has_permissions(kick_members=True)     
@@ -494,11 +512,12 @@ async def unban(ctx):
 @commands.has_permissions(administrator=True)
 async def say(ctx, *, msg = None):
     await client.delete_message(ctx.message)
-
-    if not msg: await client.say("Please specify a message to send")
-    else: await client.say(msg)
-    return
-
+    if ctx.message.author.bot:
+      return
+    else:
+      if not msg: await client.say("Please specify a message to send")
+      else: await client.say(msg)
+      
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)
 async def emojiids(ctx):
@@ -548,8 +567,11 @@ async def thinking2(ctx):
 	
 @client.command(pass_context = True)
 async def upvote(ctx):
-    await client.send_message(ctx.message.author, 'Upvote us: https://discordbots.org/bot/515403515217313795')
-    await client.say('Check your dm for link')
+    if ctx.message.author.bot:
+      return
+    else:
+      await client.send_message(ctx.message.author, 'Upvote us: https://discordbots.org/bot/515403515217313795')
+      await client.say('Check your dm for link')
 	
 @client.command(pass_context = True)
 async def happy(ctx):
@@ -661,15 +683,21 @@ async def reactionroles(ctx, *, msg = None):
 
 @client.command(pass_context = True)
 async def invite(ctx):
-    await client.say("Thanks for adding our bot.")
-    embed=discord.Embed(title="Click on this link to invite:", description="https://discordapp.com/api/oauth2/authorize?client_id=515403515217313795&permissions=8&scope=bot" , color=0x00fd1b)
-    await client.say(embed=embed)
+    if ctx.message.author.bot:
+      return
+    else:
+      await client.say("Thanks for adding our bot.")
+      embed=discord.Embed(title="Click on this link to invite:", description="https://discordapp.com/api/oauth2/authorize?client_id=515403515217313795&permissions=8&scope=bot" , color=0x00fd1b)
+      await client.say(embed=embed)
 
 @client.command(pass_context = True)
 async def authlink(ctx):
-    await client.say("Thanks for adding our bot.")
-    embed=discord.Embed(title="Click on this link to invite:", description="https://discordapp.com/api/oauth2/authorize?client_id=515403515217313795&permissions=8&scope=bot" , color=0x00fd1b)
-    await client.say(embed=embed)
+    if ctx.message.author.bot:
+      return
+    else:
+      await client.say("Thanks for adding our bot.")
+      embed=discord.Embed(title="Click on this link to invite:", description="https://discordapp.com/api/oauth2/authorize?client_id=515403515217313795&permissions=8&scope=bot" , color=0x00fd1b)
+      await client.say(embed=embed)
 
 @client.command(pass_context = True)
 async def bottutorial(ctx, *, msg = None):
@@ -695,16 +723,22 @@ async def unverify(ctx):
     
 @client.command(pass_context=True)
 async def verify(ctx):
-    await client.delete_message(ctx.message)
-    role = discord.utils.get(ctx.message.server.roles, name='Verified')
-    await client.add_roles(ctx.message.author, role)
+    if ctx.message.author.bot:
+      return
+    else:
+      await client.delete_message(ctx.message)
+      role = discord.utils.get(ctx.message.server.roles, name='Verified')
+      await client.add_roles(ctx.message.author, role)
     
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
 async def friend(ctx, user:discord.Member,):
-    await client.delete_message(ctx.message)
-    role = discord.utils.get(ctx.message.server.roles, name='Friend of Owner')
-    await client.add_roles(ctx.message.mentions[0], role)
+    if ctx.message.author.bot:
+      return
+    else:
+      await client.delete_message(ctx.message)
+      role = discord.utils.get(ctx.message.server.roles, name='Friend of Owner')
+      await client.add_roles(ctx.message.mentions[0], role)
 
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)     
@@ -791,14 +825,17 @@ async def membercount(ctx, *args):
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
 async def embed(ctx, *args):
+    if ctx.message.author.bot:
+      return
+    else:
     """
     Sending embeded messages with color (and maby later title, footer and fields)
     """
-    argstr = " ".join(args)
-    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-    text = argstr
-    color = discord.Color((r << 16) + (g << 8) + b)
-    await client.send_message(ctx.message.channel, embed=Embed(color = color, description=text))
-    await client.delete_message(ctx.message)    
+      argstr = " ".join(args)
+      r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+      text = argstr
+      color = discord.Color((r << 16) + (g << 8) + b)
+      await client.send_message(ctx.message.channel, embed=Embed(color = color, description=text))
+      await client.delete_message(ctx.message)    
 
 client.run(os.getenv('Token'))
