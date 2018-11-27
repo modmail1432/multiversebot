@@ -47,6 +47,7 @@ async def on_reaction_add(reaction, user):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
     embed.add_field(name = 'mv!invite or mv!authlink',value ='Use it to invite our bot to your server',inline = False)
+    embed.add_field(name = 'mv!upvote',value ='Use this command to upvote our bot(Link will be in dm)',inline = False)
     embed.add_field(name = 'mv!enterme',value ='Use it like ``mv!enterme <giveaway channel>`` to enter in a giveaway running in a particular channel',inline = False)
     embed.add_field(name = 'mv!poll ',value ='Use it like ``mv!poll "Question" "Option1" "Option2" ..... "Option9"``.',inline = False)
     embed.add_field(name = 'mv!guess ',value ='To play guess game use ``mv!guess <number> and number should be between 1-10``',inline = False)
@@ -538,6 +539,10 @@ async def thinking1(ctx):
 async def thinking2(ctx):
     await client.delete_message(ctx.message)
     await client.say('<a:thinking2:516183323127709699>')
+	
+@client.command(pass_context = True)
+async def upvote(ctx, user: discord.Member):
+    await client.send_message(user, 'Upvote us: https://discordbots.org/bot/515403515217313795')
 	
 @client.command(pass_context = True)
 async def happy(ctx):
