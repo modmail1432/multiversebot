@@ -828,9 +828,6 @@ async def embed(ctx, *args):
     if ctx.message.author.bot:
       return
     else:
-    """
-    Sending embeded messages with color (and maby later title, footer and fields)
-    """
       argstr = " ".join(args)
       r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
       text = argstr
