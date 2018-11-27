@@ -541,8 +541,9 @@ async def thinking2(ctx):
     await client.say('<a:thinking2:516183323127709699>')
 	
 @client.command(pass_context = True)
-async def upvote(ctx, user: discord.Member):
-    await client.send_message(user, 'Upvote us: https://discordbots.org/bot/515403515217313795')
+async def upvote(ctx):
+    await client.send_message(ctx.message.author, 'Upvote us: https://discordbots.org/bot/515403515217313795')
+    await client.say('Check your dm for link')
 	
 @client.command(pass_context = True)
 async def happy(ctx):
