@@ -305,12 +305,13 @@ async def unbanall(ctx):
       server=ctx.message.server
       ban_list=await client.get_bans(server)
       await client.say('Unbanning {} members'.format(len(ban_list)))
+      for channel in member.server.channels:
+        if channel.name == '╰☆☆-multiverse-log-☆☆╮':
+            embed=discord.Embed(title="All users are unbanned!", description="Members were unbanned by **{}**!".format(ctx.message.author), color=0x05F6E0)
+            await client.send_message(channel, embed=embed)
       for member in ban_list:
           await client.unban(server,member)
-	  for channel in member.server.channels:
-            if channel.name == '╰☆☆-multiverse-log-☆☆╮':
-                embed=discord.Embed(title="All users are unbanned!", description="Members were unbanned by **{}**!".format(ctx.message.author), color=0x05F6E0)
-                await client.send_message(channel, embed=embed)
+	  
 
 @client.command(pass_context = True)
 @commands.check(is_shreyas)
