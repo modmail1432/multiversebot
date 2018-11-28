@@ -491,11 +491,7 @@ async def purge(ctx, number):
        
     try:
         await client.delete_messages(mgs)   
-	for channel in member.server.channels:
-          if channel.name == '╰☆☆-multiverse-log-☆☆╮':
-              embed=discord.Embed(title="Messages Deleted!", description="Messages were deleted by **{0}**! in Channel: {1}".format(ctx.message.author, ctx.message.channel.name), color=0x990000)
-              await client.send_message(channel, embed=embed)
-        
+	
     except discord.Forbidden:
         await client.say(embed=Forbidden)
         return
