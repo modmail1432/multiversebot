@@ -477,9 +477,6 @@ async def kick(ctx,user:discord.Member):
         if channel.name == '╰☆☆-multiverse-log-☆☆╮':
             embed=discord.Embed(title="User kicked!", description="**{0}** is kicked by **{1}**!".format(user, ctx.message.author), color=0xFDE112)
             await client.send_message(channel, embed=embed)
-    except discord.Forbidden:
-      await client.say('Permission denied.')
-      return
         
 
 @client.command(pass_context = True)
