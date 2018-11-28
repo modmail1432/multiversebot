@@ -185,8 +185,12 @@ async def mute(ctx, member: discord.Member):
     else:
       role = discord.utils.get(member.server.roles, name='Muted')
       await client.add_roles(member, role)
-      embed=discord.Embed(title="User Muted!", description="**{0}** was muted by **{1}**!".format(member, ctx.message.author), color=0xff00f6)
-      await client.say(embed=embed)
+      await client.say("Muted **{}**".format(member))
+      for channel in member.server.channels:
+        if channel.name == '╰☆☆-multiverse-log-☆☆╮':
+            embed=discord.Embed(title="User Muted!", description="**{0}** was muted by **{1}**!".format(member, ctx.message.author), color=0xff00f6)
+            await client.send_message(channel, embed=embed)
+      
 
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
@@ -196,8 +200,11 @@ async def unmute(ctx, member: discord.Member):
     else:
       role = discord.utils.get(member.server.roles, name='Muted')
       await client.remove_roles(member, role)
-      embed=discord.Embed(title="User unmuted!", description="**{0}** was unmuted by **{1}**!".format(member, ctx.message.author), color=0xff00f6)
-      await client.say(embed=embed)
+      await client.say("Unmuted **{}**".format(member))
+      for channel in member.server.channels:
+        if channel.name == '╰☆☆-multiverse-log-☆☆╮':
+            embed=discord.Embed(title="User unmuted!", description="**{0}** was unmuted by **{1}**!".format(member, ctx.message.author), color=0xff00f6)
+            await client.send_message(channel, embed=embed)
      
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
@@ -208,11 +215,14 @@ async def access(ctx, member: discord.Member):
     else:
       role = discord.utils.get(member.server.roles, name='Access')
       await client.add_roles(member, role)
-      embed=discord.Embed(title="User Got Access!", description="**{0}** got access from **{1}**!".format(member, ctx.message.author), color=0xff00f6)
-      await client.say(embed=embed)
-      await asyncio.sleep(45*60)
-      await client.remove_roles(member, role)
-
+      await client.say("Gave access to {}".format(member))
+      for channel in member.server.channels:
+        if channel.name == '╰☆☆-multiverse-log-☆☆╮':
+            embed=discord.Embed(title="User Got Access!", description="**{0}** got access from **{1}**!".format(member, ctx.message.author), color=0xff00f6)
+            await client.send_message(channel, embed=embed)
+            await asyncio.sleep(45*60)
+            await client.remove_roles(member, role)
+	    
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)
 async def setupwelcomer(ctx):
