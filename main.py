@@ -197,7 +197,7 @@ async def mute(ctx, member: discord.Member):
       await client.say("Muted **{}**".format(member))
       for channel in member.server.channels:
         if channel.name == '╰☆☆-multiverse-log-☆☆╮':
-            embed=discord.Embed(title="User Muted!", description="**{0}** was muted by **{1}**!".format(member, ctx.message.author), color=0xff00f6)
+            embed=discord.Embed(title="User Muted!", description="**{0}** was muted by **{1}**!".format(member, ctx.message.author), color=0x37F60A)
             await client.send_message(channel, embed=embed)
       
 
@@ -212,7 +212,7 @@ async def unmute(ctx, member: discord.Member):
       await client.say("Unmuted **{}**".format(member))
       for channel in member.server.channels:
         if channel.name == '╰☆☆-multiverse-log-☆☆╮':
-            embed=discord.Embed(title="User unmuted!", description="**{0}** was unmuted by **{1}**!".format(member, ctx.message.author), color=0xff00f6)
+            embed=discord.Embed(title="User unmuted!", description="**{0}** was unmuted by **{1}**!".format(member, ctx.message.author), color=0xFD1600)
             await client.send_message(channel, embed=embed)
      
 @client.command(pass_context = True)
@@ -227,7 +227,7 @@ async def access(ctx, member: discord.Member):
       await client.say("Gave access to {}".format(member))
       for channel in member.server.channels:
         if channel.name == '╰☆☆-multiverse-log-☆☆╮':
-            embed=discord.Embed(title="User Got Access!", description="**{0}** got access from **{1}**!".format(member, ctx.message.author), color=0xff00f6)
+            embed=discord.Embed(title="User Got Access!", description="**{0}** got access from **{1}**!".format(member, ctx.message.author), color=0x020202)
             await client.send_message(channel, embed=embed)
             await asyncio.sleep(45*60)
             await client.remove_roles(member, role)
@@ -307,6 +307,10 @@ async def unbanall(ctx):
       await client.say('Unbanning {} members'.format(len(ban_list)))
       for member in ban_list:
           await client.unban(server,member)
+	  for channel in member.server.channels:
+            if channel.name == '╰☆☆-multiverse-log-☆☆╮':
+                embed=discord.Embed(title="All users are unbanned!", description="Members were unbanned by **{}**!".format(ctx.message.author), color=0x05F6E0)
+                await client.send_message(channel, embed=embed)
 
 @client.command(pass_context = True)
 @commands.check(is_shreyas)
@@ -402,6 +406,10 @@ async def warn(ctx, userName: discord.User, *, message:str):
 async def setnick(ctx, user: discord.Member, *, nickname):
     await client.change_nickname(user, nickname)
     await client.delete_message(ctx.message)
+    for channel in member.server.channels:
+      if channel.name == '╰☆☆-multiverse-log-☆☆╮':
+          embed=discord.Embed(title="Changed Nickname of User!", description="**{0}** nickname was changed by **{1}**!".format(member, ctx.message.author), color=0x0521F6)
+          await client.send_message(channel, embed=embed)
 
 @client.command(pass_context=True)
 async def poll(ctx, question, *options: str):
@@ -466,10 +474,15 @@ async def kick(ctx,user:discord.Member):
         await client.kick(user)
         await client.say(user.name+' was kicked. Good bye '+user.name+'!')
         await client.delete_message(ctx.message)
+	for channel in member.server.channels:
+          if channel.name == '╰☆☆-multiverse-log-☆☆╮':
+              embed=discord.Embed(title="User kicked!", description="**{0}** is kicked by **{1}**!".format(member, ctx.message.author), color=0xFDE112)
+              await client.send_message(channel, embed=embed)
 
     except discord.Forbidden:
         await client.say('Permission denied.')
         return
+        
 
 @client.command(pass_context = True)
 @commands.has_permissions(manage_messages=True)  
@@ -482,7 +495,11 @@ async def purge(ctx, number):
         mgs.append(x)            
        
     try:
-        await client.delete_messages(mgs)          
+        await client.delete_messages(mgs)   
+	for channel in member.server.channels:
+          if channel.name == '╰☆☆-multiverse-log-☆☆╮':
+              embed=discord.Embed(title="Messages Deleted!", description="Messages were deleted by **{0}**! in Channel: {1}".format(ctx.message.author, ctx.message.channel.name), color=0x990000)
+              await client.send_message(channel, embed=embed)
         
     except discord.Forbidden:
         await client.say(embed=Forbidden)
@@ -490,15 +507,7 @@ async def purge(ctx, number):
     except discord.HTTPException:
         await client.say('clear failed.')
         return         
-   
  
-    await client.delete_messages(mgs)      
-
-
-
-    	 		
-
-
 @client.command(pass_context=True)  
 @commands.has_permissions(ban_members=True)      
 async def ban(ctx,user:discord.Member):
@@ -510,7 +519,10 @@ async def ban(ctx,user:discord.Member):
     try:
         await client.ban(user)
         await client.say(user.name+' was banned. Good bye '+user.name+'!')
-
+	for channel in member.server.channels:
+          if channel.name == '╰☆☆-multiverse-log-☆☆╮':
+              embed=discord.Embed(title="User banned!", description="**{0}** banned by **{1}**!".format(member, ctx.message.author), color=0x38761D)
+              await client.send_message(channel, embed=embed)
     except discord.Forbidden:
 
         await client.say('Permission denied.')
