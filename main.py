@@ -130,6 +130,7 @@ async def on_reaction_add(reaction, user):
     embed.add_field(name = 'Setting up Welcomer log(Admin Permission required) ',value ='Use mv!setupwelcomer. It will add a welcome channel. Just put that channel in your desired category and it will send all logs there.',inline = False)
     embed.add_field(name = 'Setting up Giveaway feature(Manage roles permission required) ',value ='Just add a role named ``Giveaways`` and give that role to user who wanna be giveaway manager. Then use ``mv!help`` and check giveaway commands.',inline = False)
     embed.add_field(name = 'Setting up Reaction Verification(Admin Permission required) ',value ='Just add a role named ``Verified`` then remove permission from everyone to send message in all channels. Also add permission of verified role to send message in chatting channels. Then use ``mv!setreactionverify`` it will automatically add a channel and post information about verification.',inline = False)
+    embed.add_field(name = 'Setting up Multiverse bot log(Admin Permission required) ',value ='Use ``mv!setuplog`` and it will automatically add a log channel and log all stuffs there.',inline = False)
     await client.send_message(user,embed=embed)
 	
   if reaction.emoji == '🎦':
@@ -223,6 +224,18 @@ async def setupwelcomer(ctx):
       everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
       everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
       await client.create_channel(server, '★彡-welcome-彡★',everyone)
+
+@client.command(pass_context = True)
+@commands.has_permissions(administrator=True)
+async def setuplog(ctx):
+    if ctx.message.author.bot:
+      return
+    else:
+      author = ctx.message.author
+      server = ctx.message.server
+      everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
+      everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
+      await client.create_channel(server, '╰☆☆-multiverse-log-☆☆╮',everyone)
 
 @client.command(pass_context=True)  
 @commands.has_permissions(kick_members=True)
