@@ -305,7 +305,7 @@ async def unbanall(ctx):
       server=ctx.message.server
       ban_list=await client.get_bans(server)
       await client.say('Unbanning {} members'.format(len(ban_list)))
-      for channel in member.server.channels:
+      for channel in ctx.message.author.server.channels:
         if channel.name == '╰☆☆-multiverse-log-☆☆╮':
             embed=discord.Embed(title="All users are unbanned!", description="Members were unbanned by **{}**!".format(ctx.message.author), color=0x05F6E0)
             await client.send_message(channel, embed=embed)
@@ -407,7 +407,7 @@ async def warn(ctx, userName: discord.User, *, message:str):
 async def setnick(ctx, user: discord.Member, *, nickname):
     await client.change_nickname(user, nickname)
     await client.delete_message(ctx.message)
-    for channel in member.server.channels:
+    for channel in user.server.channels:
       if channel.name == '╰☆☆-multiverse-log-☆☆╮':
           embed=discord.Embed(title="Changed Nickname of User!", description="**{0}** nickname was changed by **{1}**!".format(member, ctx.message.author), color=0x0521F6)
           await client.send_message(channel, embed=embed)
@@ -505,7 +505,6 @@ async def ban(ctx,user:discord.Member):
     if user.server_permissions.ban_members:
       await client.say('**He is mod/admin and i am unable to ban him/her**')
       return
-
     else:
       await client.ban(user)
       await client.say(user.name+' was banned. Good bye '+user.name+'!')
