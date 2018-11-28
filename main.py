@@ -502,27 +502,17 @@ async def purge(ctx, number):
 @client.command(pass_context=True)  
 @commands.has_permissions(ban_members=True)      
 async def ban(ctx,user:discord.Member):
-
     if user.server_permissions.ban_members:
-        await client.say('**He is mod/admin and i am unable to ban him/her**')
-        return
+      await client.say('**He is mod/admin and i am unable to ban him/her**')
+      return
 
-    try:
+    else:
         await client.ban(user)
         await client.say(user.name+' was banned. Good bye '+user.name+'!')
 	for channel in member.server.channels:
           if channel.name == '╰☆☆-multiverse-log-☆☆╮':
               embed=discord.Embed(title="User banned!", description="**{0}** banned by **{1}**!".format(member, ctx.message.author), color=0x38761D)
               await client.send_message(channel, embed=embed)
-    except discord.Forbidden:
-
-        await client.say('Permission denied.')
-        return
-    except discord.HTTPException:
-        await client.say('ban failed.')
-        return		 
-
-
 
 @client.command(pass_context=True)  
 @commands.has_permissions(ban_members=True)     
@@ -534,18 +524,15 @@ async def unban(ctx):
 
     # Unban last banned user
     if not ban_list:
-    	
         await client.say('Ban list is empty.')
         return
-    try:
+    else:
         await client.unban(ctx.message.server, ban_list[-1])
         await client.say('Unbanned user: `{}`'.format(ban_list[-1].name))
-    except discord.Forbidden:
-        await client.say('Permission denied.')
-        return
-    except discord.HTTPException:
-        await client.say('unban failed.')
-        return		      	 		 		  
+	for channel in member.server.channels:
+          if channel.name == '╰☆☆-multiverse-log-☆☆╮':
+              embed=discord.Embed(title="User unbanned!", description="**{0}** unbanned by **{1}**!".format(ban_list[-1].name, ctx.message.author), color=0x38761D)
+              await client.send_message(channel, embed=embed)
   
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)
