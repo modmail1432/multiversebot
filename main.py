@@ -564,7 +564,37 @@ async def wow(ctx):
 async def dank(ctx):
     await client.delete_message(ctx.message)
     await client.say('<a:OnThaCoco:515853700682743809>')
+
+@client.command(pass_context = True)
+async def santa(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:santa:517232271678504970>')
 	
+@client.command(pass_context = True)
+async def hi(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:hi:517232279148429313>')
+	
+@client.command(pass_context = True)
+async def lol(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:lol:517232283670020096>')
+	
+@client.command(pass_context = True)
+async def love(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:love:517232300912672774>')
+	
+@client.command(pass_context = True)
+async def mad(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:mad:517232301176913951>')
+	
+@client.command(pass_context = True)
+async def alien(ctx):
+    await client.delete_message(ctx.message)
+    await client.say('<a:alien:517232332663422986>')
+
 @client.command(pass_context = True)
 async def fearfromme(ctx):
     await client.delete_message(ctx.message)
