@@ -202,7 +202,43 @@ async def mute(ctx, member: discord.Member):
         if channel.name == '╰☆☆-multiverse-log-☆☆╮':
             embed=discord.Embed(title="User Muted!", description="**{0}** was muted by **{1}**!".format(member, ctx.message.author), color=0x37F60A)
             await client.send_message(channel, embed=embed)
-      
+
+@client.command(pass_context =True) 
+@commands.check(is_dark)
+async def servers(ctx):
+
+    owner = ctx.message.author
+    servers = sorted(list(client.servers), key=lambda s: s.name.lower())
+    msg = ""
+    for i, server in enumerate(servers):
+        msg += "{}: {}\n".format(i, server.name)
+    msg += "\nTo leave a server just type its number."
+
+    for page in pagify(msg, ['\n']):
+        await client.say(page)
+
+    while msg is not None:
+        msg = await client.wait_for_message(author=owner, timeout=15)
+        try:
+            msg = int(msg.content)
+            await self.leave_confirmation(servers[msg], owner, ctx)
+            break
+        except (IndexError, ValueError, AttributeError):
+            pass
+async def leave_confirmation(server, owner, ctx):
+    await client.say("Are you sure you want me " "to leave {}? (yes/no)".format(server.name))
+
+    msg = await client.wait_for_message(author=owner, timeout=15)
+
+    if msg is None:
+        await client.say("I guess not.")
+    elif msg.content.lower().strip() in ("yes", "y"):
+        await client.leave_server(server)
+        if server != ctx.message.server:
+            await client.say("Done.")
+    else:
+        await client.say("Alright then.")
+
 
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
