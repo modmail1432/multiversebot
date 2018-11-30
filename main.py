@@ -168,9 +168,10 @@ async def on_member_join(member):
             r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
             embed = discord.Embed(title=f'Welcome {member.name} to {member.server.name}', description='Do not forget to check rules and never try to break any one of them', color = discord.Color((r << 16) + (g << 8) + b))
             embed.add_field(name='__Thanks for joining__', value='**Hope you will be active here.**', inline=True)
-            embed.add_field(name='Your join position is', value=member.joined_at)
+            embed.add_field(name='Your join position is', value=str(lenmember.server.members))
             embed.set_thumbnail(url='https://media.giphy.com/media/OkJat1YNdoD3W/giphy.gif') 
             embed.set_image(url = member.avatar_url)
+	    embed.add_field(name='Time of joining', value=member.joined_at)
             await client.send_message(channel, embed=embed)
 
 @client.event
