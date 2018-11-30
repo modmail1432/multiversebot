@@ -172,7 +172,7 @@ async def on_member_join(member):
             embed.set_thumbnail(url='https://media.giphy.com/media/OkJat1YNdoD3W/giphy.gif') 
             embed.set_image(url = member.avatar_url)
 	    embed.add_field(name='Time of joining', value=member.joined_at)
-            await client.send_message(channel, embed=embed)
+            await client.send_message(channel, embed=embed) 
 
 @client.event
 async def on_member_remove(member):
