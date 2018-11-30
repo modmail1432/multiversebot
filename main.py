@@ -7,7 +7,7 @@ import random
 import platform
 from discord import Game, Embed, Color, Status, ChannelType
 import os
-import paginator 
+
 
 Forbidden= discord.Embed(title="Permission Denied", description="1) Please check whether you have permission to perform this action or not. \n2) Please check whether my role has permission to perform this action in this channel or not. \n3) Please check my role position.", color=0x00ff00)
 client = commands.Bot(description="MultiVerse Official Bot", command_prefix="mv!", pm_help = True)
@@ -204,20 +204,7 @@ async def mute(ctx, member: discord.Member):
             embed=discord.Embed(title="User Muted!", description="**{0}** was muted by **{1}**!".format(member, ctx.message.author), color=0x37F60A)
             await client.send_message(channel, embed=embed)
 
-@client.command(pass_context =True) 
-@commands.check(is_dark)
-async def servers(ctx):
-
-    owner = ctx.message.author
-    servers = sorted(list(client.servers), key=lambda s: s.name.lower())
-    msg = ""
-    for i, server in enumerate(servers):
-        msg += "{}: {}\n".format(i, server.name)
-    msg += "\nTo leave a server just type its number."
-
-    for page in pagify(msg, ['\n']):
-        await client.say(page)
-
+@
     while msg is not None:
         msg = await client.wait_for_message(author=owner, timeout=15)
         try:
@@ -234,7 +221,7 @@ async def leave_confirmation(server, owner, ctx):
     if msg is None:
         await client.say("I guess not.")
     elif msg.content.lower().strip() in ("yes", "y"):
-        await client.leave_server(server)
+r(server)
         if server != ctx.message.server:
             await client.say("Done.")
     else:
