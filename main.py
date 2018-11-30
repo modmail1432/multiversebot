@@ -189,7 +189,7 @@ async def on_member_remove(member):
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
 async def mute(ctx, member: discord.Member):
-    if userName.server_permissions.kick_members:
+    if member.server_permissions.kick_members:
         await client.say('**He is mod/admin and i am unable to mute him/her**')
         return
     if ctx.message.author.bot:
