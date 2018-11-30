@@ -204,7 +204,7 @@ async def mute(ctx, member: discord.Member):
             embed=discord.Embed(title="User Muted!", description="**{0}** was muted by **{1}**!".format(member, ctx.message.author), color=0x37F60A)
             await client.send_message(channel, embed=embed)
 
-Alright then.")
+
 
 
 @client.command(pass_context = True)
