@@ -536,7 +536,7 @@ async def kick(ctx,user:discord.Member):
 async def purge(ctx, number):
     number = int(number) #Converting the amount of messages to delete to an integer
     counter = 0
-    async for x in client.logs_from(ctx.message.channel, limit = number):
+    async for x in client.logs_from(ctx.message.channel, limit = number+1):
         if counter < number:
             await client.delete_message(x)
             counter += 1
