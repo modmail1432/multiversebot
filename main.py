@@ -210,8 +210,18 @@ async def rolldice(ctx):
     color = discord.Color(value=0x00ff00)
     em = discord.Embed(color=color, title='Rolled! (1 6-sided die)', description=random.choice(choices))
     await client.say(embed=em)
-	
 
+@client.command(pass_context = True)
+@commands.has_permissions(administrator = True)
+async def dm(ctx, user: discord.Member, *, msg: str):
+    try:
+        await client.send_message(user, msg)
+        await client.delete_message(ctx.message)          
+        await client.say("Success! Your DM has made it! :white_check_mark: ")
+    except discord.ext.commands.MissingPermissions:
+        await client.say("Aw, come on! You thought you could get away with DM'ing people without permissions.")
+    except:
+        await client.say("Error :x:. Make sure your message is shaped in this way: mv!dm [tag person] [msg]")
 
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
