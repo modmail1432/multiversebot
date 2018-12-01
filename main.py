@@ -193,11 +193,7 @@ async def on_member_remove(member):
 	
 @client.command(pass_context = True)
 async def ping(ctx):
-    em = discord.Embed()
-    em.title ='Pong! Websocket Latency:'
-    em.description = f'{client.ws.latency * 1000:.4f} ms'
-    em.color = 0x00FF00
-    await client.say(embed=em)	
+    await ctx.send('Pong! {0}'.format(round(client.latency, 1))
 	
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
