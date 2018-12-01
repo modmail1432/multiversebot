@@ -226,19 +226,13 @@ async def dm(ctx, user: discord.Member, *, msg: str):
         await client.say("Error :x:. Make sure your message is shaped in this way: mv!dm [tag person] [msg]")
 
 @client.command(pass_context = True)
-async def flipcoin(self, ctx):
-    choices = ['Heads', 'Tails', 'Coin self-destructed.']
+async def flipcoin(ctx):
+    choices = ['Heads', 'Tails', 'Coin self-destructed']
     color = discord.Color(value=0x00ff00)
     em=discord.Embed(color=color, title='Flipped a coin!')
     em.description = random.choice(choices)
     await client.say(embed=em)
-	
-@client.command(pass_context = True)
-async def avatar(ctx, user: discord.Member):
-    if user is None:
-        await client.say(ctx.message.author.avatar_url)                   
-    else:
-        await client.say(user.avatar_url)    
+
 	
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
