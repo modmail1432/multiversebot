@@ -540,7 +540,7 @@ async def purge(ctx, number):
         if counter < number:
             await client.delete_message(x)
             counter += 1
-            await asyncio.sleep(1.2)
+            await asyncio.sleep(0.1)
  
 @client.command(pass_context=True)  
 @commands.has_permissions(ban_members=True)      
