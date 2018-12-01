@@ -252,6 +252,9 @@ async def flipcoin(ctx):
     em.description = random.choice(choices)
     await client.say(embed=em)
 
+@client.command(pass_context = True)
+async def unbanusr(ctx, user_id):
+    banned = await client.get_user_info(user_id)
 	
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
