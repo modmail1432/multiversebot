@@ -192,6 +192,14 @@ async def on_member_remove(member):
             await client.send_message(channel, embed=embed)
 	
 @client.command(pass_context = True)
+async def ping(ctx):
+    em = discord.Embed()
+    em.title ='Pong! Websocket Latency:'
+    em.description = f'{client.ws.latency * 1000:.4f} ms'
+    em.color = 0x00FF00
+    await client.say(embed=em)	
+	
+@client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
 async def mute(ctx, member: discord.Member):
     if member.server_permissions.kick_members:
