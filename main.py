@@ -192,10 +192,6 @@ async def on_member_remove(member):
             await client.send_message(channel, embed=embed)
 	
 @client.command(pass_context = True)
-async def ping(ctx):
-    await ctx.send('Pong! {0}'.format(round(client.latency, 1))
-	
-@client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
 async def mute(ctx, member: discord.Member):
     if member.server_permissions.kick_members:
