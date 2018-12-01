@@ -204,6 +204,13 @@ async def mute(ctx, member: discord.Member):
             embed=discord.Embed(title="User Muted!", description="**{0}** was muted by **{1}**!".format(member, ctx.message.author), color=0x37F60A)
             await client.send_message(channel, embed=embed)
 
+@client.command(pass_context = True)
+async def rolldice(ctx):
+    choices = ['1', '2', '3', '4', '5', '6']
+    color = discord.Color(value=0x00ff00)
+    em = discord.Embed(color=color, title='Rolled! (1 6-sided die)', description=random.choice(choices))
+    await ctx.send(embed=em)
+	
 
 
 @client.command(pass_context = True)
