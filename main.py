@@ -54,6 +54,7 @@ async def on_reaction_add(reaction, user):
     embed.add_field(name = 'mv!donate',value ='Sends donation link',inline = False)
     embed.add_field(name = 'mv!invite or mv!authlink',value ='Use it to invite our bot to your server',inline = False)
     embed.add_field(name = 'mv!upvote',value ='Use this command to upvote our bot(Link will be in dm)',inline = False)
+    embed.add_field(name = 'mv!rolldice',value ='Use it like ``mv!rolldice <1-6 any number that you want to guess in dice)``',inline = False)
     embed.add_field(name = 'mv!enterme',value ='Use it like ``mv!enterme <giveaway channel>`` to enter in a giveaway running in a particular channel',inline = False)
     embed.add_field(name = 'mv!poll ',value ='Use it like ``mv!poll "Question" "Option1" "Option2" ..... "Option9"``.',inline = False)
     embed.add_field(name = 'mv!guess ',value ='To play guess game use ``mv!guess <number> and number should be between 1-10``',inline = False)
@@ -68,6 +69,7 @@ async def on_reaction_add(reaction, user):
     embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
     embed.set_author(name='Moderation Commands Help')
     embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
+    embed.add_field(name = 'mv!dm(Admin permission required) ',value ='Use it like ``mv!dm @user <text>`` to dm user from bot',inline = False)
     embed.add_field(name = 'mv!say(Admin permission required) ',value ='Use it like ``mv!say <text>``',inline = False)
     embed.add_field(name = 'mv!showme(Requires a role named Giveaways)',value ='To see how many people are taking part in giveaway',inline = False)
     embed.add_field(name = 'mv!pickwinner(Requires a role named Giveaways)',value ='To pick winner',inline = False)
@@ -223,6 +225,29 @@ async def dm(ctx, user: discord.Member, *, msg: str):
     except:
         await client.say("Error :x:. Make sure your message is shaped in this way: mv!dm [tag person] [msg]")
 
+@client.command(pass_context = True)
+@commands.has_permissions(ban_members=True)
+async def muteuser(ctx, user: discord.Member, mutetime=None):
+    try:
+        if mutetime is None:
+            await client.channel.set_permissions(user, send_messages=False)
+            await client.say(f"{user.mention} is now forced to shut up. :zipper_mouth: ")
+        else:
+            try:
+                mutetime =int(mutetime)
+                mutetime = mutetime * 60
+            except ValueError:
+                return await client.say("Your time is an invalid number. Make sure...it is a number.")
+            await client.channel.set_permissions(user, send_messages=False)
+            await client.say(f"{user.mention} is now forced to shut up. :zipper_mouth: ")
+            await asyncio.sleep(mutetime)
+            await client.channel.set_permissions(user, send_messages=True)
+            await client.say(f"{user.mention} is now un-shutted up.")
+    except discord.Forbidden:
+        return await client.say("I could not mute the user. Make sure I have the manage channels permission.")
+    except discord.ext.commands.MissingPermissions:
+        await client.say("Aw, come on! You thought you could get away with shutting someone up without permissions.")
+	
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
 async def unmute(ctx, member: discord.Member):
