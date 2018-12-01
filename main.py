@@ -209,7 +209,7 @@ async def rolldice(ctx):
     choices = ['1', '2', '3', '4', '5', '6']
     color = discord.Color(value=0x00ff00)
     em = discord.Embed(color=color, title='Rolled! (1 6-sided die)', description=random.choice(choices))
-    await ctx.send(embed=em)
+    await client.say(embed=em)
 	
 
 
