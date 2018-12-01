@@ -208,14 +208,22 @@ async def mute(ctx, member: discord.Member):
             await client.send_message(channel, embed=embed)
 
 @client.command(pass_context = True)
-async def avatar(ctx):
-    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-    embed = discord.Embed(title=f'Avatar', description='Avatar is profile picture of a user in discord', color = discord.Color((r << 16) + (g << 8) + b))
-    embed.add_field(name='User: {}'.format(ctx.message.author.name), value='Avatar:', inline=True)
-    embed.set_thumbnail(url='https://cdn.discordapp.com/icons/489333893988745217/eb022a7023d013bec656cd7b94d6d6c1.png') 
-    embed.set_image(url = ctx.message.author.avatar_url)
-    await client.say(embed=embed)
-		
+async def avatar(ctx, user: discord.Member=None):
+    if user is None:
+        r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+        embed = discord.Embed(title=f'Avatar', description='Avatar is profile picture of a user in discord', color = discord.Color((r << 16) + (g << 8) + b))
+        embed.add_field(name='User: {}'.format(ctx.message.author.name), value='Avatar:', inline=True)
+        embed.set_thumbnail(url='https://cdn.discordapp.com/icons/489333893988745217/eb022a7023d013bec656cd7b94d6d6c1.png') 
+        embed.set_image(url = ctx.message.author.avatar_url)
+        await client.say(embed=embed)
+    else:
+        r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+        embed = discord.Embed(title=f'Avatar', description='Avatar is profile picture of a user in discord', color = discord.Color((r << 16) + (g << 8) + b))
+        embed.add_field(name='User: {}'.format(user.name), value='Avatar:', inline=True)
+        embed.set_thumbnail(url='https://cdn.discordapp.com/icons/489333893988745217/eb022a7023d013bec656cd7b94d6d6c1.png') 
+        embed.set_image(url = user.avatar_url)
+        await client.say(embed=embed)
+
 @client.command(pass_context = True)
 async def rolldice(ctx):
     choices = ['1', '2', '3', '4', '5', '6']
