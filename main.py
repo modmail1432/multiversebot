@@ -234,7 +234,7 @@ async def flipcoin(self, ctx):
     await client.say(embed=em)
 	
 @client.command(pass_context = True)
-async def avatar(self, ctx, user: discord.Member):
+async def avatar(ctx, user: discord.Member):
     if user is None:
         await client.say(ctx.message.author.avatar_url)                   
     else:
