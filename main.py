@@ -225,28 +225,6 @@ async def dm(ctx, user: discord.Member, *, msg: str):
     except:
         await client.say("Error :x:. Make sure your message is shaped in this way: mv!dm [tag person] [msg]")
 
-@client.command(pass_context = True)
-@commands.has_permissions(ban_members=True)
-async def muteuser(ctx, user: discord.Member, mutetime=None):
-    try:
-        if mutetime is None:
-            await client.channel.set_permissions(user, send_messages=False)
-            await client.say(f"{user.mention} is now forced to shut up. :zipper_mouth: ")
-        else:
-            try:
-                mutetime =int(mutetime)
-                mutetime = mutetime * 60
-            except ValueError:
-                return await client.say("Your time is an invalid number. Make sure...it is a number.")
-            await client.channel.set_permissions(user, send_messages=False)
-            await client.say(f"{user.mention} is now forced to shut up. :zipper_mouth: ")
-            await asyncio.sleep(mutetime)
-            await client.channel.set_permissions(user, send_messages=True)
-            await client.say(f"{user.mention} is now un-shutted up.")
-    except discord.Forbidden:
-        return await client.say("I could not mute the user. Make sure I have the manage channels permission.")
-    except discord.ext.commands.MissingPermissions:
-        await client.say("Aw, come on! You thought you could get away with shutting someone up without permissions.")
 	
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
