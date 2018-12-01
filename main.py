@@ -534,22 +534,13 @@ async def kick(ctx,user:discord.Member):
 @client.command(pass_context = True)
 @commands.has_permissions(manage_messages=True)  
 async def purge(ctx, number):
- 
-    if ctx.message.author.server_permissions.manage_messages:
-         mgs = [] #Empty list to put all the messages in the log
-         number = int(number) #Converting the amount of messages to delete to an integer
-    async for x in client.logs_from(ctx.message.channel, limit = number+1):
-        mgs.append(x)            
-       
-    try:
-        await client.delete_messages(mgs)   
-	
-    except discord.Forbidden:
-        await client.say(embed=Forbidden)
-        return
-    except discord.HTTPException:
-        await client.say('clear failed.')
-        return         
+    number = int(number) #Converting the amount of messages to delete to an integer
+    counter = 0
+    async for x in client.logs_from(ctx.message.channel, limit = number):
+        if counter < number:
+            await client.delete_message(x)
+            counter += 1
+            await asyncio.sleep(1.2)
  
 @client.command(pass_context=True)  
 @commands.has_permissions(ban_members=True)      
