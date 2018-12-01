@@ -204,58 +204,7 @@ async def mute(ctx, member: discord.Member):
             embed=discord.Embed(title="User Muted!", description="**{0}** was muted by **{1}**!".format(member, ctx.message.author), color=0x37F60A)
             await client.send_message(channel, embed=embed)
 
-@client.command(pass_context = True)
-@commands.has_permissions(administrator=True)
-async def setupserver(ctx, *, modrole: discord.Role=None):
-        '''Sets up a server'''
-        if discord.utils.get(ctx.guild.categories, name='<Information For All>'):
-            return await ctx.send('This server is already set up.')
 
-        infocateg = await ctx.guild.create_category(
-            name='<Information For All>', 
-            overwrites=client.overwrites(ctx, modrole=modrole)
-            )
-        gencateg = await ctx.guild.create_category(
-            name='<General Zone>', 
-            overwrites=client.overwrites(ctx)
-            )
-        botcateg = await ctx.guild.create_category(
-            name='<BOTS Zone>', 
-            overwrites=client.overwrites(ctx)
-            )
-        concateg = await ctx.guild.create_category(
-            name='<Content Zone>', 
-            overwrites=client.overwrites(ctx)
-            )
-        mucateg = await ctx.guild.create_category(
-            name='<Music Zone>', 
-            overwrites=client.overwrites(ctx)
-            )
-        vccateg = await ctx.guild.create_category(
-            name='<Music Zone>', 
-            overwrites=client.overwrites(ctx)
-            )
-        await infocateg.edit(position=0)
-        c = await ctx.guild.create_text_channel(name='🎉welcome🎉', category=infocateg)
-        a = await ctx.guild.create_text_channel(name='🎯rules🎯', category=infocateg)
-        c = await ctx.guild.create_text_channel(name='🎥featured-content🎥', category=infocateg)
-        c = await ctx.guild.create_text_channel(name='📢announcements📢', category=infocateg)
-        c = await ctx.guild.create_text_channel(name='📢vote_polls📢', category=infocateg)
-        c = await ctx.guild.create_text_channel(name='🎮general_chat🎮', category=gencateg)
-        c = await ctx.guild.create_text_channel(name='🎮general_media🎮', category=gencateg)
-        c = await ctx.guild.create_text_channel(name='👍bots_zone👍', category=botcateg)
-        c = await ctx.guild.create_text_channel(name='🎥youtube_links🎥', category=concateg)
-        c = await ctx.guild.create_text_channel(name='🎥giveaway_links🎥', category=concateg)
-        c = await ctx.guild.create_text_channel(name='🎥other_links🎥', category=concateg)
-        c = await ctx.guild.create_voice_channel(name='🔥Music Zone🔥', category=mucateg)
-        c = await ctx.guild.create_text_channel(name='🔥music_commands🔥', category=mucateg)
-        c = await ctx.guild.create_voice_channel(name='🔥Chill Voice🔥', category=vccateg)
-        c = await ctx.guild.create_voice_channel(name='🔥General Voice🔥', category=vccateg)
-        c = await ctx.guild.create_voice_channel(name='🔥Youtube Talks🔥', category=vccateg)
-
-        await c.edit(topic='Manually add user id\'s to block users.\n\n'
-                           'Blocked\n-------\n\n')
-        await ctx.send('Successfully set up server.')
 
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
