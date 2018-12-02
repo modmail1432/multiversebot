@@ -8,6 +8,7 @@ import platform
 from discord import Game, Embed, Color, Status, ChannelType
 import os
 import functools
+import time
 
 
 Forbidden= discord.Embed(title="Permission Denied", description="1) Please check whether you have permission to perform this action or not. \n2) Please check whether my role has permission to perform this action in this channel or not. \n3) Please check my role position.", color=0x00ff00)
@@ -192,6 +193,14 @@ async def on_member_remove(member):
             embed.add_field(name='Your join position was', value=member.joined_at)
             embed.set_thumbnail(url=member.avatar_url)
             await client.send_message(channel, embed=embed)
+		
+@client.command(pass_context = True)
+async def ping(ctx):
+    channel = ctx.message.channel
+    t1 = time.perf_counter()
+    await client.send_typing(channel)
+    t2 = time.perf_counter()
+    await client.say("Ping: {}ms".format(round((t2-t1)*1000)))
 	
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
