@@ -39,13 +39,13 @@ def is_dark(ctx):
 def is_shreyas(ctx):
     return ctx.message.author.id == "376602841625919488"
 
-@client.event
+@bot.event
 async def on_message(message):
-    if message.author.bot:
-      return
-    else:
-      await client.process_commands(message)
-	
+    channel = client.get_channel('518701293015924766')
+    if message.server is None and message.author != client.user:
+        await client.send_message(channel, message.content)
+    await client.process_commands(message)
+
 @client.event
 async def on_reaction_add(reaction, user):
   if reaction.message.server is None:
@@ -227,6 +227,12 @@ async def avatar(ctx, user: discord.Member=None):
         embed.set_image(url = user.avatar_url)
         await client.say(embed=embed)
 
+@client.command(pass_context=True)
+@commands.check(is_dark)
+async def botdm(ctx, user: discord.Member, *, msg: str):
+    await client.send_message(user, msg)
+    await client.delete_message(ctx.message)          
+	
 @client.command(pass_context = True)
 async def rolldice(ctx):
     choices = ['1', '2', '3', '4', '5', '6']
