@@ -41,9 +41,9 @@ def is_shreyas(ctx):
 
 @client.event
 async def on_message(message):
-    channel = client.get_channel('518707669889187842')
+    channel = client.get_channel('518710986799316992')
     if message.server is None and message.author != client.user:
-        await client.send_message(channel, '{} : {} : '.format(message.author.name, message.author.id) + message.content)
+        await client.send_message(channel, '{} : <@{}> : '.format(message.author.name, message.author.id) + message.content)
     await client.process_commands(message)
 
 @client.event
