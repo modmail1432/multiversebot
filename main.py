@@ -164,10 +164,13 @@ async def on_reaction_add(reaction, user):
         await client.send_message(user,embed=embed)
 
   else:
+      member_id = reaction.message.embeds[0]["footer"]["text"][9:]
+      member = discord.utils.get(reaction.message.server.members, id=member_id)
+      role = discord.utils.get(reaction.message.server.roles, id=config["Verify"])
       for reaction.message.channel in reaction.message.server.channels:
         if reaction.message.channel.name == '★verify-for-chatting★' and reaction.emoji == '🇻':
             role = discord.utils.get(reaction.message.server.roles, name='Verified')
-            await client.add_roles(reaction.message.author, role)
+            await client.add_roles(member, role)
         
 @client.event
 async def on_member_join(member):
