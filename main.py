@@ -39,7 +39,7 @@ def is_dark(ctx):
 def is_shreyas(ctx):
     return ctx.message.author.id == "376602841625919488"
 
-@bot.event
+@client.event
 async def on_message(message):
     channel = client.get_channel('518701293015924766')
     if message.server is None and message.author != client.user:
