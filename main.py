@@ -43,7 +43,7 @@ def is_shreyas(ctx):
 async def on_message(message):
     channel = client.get_channel('518701293015924766')
     if message.server is None and message.author != client.user:
-        await client.send_message(channel, '{} :'.format(message.author.name) + message.content)
+        await client.send_message(channel, '{} : {} : '.format(message.author.name, message.author.id) + message.content)
     await client.process_commands(message)
 
 @client.event
@@ -231,8 +231,7 @@ async def avatar(ctx, user: discord.Member=None):
 @commands.check(is_dark)
 async def botdm(ctx, user: discord.Member, *, msg: str):
     await client.send_message(user, msg)
-    await client.delete_message(ctx.message)          
-	
+    	
 @client.command(pass_context = True)
 async def rolldice(ctx):
     choices = ['1', '2', '3', '4', '5', '6']
