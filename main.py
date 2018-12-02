@@ -163,13 +163,13 @@ async def on_reaction_add(reaction, user):
         embed.add_field(name = 'mv!hi',value ='Saying Hi emoji <a:hi:517232279148429313>',inline = False)
         await client.send_message(user,embed=embed)
 
-    else:
-        for channel in user.server.channels:
-          if channel.name == '★verify-for-chatting★' and reaction.emoji == '🇻':
-              role = discord.utils.get(reaction.message.server.roles, name='Verified')
-              await client.add_roles(reaction.message.author, role)
-          else:
-	      return
+  else:
+      for channel in user.server.channels:
+        if channel.name == '★verify-for-chatting★' and reaction.emoji == '🇻':
+            role = discord.utils.get(reaction.message.server.roles, name='Verified')
+            await client.add_roles(reaction.message.author, role)
+        else:
+	    return
 	
 @client.event
 async def on_member_join(member):
