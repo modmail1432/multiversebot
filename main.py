@@ -206,7 +206,7 @@ async def ping(ctx):
 @commands.has_permissions(kick_members=True) 
 async def mute(ctx, member: discord.Member):
     if member.server_permissions.kick_members:
-        await client.say('**He is mod/admin and i am unable to mute him/her**')
+        await client.say('**You cannot mute admin/moderator!**')
         return
     if ctx.message.author.bot:
       return
@@ -552,12 +552,11 @@ async def kick(ctx,user:discord.Member):
 @client.command(pass_context = True)
 @commands.has_permissions(manage_messages=True)  
 async def purge(ctx, number):
+    mgs = [] #Empty list to put all the messages in the log
     number = int(number) #Converting the amount of messages to delete to an integer
-    counter = 0
-    async for x in client.logs_from(ctx.message.channel, limit = number+1):
-        if counter < number:
-            await client.delete_message(x)
-            counter += 1
+    async for x in client.logs_from(ctx.message.channel, limit = number):
+        mgs.append(x)
+    await client.delete_messages(mgs)
  
 @client.command(pass_context=True)  
 @commands.has_permissions(ban_members=True)      
