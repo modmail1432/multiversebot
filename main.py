@@ -309,7 +309,7 @@ async def setupwelcomer(ctx):
     if ctx.message.author.bot:
       return
     else:
-      for channel in ctx.server.channels:
+      for channel in ctx.message.server.channels:
         if channel.name == '★彡-welcome-彡★':
           await client.say('Welcome log already set up!')
           return
