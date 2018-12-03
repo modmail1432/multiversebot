@@ -309,15 +309,10 @@ async def setupwelcomer(ctx):
     if ctx.message.author.bot:
       return
     else:
-      for channel in ctx.message.author.server.channels:
-        if channel.name == '★彡-welcome-彡★':
-          await client.say('Welcome log already set up!')
-          return
-        else:
-          server = ctx.message.server
-          everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
-          everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
-          await client.create_channel(server, '★彡-welcome-彡★',everyone)
+      server = ctx.message.server
+      everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
+      everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
+      await client.create_channel(server, '★彡-welcome-彡★',everyone)
 
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)
