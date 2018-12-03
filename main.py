@@ -164,7 +164,6 @@ async def on_reaction_add(reaction, user):
         embed.add_field(name = 'mv!alien',value ='Alien emoji <a:alien:517232332663422986>',inline = False)
         embed.add_field(name = 'mv!hi',value ='Saying Hi emoji <a:hi:517232279148429313>',inline = False)
         await client.send_message(user,embed=embed)
-
   else:
       for reaction.message.channel in reaction.message.server.channels:
         if reaction.message.channel.name == '★verify-for-chatting★' and reaction.emoji == '🇻':
@@ -310,11 +309,15 @@ async def setupwelcomer(ctx):
     if ctx.message.author.bot:
       return
     else:
-      author = ctx.message.author
-      server = ctx.message.server
-      everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
-      everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
-      await client.create_channel(server, '★彡-welcome-彡★',everyone)
+      for ctx.message.channel in ctx.message.server.channels:
+        if ctx.message.channel.name == '★彡-welcome-彡★':
+	    await client.say('Welcome log already setted up!')
+	else:
+	    author = ctx.message.author
+            server = ctx.message.server
+      	    everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
+            everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
+            await client.create_channel(server, '★彡-welcome-彡★',everyone)
 
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)
