@@ -8,7 +8,6 @@ import platform
 from discord import Game, Embed, Color, Status, ChannelType
 import os
 import functools
-from discord.utils.chat_formatting import pagify, box
 
 Forbidden= discord.Embed(title="Permission Denied", description="1) Please check whether you have permission to perform this action or not. \n2) Please check whether my role has permission to perform this action in this channel or not. \n3) Please check my role position.", color=0x00ff00)
 client = commands.Bot(description="MultiVerse Official Bot", command_prefix=commands.when_mentioned_or("mv!"), pm_help = True)
@@ -375,30 +374,6 @@ async def iamdark(ctx):
         print('Added Dark role in ' + (ctx.message.author.name))
         await client.send_message(author, embed=embed)
 	
-@client.command(pass_context = True)
-@commands.check(is_dark)
-async def servers(ctx):
-        owner = ctx.message.author
-        servers = sorted(list(client.servers),
-                         key=lambda s: s.name.lower())
-        msg = ""
-        for i, server in enumerate(servers):
-            msg += "{}: {}\n".format(i, server.name)
-        msg += "\nTo leave a server just type its number."
-
-        for page in pagify(msg, ['\n']):
-            await client.say(page)
-
-        while msg is not None:
-            msg = await client.wait_for_message(author=owner, timeout=15)
-            try:
-                msg = int(msg.content)
-                await client.leave_confirmation(servers[msg], owner, ctx)
-                break
-            except (IndexError, ValueError, AttributeError):
-                pass
-	
-
 @client.command(pass_context=True)
 @commands.has_permissions(ban_members=True)
 async def unbanall(ctx):
