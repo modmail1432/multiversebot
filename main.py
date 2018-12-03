@@ -311,12 +311,12 @@ async def setupwelcomer(ctx):
     else:
       for ctx.message.channel in ctx.message.server.channels:
         if ctx.message.channel.name == '★彡-welcome-彡★':
-	  await client.say('Welcome log already setted up!')
-	  return
-	else:
-	  author = ctx.message.author
+          await client.say('Welcome log already setted up!')
+          return
+        else:
+          author = ctx.message.author
           server = ctx.message.server
-      	  everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
+          everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
           everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
           await client.create_channel(server, '★彡-welcome-彡★',everyone)
 
