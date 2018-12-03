@@ -210,6 +210,8 @@ async def mute(ctx, member: discord.Member):
         return
     if ctx.message.author.bot:
       return
+    if member is None:
+      await client.say('Please specify member i.e. Mention a member to mute')
     else:
       role = discord.utils.get(member.server.roles, name='Muted')
       await client.add_roles(member, role)
@@ -277,6 +279,8 @@ async def flipcoin(ctx):
 async def unmute(ctx, member: discord.Member):
     if ctx.message.author.bot:
       return
+    if member is None:
+      await client.say('Please specify member i.e. Mention a member to unmute')
     else:
       role = discord.utils.get(member.server.roles, name='Muted')
       await client.remove_roles(member, role)
