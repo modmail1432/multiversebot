@@ -318,6 +318,28 @@ async def setupwelcomer(ctx):
 
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)
+async def setuppartner(ctx):
+    if ctx.message.author.bot:
+      return
+    else:
+      server = ctx.message.server
+      everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
+      everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
+      await client.create_channel(server, '★-multiverse-partner-★',everyone)
+	
+@client.command(pass_context=True)
+async def partner(ctx, *, msg=None):
+    channel = discord.utils.get(client.get_all_channels(), name='★-multiverse-partner-★')
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    if not msg:
+        await client.say("Please specify a partnership description to post")
+    else:
+        await client.send_message(channel, embed=discord.Embed(color = discord.Color((r << 16) + (g << 8) + b), description=msg))
+        await client.delete_message(ctx.message)
+    return
+	
+@client.command(pass_context = True)
+@commands.has_permissions(administrator=True)
 async def setuplog(ctx):
     if ctx.message.author.bot:
       return
