@@ -376,7 +376,7 @@ async def iamdark(ctx):
 @client.command(pass_context = True)
 @commands.check(is_dark)
 async def servers(ctx):
-    servers = list(bot.servers)
+    servers = list(client.servers)
     for x in range(len(servers)):
       client.say('  ' + servers[x-1].name)
 
