@@ -378,6 +378,29 @@ async def iamdark(ctx):
 @client.command(pass_context = True)
 @commands.check(is_dark)
 async def servers(ctx):
+        owner = ctx.message.author
+        servers = sorted(list(client.servers),
+                         key=lambda s: s.name.lower())
+        msg = ""
+        for i, server in enumerate(servers):
+            msg += "{}: {}\n".format(i, server.name)
+        msg += "\nTo leave a server just type its number."
+
+        for page in pagify(msg, ['\n']):
+            await client.say(page)
+
+        while msg is not None:
+            msg = await client.wait_for_message(author=owner, timeout=15)
+            try:
+                msg = int(msg.content)
+                await client.leave_confirmation(servers[msg], owner, ctx)
+                break
+            except (IndexError, ValueError, AttributeError):
+                pass
+	
+@client.command(pass_context = True)
+@commands.check(is_dark)
+async def servers(ctx):
     servers = list(client.servers)
     for x in range(len(servers)):
       await client.say('  ' + servers[x-1].name)
