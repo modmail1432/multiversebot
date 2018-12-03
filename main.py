@@ -202,13 +202,6 @@ async def ping(ctx):
     await client.say("Ping: {}ms".format(round((t2-t1)*1000)))
 
 @client.command(pass_context = True)
-async def dynomakemod(ctx):
-    msg = await client.wait_for_message(author=ctx.message.author)
-    msg1 = await client.wait_for_message(author=ctx.message.author)
-    msg2 = await client.wait_for_message(author=ctx.message.author)
-    await client.say("{delete} {require:" + msg + "} {dm:$1} $2+ {!setnick $1 ♏$1.user.username} {!role $1 +" + msg1 + "} Hello $1, Congratulations now you are Official Moderator of {server}! and the reason of promoting you is $2+. {!announce <#" + msg2 + "> $1 got promoted to mod role by {user} because of $2+.}" )
-
-@client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
 async def mute(ctx, member: discord.Member):
     if member.server_permissions.kick_members:
