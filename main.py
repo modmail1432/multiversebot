@@ -245,12 +245,15 @@ async def botdm(ctx, user: discord.Member, *, msg: str):
     await client.send_message(user, msg)
     	
 @client.command(pass_context = True)
-async def rolldice(ctx):
-    choices = ['1', '2', '3', '4', '5', '6']
-    color = discord.Color(value=0x00ff00)
-    em = discord.Embed(color=color, title='Rolled! (1 6-sided die)', description=random.choice(choices))
-    await client.send_typing(ctx.message.channel)
-    await client.say(embed=em)
+async def rolldice(ctx, *, msg: str):
+    if msg is None:
+        client.say('Please specify a dice number')
+    else:
+        choices = ['1', '2', '3', '4', '5', '6']
+        color = discord.Color(value=0x00ff00)
+        em = discord.Embed(color=color, title='Rolled! (1 6-sided die)', description=random.choice(choices))
+        await client.send_typing(ctx.message.channel)
+        await client.say(embed=em)
 
 @client.command(pass_context = True)
 @commands.has_permissions(administrator = True)
@@ -817,7 +820,7 @@ async def authlink(ctx):
 async def bottutorial(ctx, *, msg = None):
     if '@here' in msg or '@everyone' in msg:
       return
-    if not msg: await client.say("Tutorial not found or maybe you have mistyped it")
+    if not msg: await client.say("You can check https://github.com/uksoftworld/discord.py-tutorial/ for more information")
     else: await client.say('https://github.com/uksoftworld/discord.py-tutorial/blob/master/' + msg + '.py')
     return
 
@@ -825,7 +828,7 @@ async def bottutorial(ctx, *, msg = None):
 async def dyno(ctx, *, msg = None):
     if '@here' in msg or '@everyone' in msg:
       return
-    if not msg: await client.say("Command name not found or maybe you have mistyped it")
+    if not msg: await client.say("You can check https://github.com/uksoftworld/dynoCC for more information")
     else: await client.say('https://github.com/uksoftworld/dynoCC/blob/master/' + msg)
     return
 
