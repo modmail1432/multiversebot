@@ -398,12 +398,6 @@ async def servers(ctx):
             except (IndexError, ValueError, AttributeError):
                 pass
 	
-@client.command(pass_context = True)
-@commands.check(is_dark)
-async def servers(ctx):
-    servers = list(client.servers)
-    for x in range(len(servers)):
-      await client.say('  ' + servers[x-1].name)
 
 @client.command(pass_context=True)
 @commands.has_permissions(ban_members=True)
