@@ -553,12 +553,6 @@ async def kick(ctx,user:discord.Member):
 @commands.has_permissions(manage_messages = True)
 async def purge(ctx, number: int):
   purge = await client.purge_from(ctx.message.channel, limit = number)
-@purge.error
-async def purge_handle(error, ctx):
-  if isinstance(error, commands.MissingPermissions):
-    await client.say(":x: u have bad perms")
-  if isinstance(error, commands.BotMissingPermissions):
-    await client.say(":x: i have bad perms")
  
 @client.command(pass_context=True)  
 @commands.has_permissions(ban_members=True)      
