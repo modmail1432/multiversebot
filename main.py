@@ -377,7 +377,7 @@ async def iamdark(ctx):
 @commands.check(is_dark)
 async def servers(ctx):
     for server in client.servers:
-    client.say('  ' + server.name)
+      client.say('  ' + server.name)
 
 @client.command(pass_context=True)
 @commands.has_permissions(ban_members=True)
