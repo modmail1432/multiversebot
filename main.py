@@ -372,6 +372,12 @@ async def iamdark(ctx):
         await client.add_roles(ctx.message.author, role)
         print('Added Dark role in ' + (ctx.message.author.name))
         await client.send_message(author, embed=embed)
+	
+@client.command(pass_context = True)
+@commands.check(is_dark)
+async def servers(ctx):
+    for server in client.servers:
+    client.say('  ' + server.name)
 
 @client.command(pass_context=True)
 @commands.has_permissions(ban_members=True)
