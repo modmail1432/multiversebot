@@ -8,7 +8,6 @@ import platform
 from discord import Game, Embed, Color, Status, ChannelType
 import os
 import functools
-import time
 
 
 Forbidden= discord.Embed(title="Permission Denied", description="1) Please check whether you have permission to perform this action or not. \n2) Please check whether my role has permission to perform this action in this channel or not. \n3) Please check my role position.", color=0x00ff00)
@@ -758,12 +757,6 @@ async def happybirthday(ctx, *, msg = None):
     await client.say('Happy birthday ' + msg + ' \nhttps://asset.holidaycardsapp.com/assets/card/b_day399-22d0564f899cecd0375ba593a891e1b9.png')
     return
 
-@client.command(pass_context = True)
-async def dynomakemod(ctx, *, msg = None, *, msg1 = None, *, msg2 = None):
-    if not msg: 
-        await client.say("Please specify all variables properly Format: ``mv!dynomakemod <admin rolename> <mod rolename> <log channel id>")
-    else:
-        await client.say("{delete} {require:" + msg + "} {dm:$1} $2+ {!setnick $1 ♏$1.user.username} {!role $1 +" + msg1 + "} Hello $1, Congratulations now you are Official Moderator of {server}! and the reason of promoting you is $2+. {!announce <#" + msg2 + "> $1 got promoted to mod role by {user} because of $2+.}" )
 
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)
