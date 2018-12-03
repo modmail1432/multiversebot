@@ -245,15 +245,12 @@ async def botdm(ctx, user: discord.Member, *, msg: str):
     await client.send_message(user, msg)
     	
 @client.command(pass_context = True)
-async def rolldice(ctx, *, msg: str):
-    if msg is None:
-        client.say('Please specify a dice number')
-    else:
-        choices = ['1', '2', '3', '4', '5', '6']
-        color = discord.Color(value=0x00ff00)
-        em = discord.Embed(color=color, title='Rolled! (1 6-sided die)', description=random.choice(choices))
-        await client.send_typing(ctx.message.channel)
-        await client.say(embed=em)
+async def rolldice(ctx):
+    choices = ['1', '2', '3', '4', '5', '6']
+    color = discord.Color(value=0x00ff00)
+    em = discord.Embed(color=color, title='Rolled! (1 6-sided die)', description=random.choice(choices))
+    await client.send_typing(ctx.message.channel)
+    await client.say(embed=em)
 
 @client.command(pass_context = True)
 @commands.has_permissions(administrator = True)
