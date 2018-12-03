@@ -206,8 +206,7 @@ async def ping(ctx):
 async def setupserver(ctx):
     author = ctx.message.author
     server = ctx.message.server
-    modperms = discord.Permissions()
-    modperms.update = (manage_messages=True, kick_members=True, manage_nicknames =True,mute_members=True)
+    modperms = discord.Permissions(manage_messages=True, kick_members=True, manage_nicknames =True,mute_members=True)
     admin_perms = permissions=discord.Permissions.all()
 
     await client.create_role(author.server, name="Owner", permissions=admin_perms)
