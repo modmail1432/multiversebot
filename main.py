@@ -204,7 +204,7 @@ async def ping(ctx):
 	
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
-async def mute(ctx, member: discord.Member):
+async def mute(ctx, member: discord.Member=None):
     if member.server_permissions.kick_members:
         await client.say('**You cannot mute admin/moderator!**')
         return
