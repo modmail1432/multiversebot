@@ -332,9 +332,9 @@ async def partner(ctx, *, msg=None):
     channel = discord.utils.get(client.get_all_channels(), name='★-multiverse-partner-★')
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     if not msg:
-        await client.say("Please specify a partnership description to post")
+        await client.say('Please specify a partnership description to post')
     else:
-        await client.send_message(channel, embed=discord.Embed(color = discord.Color((r << 16) + (g << 8) + b), description=msg))
+        await client.send_message(channel, embed=discord.Embed(color = discord.Color((r << 16) + (g << 8) + b), description=msg + '\n AuthorID: {}'.format(ctx.message.author.id)))
         await client.delete_message(ctx.message)
     return
 	
