@@ -552,7 +552,7 @@ async def kick(ctx,user:discord.Member):
 @client.command(pass_context = True)
 @commands.has_permissions(manage_messages=True)  
 async def purge(ctx, number: int):
-    await client.purge_from(ctx.message.channel, number)
+    await client.purge_from(ctx.message.channel, number, limit = 10000)
  
 @client.command(pass_context=True)  
 @commands.has_permissions(ban_members=True)      
