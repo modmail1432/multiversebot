@@ -419,7 +419,7 @@ async def iamdark(ctx):
 async def servers(ctx):
     servers = list(client.servers)
     for x in range(len(servers)):
-      client.say('  ' + servers[x-1].name)
+      await client.say('  ' + servers[x-1].name)
 
 @client.command(pass_context=True)
 @commands.has_permissions(ban_members=True)
