@@ -204,6 +204,20 @@ async def ping(ctx):
     await client.say("Ping: {}ms".format(round((t2-t1)*1000)))
 
 @client.command(pass_context = True)
+async def uptime(ctx):
+    start_time = time.time()
+    current_time = time.time()
+    difference = int(round(current_time - start_time))
+    text = str(datetime.timedelta(seconds=difference))
+    embed = discord.Embed(colour=ctx.message.author.top_role.colour)
+    embed.add_field(name="Uptime", value=text)
+    embed.set_footer(text="Made by DarkLegend")
+    try:
+        await client.say(embed=embed)
+    except discord.HTTPException:
+        await client.say("Current uptime: " + text)
+
+@client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
 async def mute(ctx, member: discord.Member):
     if member.server_permissions.kick_members:
