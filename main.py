@@ -10,6 +10,8 @@ import os
 import functools
 import time
 import datetime
+from utils.language import Language
+
 
 Forbidden= discord.Embed(title="Permission Denied", description="1) Please check whether you have permission to perform this action or not. \n2) Please check whether my role has permission to perform this action in this channel or not. \n3) Please check my role position.", color=0x00ff00)
 client = commands.Bot(description="MultiVerse Official Bot", command_prefix=commands.when_mentioned_or("mv!"), pm_help = True)
@@ -206,17 +208,12 @@ async def ping(ctx):
 
 @client.command(pass_context = True)
 async def uptime(ctx):
-    start_time = time.time()
-    current_time = time.time()
-    difference = int(round(current_time - start_time))
-    text = str(datetime.timedelta(seconds=difference))
-    embed = discord.Embed(colour=ctx.message.author.top_role.colour)
-    embed.add_field(name="Uptime", value=text)
-    embed.set_footer(text="Made by DarkLegend")
-    try:
-        await client.say(embed=embed)
-    except discord.HTTPException:
-        await client.say("Current uptime: " + text)
+    second = time.time() - start_time
+    minute, second = divmod(second, 60)
+    hour, minute = divmod(minute, 60)
+    day, hour = divmod(hour, 24)
+    week, day = divmod(day, 7)
+    await client.say(Language.get("client.uptime", ctx) % (week, day, hour, minute, second))
 
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
