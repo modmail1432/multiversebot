@@ -72,6 +72,8 @@ async def on_reaction_add(reaction, user):
         embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
         embed.set_author(name='Moderation Commands Help')
         embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
+	embed.add_field(name = 'mv!setuppartner(Admin permission required) ',value ='Use it to setup partnership channel. Using this command will create a channel named multiverse-partner and then you can use mv!partner to partner with other servers.',inline = False)
+	embed.add_field(name = 'mv!partner(Admin permission required) ',value ='Use it like ``mv!partner <partnership description>`` to partner with many servers with are connected with MultiVerse Official bot',inline = False)
         embed.add_field(name = 'mv!dm(Admin permission required) ',value ='Use it like ``mv!dm @user <text>`` to dm user from bot',inline = False)
         embed.add_field(name = 'mv!say(Admin permission required) ',value ='Use it like ``mv!say <text>``',inline = False)
         embed.add_field(name = 'mv!showme(Requires a role named Giveaways)',value ='To see how many people are taking part in giveaway',inline = False)
@@ -328,9 +330,12 @@ async def setuppartner(ctx):
       await client.create_channel(server, '★-multiverse-partner-★',everyone)
 	
 @client.command(pass_context=True)
+@commands.has_permissions(administrator=True)
 async def partner(ctx, *, msg=None):
     channel = discord.utils.get(client.get_all_channels(), name='★-multiverse-partner-★')
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    if ctx.message.server.id == '489333893988745217':
+      return
     if not msg:
       await client.say('Please specify a partnership description to post')
     else:
