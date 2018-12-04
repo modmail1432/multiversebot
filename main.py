@@ -331,6 +331,7 @@ async def setuppartner(ctx):
       await client.create_channel(server, '★-multiverse-partner-★',everyone)
 	
 @client.command(pass_context=True)
+@commands.cooldown(rate=1,per=86400,type=BucketType.user) 
 @commands.has_permissions(administrator=True)
 async def partner(ctx, *, msg=None):
     channel = discord.utils.get(client.get_all_channels(), name='★-multiverse-partner-★')
