@@ -335,9 +335,10 @@ async def partner(ctx, *, msg=None):
       await client.say('Please specify a partnership description to post')
     else:
       embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-      embed.add_field(name='Discord Partner', value='\n AuthorID: {} \n ServerName: {}'.format(ctx.message.author.id, ctx.message.server.name)) 
-      embed.add_field(name='Partnership Description:', value=msg, inline=True)
+      embed.add_field(name='Discord Partner', value='AuthorID: {}'.format(ctx.message.author.id, ctx.message.server.name)) 
       embed.add_field(name='Partner Name:', value='{}'.format(ctx.message.author.name))
+      embed.add_field(name='Server Name:', value='{}'.format(ctx.message.server.name))
+      embed.add_field(name='Partnership Description:', value=msg, inline=True)
       await client.send_message(channel, embed=embed) 
       await client.delete_message(ctx.message)
          
