@@ -330,6 +330,10 @@ async def setuppartner(ctx):
       everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
       everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
       await client.create_channel(server, '★-multiverse-partner-★',everyone)
+      for channel in member.server.channels:
+        if channel.name == '★-multiverse-partner-★':
+	    message = "░▒▓█►─═ ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴍᴜʟᴛɪᴠᴇʀsᴇ ᴏғғɪᴄɪᴀʟ ═─◄█▓▒░ \n Our server link: https://discord.gg/euwmAgG \n Here's a friendly community where you can enjoy. Here people are active and we have our own official bot which is best ever bot having amazing features. Bot Link: https://discordbots.org/bot/515403515217313795 . Also our server is getting big day by day and we have made our own bot using python. It's amazing also we have so many bots like- tatsumaki, pokecord, unbeliva boat,etc . \n Features: \n =>Verification \n =>Get answers of any types of questions \n => Active Staffs and Support =>Diverse server =>------------------------------"
+	    await client.send_message(channel, embed=embed) 
 	
 @client.command(pass_context=True)
 @commands.cooldown(rate=1,per=86400,type=BucketType.user) 
