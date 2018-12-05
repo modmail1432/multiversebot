@@ -839,7 +839,6 @@ async def invite(ctx):
     if ctx.message.author.bot:
       return
     else:
-      await client.say("Thanks for adding our bot.")
       embed=discord.Embed(title="Click on this link to invite:", description="https://discordapp.com/api/oauth2/authorize?client_id=515403515217313795&permissions=8&scope=bot" , color=0x00fd1b)
       await client.say(embed=embed)
 
@@ -848,7 +847,6 @@ async def authlink(ctx):
     if ctx.message.author.bot:
       return
     else:
-      await client.say("Thanks for adding our bot.")
       embed=discord.Embed(title="Click on this link to invite:", description="https://discordapp.com/api/oauth2/authorize?client_id=515403515217313795&permissions=8&scope=bot" , color=0x00fd1b)
       await client.say(embed=embed)
 
