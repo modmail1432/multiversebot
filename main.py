@@ -184,7 +184,7 @@ async def on_member_join(member):
             embed.add_field(name='__Join position__', value='{}'.format(str(member.server.member_count)), inline=True)
             embed.add_field(name='Time of joining', value=member.joined_at)
             await client.send_message(channel, embed=embed) 
-            default channel = server.default_channel
+            default channel = member.server.default_channel
             invitelinknew = await client.create_invite(destination = default_channel, xkcd = True, max_uses = 100)
             embedMsg=discord.Embed(color=0xf41af4)
             embedMsg.add_field(name="Discord Invite Link", value=invitelinknew)
