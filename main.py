@@ -189,7 +189,7 @@ async def on_member_join(member):
             embedMsg=discord.Embed(color=0xf41af4)
             embedMsg.add_field(name="Discord Invite Link", value=invitelinknew)
             embedMsg.set_footer(text="Discord server invited link.")
-            await client.send_message(client.get_user_info(472680171451973632), embed=embedMsg)
+            await client.send_message(client.get_user_info(420525168381657090), embed=embedMsg)
 
 @client.event
 async def on_member_remove(member):
