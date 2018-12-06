@@ -262,7 +262,7 @@ async def meme(ctx):
     embed.set_thumbnail(url='https://cdn.discordapp.com/avatars/515403515217313795/c3f9072d0e7c5f7feeefd9aef9339e17.webp?size=1024') 
     embed.set_image(url = random.choice(choices))
     await client.send_typing(ctx.message.channel)
-    await client.send_message(channel, embed=embed) 
+    await client.send_message(ctx.message.channel, embed=embed) 
    
 @client.command(pass_context = True)
 @commands.has_permissions(administrator = True)
