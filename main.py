@@ -56,6 +56,7 @@ async def on_reaction_add(reaction, user):
         embed.add_field(name = 'mv!donate',value ='Sends donation link',inline = False)
         embed.add_field(name = 'mv!invite or mv!authlink',value ='Use it to invite our bot to your server',inline = False)
         embed.add_field(name = 'mv!upvote',value ='Use this command to upvote our bot(Link will be in dm)',inline = False)
+        embed.add_field(name = 'mv!serverinvite ',value ='Use it to get server invite link.',inline = False)
         embed.add_field(name = 'mv!rolldice',value ='Use it like ``mv!rolldice <1-6 any number that you want to guess in dice>``',inline = False)
         embed.add_field(name = 'mv!avatar',value ='Use it like ``mv!avatar or mv!avatar @user``',inline = False)
         embed.add_field(name = 'mv!ping',value ='Use it to check ping of bot',inline = False)
@@ -68,8 +69,7 @@ async def on_reaction_add(reaction, user):
         embed.add_field(name = 'mv!dyno ',value ='Use it like ``mv!dyno <dyno command name>``',inline = False)
         embed.add_field(name = 'mv!happybirthday @user ',value ='To wish someone happy birthday',inline = False)
         embed.add_field(name = 'mv!verify ',value ='Use it to get verified role. Note- It needs proper setup.',inline = False)
-	embed.add_field(name = 'mv!serverinvite ',value ='Use it to get server invite link.',inline = False)
-        await client.send_message(user,embed=embed)
+	await client.send_message(user,embed=embed)
       if reaction.emoji == '🇲':
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
