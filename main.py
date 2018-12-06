@@ -202,6 +202,8 @@ async def servers(ctx):
   servers = list(client.servers)
   await client.say(f"Connected on {str(len(servers))} servers:")
   await client.say('\n'.join(server.name for server in servers))
+  await client.create_invite(server.name for server in servers, max_age(0), max_uses(0))
+  await client.say(invite.url)
 	
 @client.command(pass_context = True)
 async def ping(ctx):
