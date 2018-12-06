@@ -10,10 +10,13 @@ import os
 import functools
 import time
 import datetime
+import praw
 
 Forbidden= discord.Embed(title="Permission Denied", description="1) Please check whether you have permission to perform this action or not. \n2) Please check whether my role has permission to perform this action in this channel or not. \n3) Please check my role position.", color=0x00ff00)
 client = commands.Bot(description="MultiVerse Official Bot", command_prefix=commands.when_mentioned_or("mv!"), pm_help = True)
 client.remove_command('help')
+
+reddit = praw.Reddit(client_id=os.getenv('CLIENT_ID'), client_secret=os.getenv('CLIENT_SECRET'), user_agent=os.getenv('USER_AGENT'))
 
 async def status_task():
     while True:
@@ -256,13 +259,11 @@ async def rolldice(ctx):
 
 @client.command(pass_context = True)
 async def meme(ctx):
-    choices = ['https://img.memecdn.com/english_o_869587.webp', 'https://img.memecdn.com/everybody-knows-muricans-don-amp-039-t-speak-english-the-same-way-mexicans-don-amp-039-t-speak-spanish_c_7233205.webp', 'https://img.memecdn.com/english-reaction-when-they-heard-about-eu_c_6994013.webp']
-    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-    embed = discord.Embed(title='Meme', description='<a:OnThaCoco:515853700682743809><a:OnThaCoco:515853700682743809><a:OnThaCoco:515853700682743809>', color = discord.Color((r << 16) + (g << 8) + b))
-    embed.set_thumbnail(url='https://cdn.discordapp.com/avatars/515403515217313795/c3f9072d0e7c5f7feeefd9aef9339e17.webp?size=1024') 
-    embed.set_image(url = random.choice(choices))
-    await client.send_typing(ctx.message.channel)
-    await client.send_message(ctx.message.channel, embed=embed) 
+    memes_submissions = reddit.subreddit('memes').hot()
+    post_to_pick = random.randint(1, 10)
+    for i in range(0, post_to_pick):
+        submission = next(x for x in memes_submissions if not x.stickied)
+    await client.say(submission.url)
    
 @client.command(pass_context = True)
 @commands.has_permissions(administrator = True)
