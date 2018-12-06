@@ -218,7 +218,7 @@ async def serverinvite(ctx):
 @commands.check(is_dark)
 async def rainbow(ctx):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-    await client.edit_role(ctx.message.server, valor, name='Rainbow', color = discord.Color((r << 16) + (g << 8) + b))
+    await client.edit_role(ctx.message.server, name='Rainbow', color = discord.Color((r << 16) + (g << 8) + b))
 	
 @client.command(pass_context = True)
 async def ping(ctx):
