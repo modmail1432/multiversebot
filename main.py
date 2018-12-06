@@ -56,6 +56,7 @@ async def on_reaction_add(reaction, user):
         embed.add_field(name = 'mv!donate',value ='Sends donation link',inline = False)
         embed.add_field(name = 'mv!invite or mv!authlink',value ='Use it to invite our bot to your server',inline = False)
         embed.add_field(name = 'mv!upvote',value ='Use this command to upvote our bot(Link will be in dm)',inline = False)
+        embed.add_field(name = 'mv!meme',value ='Use this command to get random memes.(Sometimes it sends same meme again and again)',inline = False)
         embed.add_field(name = 'mv!serverinvite ',value ='Use it to get server invite link.',inline = False)
         embed.add_field(name = 'mv!rolldice',value ='Use it like ``mv!rolldice <1-6 any number that you want to guess in dice>``',inline = False)
         embed.add_field(name = 'mv!avatar',value ='Use it like ``mv!avatar or mv!avatar @user``',inline = False)
