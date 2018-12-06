@@ -255,6 +255,16 @@ async def rolldice(ctx):
     await client.say(embed=em)
 
 @client.command(pass_context = True)
+async def meme(ctx):
+    choices = ['https://img.memecdn.com/english_o_869587.webp', 'https://img.memecdn.com/everybody-knows-muricans-don-amp-039-t-speak-english-the-same-way-mexicans-don-amp-039-t-speak-spanish_c_7233205.webp', 'https://img.memecdn.com/english-reaction-when-they-heard-about-eu_c_6994013.webp']
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(title='Meme', description='<a:OnThaCoco:515853700682743809><a:OnThaCoco:515853700682743809><a:OnThaCoco:515853700682743809>', color = discord.Color((r << 16) + (g << 8) + b))
+    embed.set_thumbnail(url='https://cdn.discordapp.com/avatars/515403515217313795/c3f9072d0e7c5f7feeefd9aef9339e17.webp?size=1024') 
+    embed.set_image(url = random.choice(choices))
+    await client.send_typing(ctx.message.channel)
+    await client.send_message(channel, embed=embed) 
+   
+@client.command(pass_context = True)
 @commands.has_permissions(administrator = True)
 async def dm(ctx, user: discord.Member, *, msg: str):
     try:
