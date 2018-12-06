@@ -207,13 +207,13 @@ async def ping(ctx):
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
 async def mute(ctx, member: discord.Member=None):
+    if member is None:
+        await client.say('Please specify member i.e. Mention a member to mute')
     if member.server_permissions.kick_members:
         await client.say('**You cannot mute admin/moderator!**')
         return
     if ctx.message.author.bot:
       return
-    if member is None:
-      await client.say('Please specify member i.e. Mention a member to mute')
     else:
       role = discord.utils.get(member.server.roles, name='Muted')
       await client.add_roles(member, role)
@@ -279,10 +279,10 @@ async def flipcoin(ctx):
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
 async def unmute(ctx, member: discord.Member=None):
-    if ctx.message.author.bot:
-      return
     if member is None:
       await client.say('Please specify member i.e. Mention a member to unmute')
+    if ctx.message.author.bot:
+      return
     else:
       role = discord.utils.get(member.server.roles, name='Muted')
       await client.remove_roles(member, role)
