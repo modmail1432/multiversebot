@@ -382,7 +382,9 @@ async def getuser(ctx, role: discord.Role = None):
 
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)     
-async def userinfo(ctx, user: discord.Member):
+async def userinfo(ctx, user: discord.Member=None):
+    if user is None:
+        await client.say('Please tag a user to get user information. Example- ``mv!userinfo @user``')
     if ctx.message.author.bot:
       return
     else:
@@ -515,7 +517,7 @@ async def role(ctx, user: discord.Member=None, *, role: discord.Role = None):
  
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)
-async def warn(ctx, userName: discord.Member=None, *, message:str): 
+async def warn(ctx, userName: discord.User=None, *, message:str=None): 
     if userName is None:
       await client.say('Please tag a person to warn user. Example- ``mv!warn @user <reason>``')
       return
@@ -529,7 +531,7 @@ async def warn(ctx, userName: discord.Member=None, *, message:str):
 
 @client.command(pass_context = True)
 @commands.has_permissions(manage_nicknames=True)     
-async def setnick(ctx, user: discord.Member=None, *, nickname):
+async def setnick(ctx, user: discord.Member=None, *, nickname=None):
     if user is None:
       await client.say('Please tag a person to change nickname. Example- ``mv!nickname @user <new nickname>``')
       return
