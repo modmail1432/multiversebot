@@ -26,11 +26,11 @@ async def status_task():
 
 async def role_task():
     while True:
-	server = discord.Server(id='416940353564704768')
-	role = discord.utils.get(server, name='Rainbow')
+        server = discord.Server(id='416940353564704768')
+        role = discord.utils.get(server, name='Rainbow')
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         await client.edit_role(server, role, color = discord.Color((r << 16) + (g << 8) + b))
-	await asyncio.sleep(20)
+        await asyncio.sleep(20)
 	
 @client.event
 async def on_ready():
