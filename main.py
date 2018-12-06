@@ -226,7 +226,11 @@ async def ping(ctx):
 @commands.has_permissions(kick_members=True) 
 async def mute(ctx, member: discord.Member=None, mutetime=None):
     if member is None:
-        await client.say('Please specify member i.e. Mention a member to mute. Example-``mv!mute @user``')
+        await client.say('Please specify member i.e. Mention a member to mute. Example-``mv!mute @user <time in minutes>``')
+	return
+    if mutetime is None:
+        await client.say('Please specify time i.e. Mention a member to mute with time. Example-``mv!mute @user <time in minutes>``')
+        return
     if member.server_permissions.kick_members:
         await client.say('**You cannot mute admin/moderator!**')
         return
