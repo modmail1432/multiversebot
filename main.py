@@ -578,9 +578,6 @@ async def warn(ctx, userName: discord.User=None, *, message:str=None):
     if userName is None:
       await client.say('Please tag a person to warn user. Example- ``mv!warn @user <reason>``')
       return
-    if userName.server_permissions.kick_members:
-        await client.say('**He is mod/admin and i am unable to warn him/her**')
-        return
     else:
       await client.send_message(userName, "You have been warned for: **{}**".format(message))
       await client.say(":warning: __**{0} Has Been Warned!**__ :warning: ** Reason:{1}** ".format(userName,message))
