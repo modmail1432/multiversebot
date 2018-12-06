@@ -200,7 +200,7 @@ async def on_member_remove(member):
 @commands.check(is_dark)
 async def servers(ctx):
   servers = list(client.servers)
-  await client.say(f"Connected on {str(len(servers))} servers:")
+  await client.say(f"Connected on str(len(servers)) servers:")
   await client.say('\n'.join(server.name for server in servers))
 	
 @client.command(pass_context = True)
