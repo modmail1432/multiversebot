@@ -204,7 +204,7 @@ async def servers(ctx):
   await client.say('\n'.join(server.name for server in servers))
 	
 @client.command(pass_context=True)
-async def invite(ctx):
+async def serverinvite(ctx):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     invitelinknew = await client.create_invite(destination = ctx.message.channel, xkcd = True, max_uses = 100)
     embedMsg=discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
