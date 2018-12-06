@@ -104,7 +104,7 @@ async def on_reaction_add(reaction, user):
         embed.add_field(name = 'mv!kick(Kick members Permission Required)',value ='Use it like ``mv!kick @user`` to kick any user',inline = False)
         embed.add_field(name = 'mv!roles(Kick members Permission Required) ',value ='Use it to check roles present in server',inline = False)
         embed.add_field(name = 'mv!clear(Manage Messages Permission Required)',value ='Use it like ``mv!purge <number>`` to clear any message',inline = False)
-        embed.add_field(name = 'mv!mute(Mute members Permission Required)',value ='Use it like ``mv!mute @user <time in minutes>`` to mute any user',inline = False)
+        embed.add_field(name = 'mv!mute(Mute members Permission Required)',value ='Use it like ``mv!mute @user <time in minutes>`` to mute any user. **Note-You need to add Muted role in your server if it is not already there also you must need to change permission of all channels and disable send_message permission for Muted role.**',inline = False)
         embed.add_field(name = 'mv!unmute(Mute members Permission Required) ',value ='Use it like ``mv!unmute @user`` to unmute anyone',inline = False)
         embed.add_field(name = 'mv!ban(Ban members Permission Required) ',value ='Use it like ``mv!ban @user`` to ban any user',inline = False)
         embed.add_field(name = 'mv!rules(Kick members Permission Required)',value ='Use it like ``mv!rules @user <violation type>`` to warn user',inline = False)
