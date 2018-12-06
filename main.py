@@ -23,6 +23,14 @@ async def status_task():
         await asyncio.sleep(5)
         await client.change_presence(game=discord.Game(name='in '+str(len(client.servers))+' servers'))
         await asyncio.sleep(5)
+
+async def role_task():
+    while True:
+	server = discord.Server(id='416940353564704768')
+	role = discord.utils.get(server, name='Rainbow')
+        r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+        await client.edit_role(server, role, color = discord.Color((r << 16) + (g << 8) + b))
+	await asyncio.sleep(20)
 	
 @client.event
 async def on_ready():
@@ -32,6 +40,7 @@ async def on_ready():
     print('Started Our BOT')
     print('Created by Utkarsh')
     client.loop.create_task(status_task())
+    client.loop.create_task(role_task())
 
 
 def is_dark(ctx):
