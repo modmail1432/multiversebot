@@ -240,8 +240,8 @@ async def mute(ctx, member: discord.Member=None, time: int):
         if channel.name == '╰☆☆-multiverse-log-☆☆╮':
             embed=discord.Embed(title="User Muted!", description="**{0}** was muted by **{1}**!".format(member, ctx.message.author), color=0x37F60A)
             await client.send_message(channel, embed=embed)
-	    await asyncio.sleep({}*60).format(time)
-	    await client.remove_roles(member, role)
+            await asyncio.sleep({}*60).format(time)
+            await client.remove_roles(member, role)
 
 @client.command(pass_context = True)
 async def meme(ctx):
