@@ -500,10 +500,11 @@ async def iamserverdeveloper(ctx):
 	
 @client.command(pass_context = True)
 @commands.has_permissions(manage_roles=True)     
-async def role(ctx, user: discord.Member, *, role: discord.Role = None):
+async def role(ctx, user: discord.Member=None, *, role: discord.Role = None):
+	if user is None:
+            await client.say("You haven't specified a member! ")
         if role is None:
             await client.say("You haven't specified a role! ")
-
         if role not in user.roles:
             await client.add_roles(user, role)
             await client.say("{} role has been added to {}.".format(role, user))
@@ -514,13 +515,13 @@ async def role(ctx, user: discord.Member, *, role: discord.Role = None):
  
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)
-async def warn(ctx, userName: discord.User, *, message:str): 
-    if userName.server_permissions.kick_members:
-        await client.say('**He is mod/admin and i am unable to warn him/her**')
-        return
+async def warn(ctx, userName: discord.Member=None, *, message:str): 
     if userName is None:
       await client.say('Please tag a person to warn user. Example- ``mv!warn @user <reason>``')
       return
+    if userName.server_permissions.kick_members:
+        await client.say('**He is mod/admin and i am unable to warn him/her**')
+        return
     else:
       await client.send_message(userName, "You have been warned for: **{}**".format(message))
       await client.say(":warning: __**{0} Has Been Warned!**__ :warning: ** Reason:{1}** ".format(userName,message))
@@ -528,7 +529,7 @@ async def warn(ctx, userName: discord.User, *, message:str):
 
 @client.command(pass_context = True)
 @commands.has_permissions(manage_nicknames=True)     
-async def setnick(ctx, user: discord.Member, *, nickname):
+async def setnick(ctx, user: discord.Member=None, *, nickname):
     if user is None:
       await client.say('Please tag a person to change nickname. Example- ``mv!nickname @user <new nickname>``')
       return
@@ -616,12 +617,12 @@ async def purge(ctx, number: int):
  
 @client.command(pass_context=True)  
 @commands.has_permissions(ban_members=True)      
-async def ban(ctx,user:discord.Member):
+async def ban(ctx,user:discord.Member=None):
+    if user is None:
+      await client.say('Please specify a member to ban. Example- ``mv!ban @user``')
     if user.server_permissions.ban_members:
       await client.say('**He is mod/admin and i am unable to ban him/her**')
       return
-    if user is None:
-      await client.say('Please specify a member to ban. Example- ``mv!ban @user``')
     else:
       await client.ban(user)
       await client.say(user.name+' was banned. Good bye '+user.name+'!')
