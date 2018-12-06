@@ -501,7 +501,7 @@ async def iamserverdeveloper(ctx):
 @client.command(pass_context = True)
 @commands.has_permissions(manage_roles=True)     
 async def role(ctx, user: discord.Member=None, *, role: discord.Role = None):
-	if user is None:
+        if user is None:
             await client.say("You haven't specified a member! ")
         if role is None:
             await client.say("You haven't specified a role! ")
