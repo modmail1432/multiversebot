@@ -244,7 +244,7 @@ async def mute(ctx, member: discord.Member=None, mutetime=None):
       await client.say("Muted **{}**".format(member.name))
       for channel in member.server.channels:
         if channel.name == '╰☆☆-multiverse-log-☆☆╮':
-            embed=discord.Embed(title="User Muted!", description="**{0}** was muted by **{1}**!".format(member, ctx.message.author), color=0x37F60A)
+            embed=discord.Embed(title="User Muted!", description="**{0}** was muted by **{1}** for {2} Minutes!".format(member, ctx.message.author, mutetime), color=0x37F60A)
             await client.send_message(channel, embed=embed)
             await asyncio.sleep(mutetime)
             await client.remove_roles(member, role)
