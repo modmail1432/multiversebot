@@ -945,6 +945,14 @@ async def dyno(ctx, *, msg = None):
     else: await client.say('https://github.com/uksoftworld/dynoCC/blob/master/' + msg)
     return
 
+@client.command(pass_context = True)
+async def heroku(ctx, *, msg = None):
+    if '@here' in msg or '@everyone' in msg:
+      return
+    if not msg: await client.say("Tag a user please")
+    else: await client.say('Host your bot on heroku. Check: https://www.youtube.com/watch?v=avEgttTLZgo' + msg)
+    return
+
 @client.command(pass_context=True)
 async def unverify(ctx):
     await client.delete_message(ctx.message)
