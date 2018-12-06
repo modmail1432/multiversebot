@@ -227,7 +227,7 @@ async def ping(ctx):
 async def mute(ctx, member: discord.Member=None, mutetime=None):
     if member is None:
         await client.say('Please specify member i.e. Mention a member to mute. Example-``mv!mute @user <time in minutes>``')
-	return
+        return
     if mutetime is None:
         await client.say('Please specify time i.e. Mention a member to mute with time. Example-``mv!mute @user <time in minutes>``')
         return
