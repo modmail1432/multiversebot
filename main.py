@@ -224,7 +224,7 @@ async def ping(ctx):
 
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
-async def mute(ctx, member: discord.Member=None, *, time: str):
+async def mute(ctx, member: discord.Member=None, *, time: int=None):
     if member is None:
         await client.say('Please specify member i.e. Mention a member to mute. Example-``mv!mute @user``')
     if member.server_permissions.kick_members:
