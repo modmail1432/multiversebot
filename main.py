@@ -295,7 +295,9 @@ async def unmute(ctx, member: discord.Member=None):
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
 @commands.cooldown(rate=5,per=86400,type=BucketType.user) 
-async def access(ctx, member: discord.Member):
+async def access(ctx, member: discord.Member=None):
+    if member is None:
+      await client.say("Please specify a member to give access to him. Example- ``mv!access @user``")
     if ctx.message.author.bot:
       return
     else:
@@ -335,18 +337,22 @@ async def setuppartner(ctx):
 @commands.cooldown(rate=1,per=86400,type=BucketType.user) 
 @commands.has_permissions(administrator=True)
 async def partner(ctx, *, msg=None):
-  for server in client.servers:
-    for channel in server.channels:
-      if channel.name == '★-multiverse-partner-★':
-          r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-          embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-          embed.add_field(name='Discord Partner', value='-------------------',inline = False) 
-          embed.add_field(name='Partner ID:', value='{}'.format(ctx.message.author.id),inline = False)
-          embed.add_field(name='Partner Name:', value='{}'.format(ctx.message.author.name),inline = False)
-          embed.add_field(name='Server Name:', value='{}'.format(ctx.message.server.name),inline = False)
-          embed.add_field(name='Partnership Description:', value=msg, inline=False)
-          await client.send_message(channel, embed=embed) 
-          await client.delete_message(ctx.message)
+    if msg is None:
+       await client.say("Please specify a partnership description")
+       return
+    else:
+       for server in client.servers:
+         for channel in server.channels:
+           if channel.name == '★-multiverse-partner-★':
+               r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+               embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+               embed.add_field(name='Discord Partner', value='-------------------',inline = False) 
+               embed.add_field(name='Partner ID:', value='{}'.format(ctx.message.author.id),inline = False)
+               embed.add_field(name='Partner Name:', value='{}'.format(ctx.message.author.name),inline = False)
+               embed.add_field(name='Server Name:', value='{}'.format(ctx.message.server.name),inline = False)
+               embed.add_field(name='Partnership Description:', value=msg, inline=False)
+               await client.send_message(channel, embed=embed) 
+               await client.delete_message(ctx.message)
          
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)
