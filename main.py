@@ -30,7 +30,7 @@ async def role_task():
         role = discord.utils.get(server.roles, name='Rainbow')
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         await client.edit_role(server, role, color = discord.Color((r << 16) + (g << 8) + b))
-        await asyncio.sleep(30)
+        await asyncio.sleep(300)
 	
 @client.event
 async def on_ready():
