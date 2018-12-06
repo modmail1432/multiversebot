@@ -221,6 +221,7 @@ async def ping(ctx):
     t2 = time.perf_counter()
     await client.say("Ping: {}ms".format(round((t2-t1)*1000)))
 
+
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
 async def mute(ctx, member: discord.Member=None):
