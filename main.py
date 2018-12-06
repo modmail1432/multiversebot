@@ -862,17 +862,17 @@ async def serverinfo(ctx):
 @commands.has_permissions(kick_members=True)
 async def norole(ctx, *, msg = None):
     await client.delete_message(ctx.message)
+    if not msg: await client.say("Please specify a user to warn")
     if '@here' in msg or '@everyone' in msg:
       return
-    if not msg: await client.say("Please specify a user to warn")
     else: await client.say(msg + ', Please Do not ask for promotions check Rules again.')
     return
 
 @client.command(pass_context = True)
 async def happybirthday(ctx, *, msg = None):
+    if not msg: await client.say("Please specify a user to wish")
     if '@here' in msg or '@everyone' in msg:
       return
-    if not msg: await client.say("Please specify a user to wish")
     await client.say('Happy birthday ' + msg + ' \nhttps://asset.holidaycardsapp.com/assets/card/b_day399-22d0564f899cecd0375ba593a891e1b9.png')
     return
 
@@ -881,9 +881,9 @@ async def happybirthday(ctx, *, msg = None):
 @commands.has_permissions(kick_members=True)
 async def english(ctx, *, msg = None):
     await client.delete_message(ctx.message)
+    if not msg: await client.say("Please specify a user to warn")
     if '@here' in msg or '@everyone' in msg:
       return
-    if not msg: await client.say("Please specify a user to warn")
     else: await client.say(msg + ', Please do not use language other than **English.**')
     return
 
@@ -891,25 +891,25 @@ async def english(ctx, *, msg = None):
 @client.command(pass_context = True) 
 async def htmltutorial(ctx, *, msg = None):
     await client.delete_message(ctx.message)
+    if not msg: await client.say("Please specify a user")
     if '@here' in msg or '@everyone' in msg:
       return
-    if not msg: await client.say("Please specify a user")
     else: await client.say('Welcome' + msg +  ', Please check http://uksoft.000webhostapp.com/Programming-Tutorials/index.html')
     return
    
 @client.command(pass_context = True)
 async def github(ctx, *, msg = None):
+    if not msg: await client.say("Please specify respo. ``Format- https://github.com/uksoftworld/DarkBot``")
     if '@here' in msg or '@everyone' in msg:
       return
-    if not msg: await client.say("Please specify respo. ``Format- https://github.com/uksoftworld/DarkBot``")
     else: await client.say('https://github.com/' + msg)
     return
 
 @client.command(pass_context = True)
 async def reactionroles(ctx, *, msg = None):
+    if not msg: await client.say("Check this video to setup YAGPDB BOT- https://www.youtube.com/watch?v=icAqiw6txRQ")
     if '@here' in msg or '@everyone' in msg:
       return
-    if not msg: await client.say("Check this video to setup YAGPDB BOT- https://www.youtube.com/watch?v=icAqiw6txRQ")
     else: await client.say('Check this video to setup YAGPDB BOT- https://www.youtube.com/watch?v=icAqiw6txRQ ' + msg)
     return
 
@@ -931,25 +931,25 @@ async def authlink(ctx):
 
 @client.command(pass_context = True)
 async def bottutorial(ctx, *, msg = None):
+    if not msg: await client.say("You can check https://github.com/uksoftworld/discord.py-tutorial/ for more information")
     if '@here' in msg or '@everyone' in msg:
       return
-    if not msg: await client.say("You can check https://github.com/uksoftworld/discord.py-tutorial/ for more information")
     else: await client.say('https://github.com/uksoftworld/discord.py-tutorial/blob/master/' + msg + '.py')
     return
 
 @client.command(pass_context = True)
 async def dyno(ctx, *, msg = None):
+    if not msg: await client.say("You can check https://github.com/uksoftworld/dynoCC for more information")
     if '@here' in msg or '@everyone' in msg:
       return
-    if not msg: await client.say("You can check https://github.com/uksoftworld/dynoCC for more information")
     else: await client.say('https://github.com/uksoftworld/dynoCC/blob/master/' + msg)
     return
 
 @client.command(pass_context = True)
 async def heroku(ctx, *, msg = None):
+    if not msg: await client.say("Tag a user please")
     if '@here' in msg or '@everyone' in msg:
       return
-    if not msg: await client.say("Tag a user please")
     else: await client.say('Host your bot on heroku. Check: https://www.youtube.com/watch?v=avEgttTLZgo' + msg)
     return
 
