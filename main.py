@@ -249,7 +249,7 @@ async def mute(ctx, member: discord.Member=None, mutetime=None):
             await asyncio.sleep(mutetime)
             await client.remove_roles(member, role)
             await client.say("Unmuted **{}**".format(member.name))
-            embed=discord.Embed(title="User unmuted!", description="**{0}** was unmuted by **{1}**!".format(member, ctx.message.author), color=0xFD1600)
+            embed=discord.Embed(title="User unmuted!", description="**{0}** was unmuted!".format(member, ctx.message.author), color=0xFD1600)
             await client.send_message(channel, embed=embed)
 
 @client.command(pass_context = True)
