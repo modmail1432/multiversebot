@@ -392,7 +392,7 @@ async def partner(ctx, *, msg=None):
        for server in client.servers:
          for channel in server.channels:
            if channel.name == '★-multiverse-partner-★':
-               partnerchannel = discord.utils.get(server.channels, name="★-multiverse-partner-★")
+               partnerchannel = discord.utils.get(client.get_all_channels(), name='★-multiverse-partner-★')
                r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
                embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
                embed.add_field(name='Discord Partner', value='-------------------',inline = False) 
