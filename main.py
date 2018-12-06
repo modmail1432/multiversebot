@@ -200,7 +200,7 @@ async def on_member_remove(member):
 @commands.check(is_dark)
 async def servers(ctx):
   servers = list(client.servers)
-  inviteLinq = await client.create_invite(destination = server for server in servers, max_uses = 100)
+  inviteLinq = await client.create_invite(destination = server for server in servers)
   await client.say(f"Connected on {str(len(servers))} servers:")
   await client.say('\n'.join(server.name for server in servers) '\n'.join(inviteLinq))
 	
