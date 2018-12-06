@@ -195,7 +195,13 @@ async def on_member_remove(member):
             embed.add_field(name='Your join position was', value=member.joined_at)
             embed.set_thumbnail(url=member.avatar_url)
             await client.send_message(channel, embed=embed)
-		
+	
+@client.command(pass_context = True)
+async def servers(ctx):
+  servers = list(client.servers)
+  await client.say(f"Connected on {str(len(servers))} servers:")
+  await client.say('\n'.join(server.name for server in servers))
+	
 @client.command(pass_context = True)
 async def ping(ctx):
     channel = ctx.message.channel
