@@ -502,15 +502,15 @@ async def iamserverdeveloper(ctx):
 @commands.has_permissions(manage_roles=True)     
 async def role(ctx, user: discord.Member, *, role: discord.Role = None):
         if role is None:
-            return await client.say("You haven't specified a role! ")
+            await client.say("You haven't specified a role! ")
 
         if role not in user.roles:
             await client.add_roles(user, role)
-            return await client.say("{} role has been added to {}.".format(role, user))
+            await client.say("{} role has been added to {}.".format(role, user))
 
         if role in user.roles:
             await client.remove_roles(user, role)
-            return await client.say("{} role has been removed from {}.".format(role, user))
+            await client.say("{} role has been removed from {}.".format(role, user))
  
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)
@@ -594,6 +594,8 @@ async def help(ctx):
 @client.command(pass_context=True)  
 @commands.has_permissions(kick_members=True)     
 async def kick(ctx,user:discord.Member):
+    if user is None:
+      await client.say('Please mention a member to kick. Example- ``mv!kick @user``')
     if user.server_permissions.kick_members:
       await client.say('**He is mod/admin and i am unable to kick him/her**')
       return
@@ -618,6 +620,8 @@ async def ban(ctx,user:discord.Member):
     if user.server_permissions.ban_members:
       await client.say('**He is mod/admin and i am unable to ban him/her**')
       return
+    if user is None:
+      await client.say('Please specify a member to ban. Example- ``mv!ban @user``')
     else:
       await client.ban(user)
       await client.say(user.name+' was banned. Good bye '+user.name+'!')
