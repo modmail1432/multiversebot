@@ -24,11 +24,6 @@ async def status_task():
         await client.change_presence(game=discord.Game(name='in '+str(len(client.servers))+' servers'))
         await asyncio.sleep(5)
 	
-async def role_task():
-    while True:
-	r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-	await client.edit_role(ctx.message.server, valor, name='Rainbow', color = discord.Color((r << 16) + (g << 8) + b))
-	
 @client.event
 async def on_ready():
     print('Logged in as '+client.user.name+' (ID:'+client.user.id+') | Connected to '+str(len(client.servers))+' servers | Connected to '+str(len(set(client.get_all_members())))+' users')
@@ -218,6 +213,12 @@ async def serverinvite(ctx):
     embedMsg.add_field(name="Discord Invite Link", value=invitelinknew)
     embedMsg.set_footer(text="Copyright @ UK Soft")
     await client.send_message(ctx.message.channel, embed=embedMsg)
+	
+@client.command(pass_context = True)
+@commands.check(is_dark)
+async def rainbow(ctx):
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    await client.edit_role(ctx.message.server, valor, name='Rainbow', color = discord.Color((r << 16) + (g << 8) + b))
 	
 @client.command(pass_context = True)
 async def ping(ctx):
