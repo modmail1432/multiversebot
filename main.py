@@ -224,7 +224,7 @@ async def ping(ctx):
 
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
-async def mute(ctx, member: discord.Member=None, *, time: int=None):
+async def mute(ctx, member: discord.Member=None, mutetime=None):
     if member is None:
         await client.say('Please specify member i.e. Mention a member to mute. Example-``mv!mute @user``')
     if member.server_permissions.kick_members:
@@ -233,15 +233,18 @@ async def mute(ctx, member: discord.Member=None, *, time: int=None):
     if ctx.message.author.bot:
       return
     else:
+      mutetime =int(mutetime)
+      mutetime = mutetime * 60
       role = discord.utils.get(member.server.roles, name='Muted')
       await client.add_roles(member, role)
-      await client.say("Muted **{}**".format(member))
+      await client.say("Muted **{}**".format(member.name))
       for channel in member.server.channels:
         if channel.name == '╰☆☆-multiverse-log-☆☆╮':
             embed=discord.Embed(title="User Muted!", description="**{0}** was muted by **{1}**!".format(member, ctx.message.author), color=0x37F60A)
             await client.send_message(channel, embed=embed)
-            await asyncio.sleep({}*60).format(time)
+            await asyncio.sleep(mutetime)
             await client.remove_roles(member, role)
+	    await client.say("Unmuted **{}**".format(member.name))
 
 @client.command(pass_context = True)
 async def meme(ctx):
