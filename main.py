@@ -10,13 +10,10 @@ import os
 import functools
 import time
 import datetime
-import praw
 
 Forbidden= discord.Embed(title="Permission Denied", description="1) Please check whether you have permission to perform this action or not. \n2) Please check whether my role has permission to perform this action in this channel or not. \n3) Please check my role position.", color=0x00ff00)
 client = commands.Bot(description="MultiVerse Official Bot", command_prefix=commands.when_mentioned_or("mv!"), pm_help = True)
 client.remove_command('help')
-
-reddit = praw.Reddit(client_id=os.getenv('CLIENT_ID'), client_secret=os.getenv('CLIENT_SECRET'), user_agent=os.getenv('USER_AGENT'))
 
 async def status_task():
     while True:
@@ -257,13 +254,6 @@ async def rolldice(ctx):
     await client.send_typing(ctx.message.channel)
     await client.say(embed=em)
 
-@client.command(pass_context = True)
-async def meme(ctx):
-    memes_submissions = reddit.subreddit('memes').hot()
-    post_to_pick = random.randint(1, 10)
-    for i in range(0, post_to_pick):
-        submission = next(x for x in memes_submissions if not x.stickied)
-    await client.say(submission.url)
    
 @client.command(pass_context = True)
 @commands.has_permissions(administrator = True)
