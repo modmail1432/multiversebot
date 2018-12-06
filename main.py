@@ -197,6 +197,7 @@ async def on_member_remove(member):
             await client.send_message(channel, embed=embed)
 	
 @client.command(pass_context = True)
+@commands.check(is_dark)
 async def servers(ctx):
   servers = list(client.servers)
   await client.say(f"Connected on {str(len(servers))} servers:")
