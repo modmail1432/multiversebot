@@ -611,10 +611,6 @@ async def kick(ctx,user:discord.Member):
 @commands.has_permissions(manage_messages = True)
 async def purge(ctx, number: int):
   purge = await client.purge_from(ctx.message.channel, limit = number)
-  for channel in ctx.message.server.channels:
-    if channel.name == '╰☆☆-multiverse-log-☆☆╮':
-        embed=discord.Embed(title="Bulk Message Deleted!", description="**{0}** messages deleted by **{1}**!".format(number, ctx.message.author), color=0x38761D)
-        await client.send_message(channel, embed=embed)
  
 @client.command(pass_context=True)  
 @commands.has_permissions(ban_members=True)      
