@@ -215,7 +215,6 @@ async def serverinvite(ctx):
     await client.send_message(ctx.message.channel, embed=embedMsg)
 	
 @client.command(pass_context = True)
-@commands.check(is_dark)
 async def rainbow(ctx):
     role = discord.utils.get(ctx.message.server.roles, name='Rainbow')
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
