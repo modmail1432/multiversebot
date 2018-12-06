@@ -75,7 +75,7 @@ async def on_reaction_add(reaction, user):
         embed.set_author(name='Moderation Commands Help')
         embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
         embed.add_field(name = 'mv!setuppartner(Admin permission required) ',value ='Use it to setup partnership channel. Using this command will create a channel named multiverse-partner and then you can use mv!partner to partner with other servers.',inline = False)
-        embed.add_field(name = 'mv!partner(Admin permission required) ',value ='Use it like ``mv!partner <partnership description>`` to partner with many servers with are connected with MultiVerse Official bot',inline = False)
+        embed.add_field(name = 'mv!partner(Admin permission required) (Cooldown of 12hours)',value ='Use it like ``mv!partner <partnership description>`` to partner with many servers with are connected with MultiVerse Official bot',inline = False)
         embed.add_field(name = 'mv!dm(Admin permission required) ',value ='Use it like ``mv!dm @user <text>`` to dm user from bot',inline = False)
         embed.add_field(name = 'mv!say(Admin permission required) ',value ='Use it like ``mv!say <text>``',inline = False)
         embed.add_field(name = 'mv!showme(Requires a role named Giveaways)',value ='To see how many people are taking part in giveaway',inline = False)
