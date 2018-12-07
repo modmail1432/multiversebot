@@ -228,6 +228,13 @@ async def ping(ctx):
     t2 = time.perf_counter()
     await client.say("Ping: {}ms".format(round((t2-t1)*1000)))
 
+@client.command(pass_context = True)
+@commands.has_permissions(administrator=True) 
+async def announce(ctx, channel: discord.Channel=None, *, msg: str):
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed=discord.Embed(title="Announcement", description="{}".format(msg), color = discord.Color((r << 16) + (g << 8) + b))
+    await client.send_message(channel, embed=embed)
+    
 
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
