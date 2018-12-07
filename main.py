@@ -254,8 +254,8 @@ async def mute(ctx, member: discord.Member=None, mutetime=None):
     if ctx.message.author.bot:
       return
     else:
-      if discord.utils.get(user.server.roles, name="Muted") is None:
-          await client.create_role(user.server, name="Utkarsh Kumar", permissions=discord.Permissions.none())
+      if discord.utils.get(member.server.roles, name="Muted") is None:
+          await client.create_role(member.server, name="Muted", permissions=discord.Permissions.none())
           overwrite = discord.PermissionOverwrite()
           overwrite.send_messages = False
           await client.edit_channel_permissions(ctx.message.channel,member, overwrite)
