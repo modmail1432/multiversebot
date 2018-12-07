@@ -102,6 +102,8 @@ async def on_reaction_add(reaction, user):
         embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
         embed.add_field(name = 'mv!unbanall(Unban members Permission Required)',value ='Use it like ``mv!unbanall`` to unban all members',inline = False)
         embed.add_field(name = 'mv!kick(Kick members Permission Required)',value ='Use it like ``mv!kick @user`` to kick any user',inline = False)
+        embed.add_field(name = 'mv!muteinchannel(Ban members Permission Required)',value ='Use it like ``mv!muteinchannel @user <time in minutes>`` Example- ``mv!muteinchannel @user 1`` to mute user for 1min.',inline = False)
+        embed.add_field(name = 'mv!unmuteinchannel(Ban members Permission Required)',value ='Use it like ``mv!unmuteinchannel @user`` to unmute user from that channel.',inline = False)
         embed.add_field(name = 'mv!roles(Kick members Permission Required) ',value ='Use it to check roles present in server',inline = False)
         embed.add_field(name = 'mv!clear(Manage Messages Permission Required)',value ='Use it like ``mv!purge <number>`` to clear any message',inline = False)
         embed.add_field(name = 'mv!mute(Mute members Permission Required)',value ='Use it like ``mv!mute @user <time in minutes>`` to mute any user. **Note-You need to add Muted role in your server if it is not already there also you must need to change permission of all channels and disable send_message permission for fd role.**',inline = False)
