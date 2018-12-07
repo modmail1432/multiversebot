@@ -120,7 +120,7 @@ async def on_reaction_add(reaction, user):
         embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
         embed.set_author(name='Moderation Commands Help')
         embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
-        embed.add_field(name = 'mv!setupwelcomer(Admin Permission required) ',value ='Simply use it to make a channel named ★彡-welcome-彡★ so that bot will send welcome and leaves logs in that channel.',inline = False)
+        embed.add_field(name = 'mv!announce(Admin Permission required) ',value ='To make bot announce anything using ``mv!announce <channel> <msg>``. Note- It does not annoy people by tagging everyone or here.',inline = False)
         embed.add_field(name = 'mv!say(Admin permission required) ',value ='Use it like ``mv!say <text>``',inline = False)
         embed.add_field(name = 'mv!embed(Admin permission required) ',value ='Use it like ``mv!embed <text>``',inline = False)
         embed.add_field(name = 'mv!membercount(Kick members Permission Required) ',value ='Use it like ``mv!membercount`` to get membercount',inline = False)
