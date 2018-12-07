@@ -186,6 +186,9 @@ async def on_member_join(member):
             embed.add_field(name='__Join position__', value='{}'.format(str(member.server.member_count)), inline=True)
             embed.add_field(name='Time of joining', value=member.joined_at)
             await client.send_message(channel, embed=embed) 
+            role = discord.utils.get(member.server.roles, name='Verified')
+            await asyncio.sleep(30)
+            await client.add_roles(member, role)
 
 @client.event
 async def on_member_remove(member):
