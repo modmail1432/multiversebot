@@ -104,7 +104,7 @@ async def on_reaction_add(reaction, user):
         embed.add_field(name = 'mv!kick(Kick members Permission Required)',value ='Use it like ``mv!kick @user`` to kick any user',inline = False)
         embed.add_field(name = 'mv!roles(Kick members Permission Required) ',value ='Use it to check roles present in server',inline = False)
         embed.add_field(name = 'mv!clear(Manage Messages Permission Required)',value ='Use it like ``mv!purge <number>`` to clear any message',inline = False)
-        embed.add_field(name = 'mv!mute(Mute members Permission Required)',value ='Use it like ``mv!mute @user <time in minutes>`` to mute any user. **Note-You need to add Muted role in your server if it is not already there also you must need to change permission of all channels and disable send_message permission for Muted role.**',inline = False)
+        embed.add_field(name = 'mv!mute(Mute members Permission Required)',value ='Use it like ``mv!mute @user <time in minutes>`` to mute any user. **Note-You need to add Muted role in your server if it is not already there also you must need to change permission of all channels and disable send_message permission for fd role.**',inline = False)
         embed.add_field(name = 'mv!unmute(Mute members Permission Required) ',value ='Use it like ``mv!unmute @user`` to unmute anyone',inline = False)
         embed.add_field(name = 'mv!ban(Ban members Permission Required) ',value ='Use it like ``mv!ban @user`` to ban any user',inline = False)
         embed.add_field(name = 'mv!rules(Kick members Permission Required)',value ='Use it like ``mv!rules @user <violation type>`` to warn user',inline = False)
@@ -258,11 +258,11 @@ async def mute(ctx, member: discord.Member=None, mutetime=None):
           await client.create_role(member.server, name="Muted", permissions=discord.Permissions.none())
           overwrite = discord.PermissionOverwrite()
           overwrite.send_messages = False
-          await client.edit_channel_permissions(ctx.message.channel,member, overwrite)
+          role = discord.utils.get(member.server.roles, name='Muted')
+          await client.edit_channel_permissions(ctx.message.channel,role, overwrite)
           mutetime =int(mutetime)
           mutetime = mutetime * 60
           output = mutetime/60
-          role = discord.utils.get(member.server.roles, name='Muted')
           await client.add_roles(member, role)
           await client.say("Muted **{}**".format(member.name))
           await client.send_message(member, "You are muted by {0} for {1} Minutes".format(ctx.message.author, output))
