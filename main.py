@@ -326,7 +326,7 @@ async def botdm(ctx, user: discord.Member, *, msg: str):
 @client.command(pass_context=True)
 @commands.check(is_dark)
 async def apply(ctx, *, msg: str):
-    channel = client.get_channel('518710986799316992')
+    channel = client.get_channel('520830825021964305')
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
     embed.add_field(name='Application for bot', value='-------------------',inline = False) 
