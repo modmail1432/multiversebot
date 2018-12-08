@@ -38,7 +38,7 @@ def is_dark(ctx):
     return ctx.message.author.id == "420525168381657090"
 
 def is_staff(ctx):
-    return ctx.message.author.id == "420525168381657090, 514856260353392660"
+    return ctx.message.author.id == ["420525168381657090", "514856260353392660"]
 
 def is_shreyas(ctx):
     return ctx.message.author.id == "376602841625919488"
