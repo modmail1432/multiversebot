@@ -227,7 +227,7 @@ async def store(ctx):
         return msg.content.startswith('.id')
     
     msg = await client.wait_for_message(author=ctx.message.author, check=check)
-    botid = ctx.message.content[len('.id'):].strip()
+    botid = ctx.msg.content[len('.id'):].strip()
     await client.send_message(ctx.message.channel, 'So your bot id is: {}'.format(botid))    
 	
 @client.command(pass_context = True)
