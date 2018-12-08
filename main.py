@@ -221,9 +221,9 @@ async def serverinvite(ctx):
 	
 @client.command(pass_context = True)
 async def store(ctx):
-    await client.send_message(ctx.message.channel, 'Say hello')
-    msg = await client.wait_for_message(author=ctx.message.author, content='hello')
-    await client.send_message(ctx.message.channel, 'Hello.')    
+    await client.send_message(ctx.message.channel, 'What is your bot ID?')
+    msg = await client.wait_for_message(author=ctx.message.author, content='.id')
+    await client.send_message(ctx.message.channel, 'So your bot id is: {}'.format(msg.content))    
 	
 @client.command(pass_context = True)
 async def rainbow(ctx):
