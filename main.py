@@ -37,6 +37,9 @@ async def on_ready():
 def is_dark(ctx):
     return ctx.message.author.id == "420525168381657090"
 
+def is_staff(ctx):
+    return ctx.message.author.id == "420525168381657090, 514856260353392660"
+
 def is_shreyas(ctx):
     return ctx.message.author.id == "376602841625919488"
 
@@ -336,7 +339,15 @@ async def apply(ctx, *, msg: str):
     await client.send_message(channel, embed=embed) 
     await client.delete_message(ctx.message)
 	
-
+@client.command(pass_context=True)
+@commands.check(is_staff)
+async def accept(ctx, user: discord.Member=None):
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+    embed.add_field(name='Application Accepted', value='-------------------',inline = False) 
+    embed.add_field(name='Congratulations {}'.format(user.name), value='Your bot has been approved and will be added soon in our website',inline = False)
+    await client.send_message(user, embed=embed) 
+    await client.delete_message(ctx.message)
 	
 @client.command(pass_context = True)
 async def rolldice(ctx):
