@@ -226,7 +226,8 @@ async def store(ctx):
         client.wait_for_message(timeout=10, check=check2),
         client.wait_for_message(timeout=10, check=check3)
     )
-    await client.say(*ret)
+    
+    msg1, msg2, msg3 = *ret
 	
 @client.command(pass_context = True)
 async def rainbow(ctx):
