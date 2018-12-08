@@ -221,13 +221,9 @@ async def serverinvite(ctx):
 	
 @client.command(pass_context = True)
 async def store(ctx):
-    ret = await asyncio.gather(
-        client.wait_for_message(timeout=10, check=check1),
-        client.wait_for_message(timeout=10, check=check2),
-        client.wait_for_message(timeout=10, check=check3)
-    )
+    response = client.wait_for_message(author=ctx.message.author, timeout=30)    
+    await client.say(response.content)
     
-    msg1, msg2, msg3 = *ret
 	
 @client.command(pass_context = True)
 async def rainbow(ctx):
