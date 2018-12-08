@@ -226,7 +226,6 @@ async def store(ctx):
         client.wait_for_message(timeout=10, check=check2),
         client.wait_for_message(timeout=10, check=check3)
     )
-    msg1, msg2, msg3 = *ret
     await client.say(*ret)
 	
 @client.command(pass_context = True)
