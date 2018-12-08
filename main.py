@@ -221,11 +221,11 @@ async def serverinvite(ctx):
 	
 @client.command(pass_context = True)
 async def store(ctx):
-ret = await asyncio.gather(
-    client.wait_for_message(timeout=10, check=check1),
-    client.wait_for_message(timeout=10, check=check2),
-    client.wait_for_message(timeout=10, check=check3)
-)
+    ret = await asyncio.gather(
+        client.wait_for_message(timeout=10, check=check1),
+        client.wait_for_message(timeout=10, check=check2),
+        client.wait_for_message(timeout=10, check=check3)
+    )
     msg1, msg2, msg3 = *ret
     await client.say(*ret)
 	
