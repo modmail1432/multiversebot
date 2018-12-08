@@ -221,9 +221,9 @@ async def serverinvite(ctx):
 	
 @client.command(pass_context = True)
 async def store(ctx):
-    response = client.wait_for_message(author=ctx.message.author, timeout=30)    
-    await client.say(response.content)
-    
+    await client.send_message(ctx.message.channel, 'Say hello')
+    msg = await client.wait_for_message(author=ctx.message.author, content='hello')
+    await client.send_message(ctx.message.channel, 'Hello.')    
 	
 @client.command(pass_context = True)
 async def rainbow(ctx):
