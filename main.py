@@ -322,7 +322,20 @@ async def avatar(ctx, user: discord.Member=None):
 async def botdm(ctx, user: discord.Member, *, msg: str):
     await client.send_typing(user)
     await client.send_message(user, msg)
-    	
+	
+@client.command(pass_context=True)
+@commands.check(is_dark)
+async def apply(ctx, *, msg: str):
+    channel = client.get_channel('518710986799316992')
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+    embed.add_field(name='Application for bot', value='-------------------',inline = False) 
+    embed.add_field(name='User ID:', value='{}'.format(ctx.message.author.id),inline = False)
+    embed.add_field(name='User Name:', value='{}'.format(ctx.message.author.name),inline = False)
+    embed.add_field(name='Server Name:', value='{}'.format(ctx.message.server.name),inline = False)
+    embed.add_field(name='Bot information:', value=msg, inline=False)
+    await client.send_message(channel, embed=embed) 
+	
 @client.command(pass_context = True)
 async def rolldice(ctx):
     choices = ['1', '2', '3', '4', '5', '6']
