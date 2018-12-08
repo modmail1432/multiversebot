@@ -220,17 +220,6 @@ async def serverinvite(ctx):
     await client.send_message(ctx.message.channel, embed=embedMsg)
 	
 @client.command(pass_context = True)
-async def store(ctx):
-    await client.send_message(ctx.message.channel, 'What is your bot ID?')
-            
-    def check(msg):
-        return msg.content.startswith('.id')
-    
-    msg = await client.wait_for_message(author=ctx.message.author, check=check)
-    botid = ctx.msg.content[len('.id'):].strip()
-    await client.send_message(ctx.message.channel, 'So your bot id is: {}'.format(botid))    
-	
-@client.command(pass_context = True)
 async def rainbow(ctx):
     role = discord.utils.get(ctx.message.server.roles, name='Rainbow')
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
