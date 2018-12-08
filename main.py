@@ -335,6 +335,7 @@ async def apply(ctx, *, msg: str):
     embed.add_field(name='Server Name:', value='{}'.format(ctx.message.server.name),inline = False)
     embed.add_field(name='Bot information:', value=msg, inline=False)
     await client.send_message(channel, embed=embed) 
+    await client.delete_message(ctx.message)
 	
 @client.command(pass_context = True)
 async def rolldice(ctx):
