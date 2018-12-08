@@ -220,6 +220,16 @@ async def serverinvite(ctx):
     await client.send_message(ctx.message.channel, embed=embedMsg)
 	
 @client.command(pass_context = True)
+async def store(ctx):
+ret = await asyncio.gather(
+    client.wait_for_message(timeout=10, check=check1),
+    client.wait_for_message(timeout=10, check=check2),
+    client.wait_for_message(timeout=10, check=check3)
+)
+    msg1, msg2, msg3 = *ret
+    await client.say(*ret)
+	
+@client.command(pass_context = True)
 async def rainbow(ctx):
     role = discord.utils.get(ctx.message.server.roles, name='Rainbow')
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
