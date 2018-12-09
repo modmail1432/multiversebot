@@ -326,6 +326,7 @@ async def botdm(ctx, user: discord.Member, *, msg: str):
     await client.send_typing(user)
     await client.send_message(user, msg)
 	
+	
 @client.command(pass_context=True)
 async def apply(ctx, *, msg: str):
     channel = client.get_channel('520830825021964305')
@@ -337,6 +338,18 @@ async def apply(ctx, *, msg: str):
     embed.add_field(name='Server Name:', value='{}'.format(ctx.message.server.name),inline = False)
     embed.add_field(name='Bot information:', value=msg, inline=False)
     await client.send_message(channel, embed=embed) 
+    await client.delete_message(ctx.message)
+	
+@client.command(pass_context=True)
+@commands.check(is_dark)
+async def reject(ctx, user: discord.Member, *, msg: str):
+    channel = client.get_channel('520832912468344864')
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+    embed.add_field(name='Application rejected', value='-------------------',inline = False) 
+    embed.add_field(name='Sadly {}'.format(user.name), value='Your bot has been rejected due to {}'.format(msg),inline = False)
+    await client.send_message(user, embed=embed) 
+    await client.send_message(channel, embed=embed)
     await client.delete_message(ctx.message)
 	
 @client.command(pass_context=True)
