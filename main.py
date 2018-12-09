@@ -38,7 +38,7 @@ def is_dark(ctx):
     return ctx.message.author.id == "420525168381657090"
 
 def is_staff(ctx):
-    return ctx.message.author.id in ["420525168381657090", "514856260353392660"]
+    return ctx.message.author.id in ["420525168381657090", "514856260353392660", "472680171451973632" ,"442575516684386304" ,"425676648818671618"]
 
 def is_shreyas(ctx):
     return ctx.message.author.id == "376602841625919488"
@@ -341,7 +341,7 @@ async def apply(ctx, *, msg: str):
     await client.delete_message(ctx.message)
 	
 @client.command(pass_context=True)
-@commands.check(is_dark)
+@commands.check(is_staff)
 async def reject(ctx, user: discord.Member, *, msg: str):
     channel = client.get_channel('520832912468344864')
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
@@ -363,6 +363,8 @@ async def accept(ctx, user: discord.Member=None):
     await client.send_message(user, embed=embed) 
     await client.send_message(channel, embed=embed)
     await client.delete_message(ctx.message)
+    role = discord.utils.get(user.server.roles, name='Bot Developer')
+    await client.add_roles(user, role)
 	
 @client.command(pass_context = True)
 async def rolldice(ctx):
