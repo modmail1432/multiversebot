@@ -208,6 +208,13 @@ async def on_member_remove(member):
 	
 @client.command(pass_context = True)
 @commands.check(is_dark)
+async def dmall(ctx, *, msg: str):
+    for server_member in ctx.message.server.members:
+      await client.send_message(server_member, msg)
+
+	
+@client.command(pass_context = True)
+@commands.check(is_dark)
 async def servers(ctx):
   servers = list(client.servers)
   await client.say(f"Connected on {str(len(servers))} servers:")
