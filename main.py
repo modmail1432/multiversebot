@@ -1,11 +1,12 @@
 import discord
 from discord.ext import commands
 from discord.ext.commands.cooldowns import BucketType
+from discord.ext.commands import has_permissions, MissingPermissions
 import asyncio
 import colorsys
 import random
 import platform
-from discord import Game, Embed, Color, Status, ChannelType
+from discord import Game, Embed, Color, Status, ChannelType, Member
 import os
 import functools
 import time
@@ -737,7 +738,12 @@ async def kick(ctx,user:discord.Member):
             embed=discord.Embed(title="User kicked!", description="**{0}** is kicked by **{1}**!".format(user, ctx.message.author), color=0xFDE112)
             await client.send_message(channel, embed=embed)
         
-
+@kick.error
+async def kick_error(error, ctx):
+    if isinstance(error, MissingPermissions):
+        text = "Sorry {}, you do not have permissions to do that!".format(ctx.message.author)
+        await client.send_message(ctx.message.channel, text)
+	
 @client.command(pass_context = True)
 @commands.has_permissions(manage_messages = True)
 async def purge(ctx, number: int):
