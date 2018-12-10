@@ -728,9 +728,6 @@ async def kick(ctx,user:discord.Member):
     if user.server_permissions.kick_members:
       await client.say('**He is mod/admin and i am unable to kick him/her**')
       return
-    if discord.ext.commands.MissingPermissions:
-      await client.say('You do not have permission to kick user')
-      return
     else:
       await client.kick(user)
       await client.say(user.name+' was kicked. Good bye '+user.name+'!')
