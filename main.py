@@ -923,6 +923,7 @@ async def serverinfo(ctx):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     online = len([m.status for m in ctx.message.server.members if m.status == discord.Status.online or m.status == discord.Status.idle])
     embed = discord.Embed(name="{} Server information".format(ctx.message.server.name), color = discord.Color((r << 16) + (g << 8) + b))
+    embed.set_thumbnail(url = server.icon_url);
     embed.add_field(name="Server name", value=ctx.message.server.name, inline=True)
     embed.add_field(name="Owner", value=ctx.message.server.owner.mention)
     embed.add_field(name="Server ID", value=ctx.message.server.id, inline=True)
