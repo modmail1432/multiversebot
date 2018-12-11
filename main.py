@@ -1252,9 +1252,7 @@ async def membercount(ctx, *args):
     if ctx.message.channel.is_private:
         await bot.delete_message(ctx.message)
         return
-
     g = ctx.message.server
-
     gid = g.id
     membs = str(len(g.members))
     membs_on = str(len([m for m in g.members if not m.status == Status.offline]))
@@ -1263,9 +1261,10 @@ async def membercount(ctx, *args):
     bots = str(len([m for m in g.members if m.bot]))
     bots_on = str(len([m for m in g.members if m.bot and not m.status == Status.offline]))
     created = str(g.created_at)
-    em = Embed(title="Membercount",color = discord.Color((r << 16) + (g << 8) + b))
-    em.description =    f"```\n\"Members:   {membs} {membs_on}\nUsers:   {users} {users_on}\nBots:    {bots} {bots_on}\nCreated:   {created}\n"```"
-    await client.send_message(ctx.message.channel, embed=em)
+    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+    embed.set_author(name='Membercount')
+    embed.add_field =f"```\n\"Members:   {membs} {membs_on}\nUsers:   {users} {users_on}\nBots:    {bots} {bots_on}\nCreated:   {created}\n"```"
+    await client.send_message(ctx.message.channel, embed=embed)
     await client.delete_message(ctx.message)
 	
 @client.command(pass_context=True)
