@@ -919,13 +919,13 @@ async def bans(ctx):
 @client.command(pass_context=True)  
 @commands.has_permissions(kick_members=True)     
 async def serverinfo(ctx):
+    server = ctx.message.server
     roles = [x.name for x in server.role_hierarchy]
     role_length = len(roles)
     if role_length > 50: #Just in case there are too many roles...
         roles = roles[:50]
         roles.append('>>>> Displaying[50/%s] Roles'%len(roles))
     roles = ', '.join(roles);
-    server = ctx.message.server
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     online = len([m.status for m in server.members if m.status == discord.Status.online or m.status == discord.Status.idle])
     embed = discord.Embed(name="{} Server information".format(server.name), color = discord.Color((r << 16) + (g << 8) + b))
