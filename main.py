@@ -59,6 +59,9 @@ async def on_reaction_add(reaction, user):
         embed.add_field(name = 'mv!donate',value ='Sends donation link',inline = False)
         embed.add_field(name = 'mv!invite or mv!authlink',value ='Use it to invite our bot to your server',inline = False)
         embed.add_field(name = 'mv!upvote',value ='Use this command to upvote our bot(Link will be in dm)',inline = False)
+        embed.add_field(name = 'mv!google',value ='Use it like- ``mv!google <anything>`` to google anything',inline = False)
+        embed.add_field(name = 'mv!youtube',value ='Use it like- ``mv!youtube <anything>`` to search anything on youtube',inline = False)
+	embed.add_field(name = 'mv!kiss',value ='Use it like- ``mv!kiss @user`` to kiss @user xD!',inline = False)
         embed.add_field(name = 'mv!meme',value ='Use this command to get random memes.(Sometimes it sends same meme again and again)',inline = False)
         embed.add_field(name = 'mv!serverinvite ',value ='Use it to get server invite link.',inline = False)
         embed.add_field(name = 'mv!rolldice',value ='Use it like ``mv!rolldice <1-6 any number that you want to guess in dice>``',inline = False)
@@ -975,6 +978,59 @@ async def serverinfo(ctx):
 	
     await client.say(embed=embed)
 
+@client.command(pass_context=True)
+async def google(ctx, *, message):
+
+
+    new_message = message.replace(" ", "+")
+
+
+    url = f"https://www.google.com/search?q={new_message}"
+
+
+    await client.say(url)
+
+@client.command(pass_context=True)
+
+
+async def youtube(ctx, *, message: str):
+
+
+    new_message = message.replace(" ", "+")
+
+
+    url = f"https://www.youtube.com/results?search_query={new_message}"
+
+
+    await client.say(url)
+
+@client.command(pass_context=True)
+
+
+async def kiss(ctx, user: discord.Member):
+
+    randomurl = ["https://media3.giphy.com/media/G3va31oEEnIkM/giphy.gif", "https://i.imgur.com/eisk88U.gif", "https://media1.tenor.com/images/e4fcb11bc3f6585ecc70276cc325aa1c/tenor.gif?itemid=7386341", "http://25.media.tumblr.com/6a0377e5cab1c8695f8f115b756187a8/tumblr_msbc5kC6uD1s9g6xgo1_500.gif"]
+
+
+    if user.id == ctx.message.author.id:
+
+
+        await client.say("Goodluck kissing yourself {}".format(ctx.message.author.mention))
+
+
+    else:
+
+
+        embed = discord.Embed(title=f"{user.name} You just got a kiss from {ctx.message.author.name}", color=0xd0a3d0)
+
+
+        embed.set_image(url=random.choice(randomurl))
+
+
+        await client.say(embed=embed)
+
+
+	
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)
 async def norole(ctx, *, msg = None):
@@ -1048,10 +1104,11 @@ async def authlink(ctx):
 
 @client.command(pass_context = True)
 async def bottutorial(ctx, *, msg = None):
+    new_message = message.replace(" ", "_")
     if not msg: await client.say("You can check https://github.com/uksoftworld/discord.py-tutorial/ for more information")
     if '@here' in msg or '@everyone' in msg:
       return
-    else: await client.say('https://github.com/uksoftworld/discord.py-tutorial/blob/master/' + msg + '.py')
+    else: await client.say(f'https://github.com/uksoftworld/discord.py-tutorial/blob/master/{new_message}' + '.py')
     return
 
 @client.command(pass_context = True)
