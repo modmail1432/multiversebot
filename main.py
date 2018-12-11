@@ -917,9 +917,7 @@ async def bans(ctx):
 async def serverinfo(ctx):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     server = ctx.message.server
-    online = len([m.status for m in ctx.message.server.members
-                    if m.status == discord.Status.online or
-                    m.status == discord.Status.idle])
+    online = len([m.status for m in ctx.message.server.members if m.status == discord.Status.online or m.status == discord.Status.idle])
     embed = discord.Embed(name="{} Server information".format(ctx.message.server.name), color = discord.Color((r << 16) + (g << 8) + b))
     embed.add_field(name="Server name", value=ctx.message.server.name, inline=True)
     embed.add_field(name="Owner", value=ctx.message.server.owner.mention)
@@ -936,10 +934,10 @@ async def serverinfo(ctx):
     embed.add_field(name="Verification Level", value=ctx.message.server.verification_level)
     try:
         embed.add_field(name="Role Names", value=", ".join([role.name for role in ctx.message.server.roles if role.name != "@everyone"]))
+        embed.set_thumbnail(url=ctx.message.server.icon_url)
+        await client.say(embed=embed)
     except:
         pass
-    embed.set_thumbnail(url=ctx.message.server.icon_url)
-    await client.say(embed=embed)
 
 @client.command(pass_context=True)
 async def google(ctx, *, message):
