@@ -921,14 +921,12 @@ async def bans(ctx):
 async def serverinfo(ctx):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     server = ctx.message.server
-    online = len([m.status for m in ctx.message.server.members if m.status == discord.Status.online or m.status == discord.Status.idle])
     embed = discord.Embed(name="{} Server information".format(ctx.message.server.name), color = discord.Color((r << 16) + (g << 8) + b))
     embed.add_field(name="Server name", value=ctx.message.server.name, inline=True)
     embed.add_field(name="Owner", value=ctx.message.server.owner.mention)
     embed.add_field(name="Server ID", value=ctx.message.server.id, inline=True)
     embed.add_field(name="Roles", value=len(ctx.message.server.roles), inline=True)
     embed.add_field(name="Members", value=len(ctx.message.server.members), inline=True)
-    embed.add_field(name="Online", value=f"**{online}/{len(ctx.message.server.members)}**")
     embed.add_field(name="Created at", value=ctx.message.server.created_at.strftime("%d %b %Y %H:%M"))
     embed.add_field(name="Emojis", value=f"{len(ctx.message.server.emojis)}/100")
     embed.add_field(name="Server Region", value=str(ctx.message.server.region).title())
