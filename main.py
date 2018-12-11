@@ -972,6 +972,8 @@ async def serverinfo(ctx):
 
 
     embed.set_thumbnail(url=ctx.message.server.icon_url)
+	
+    await client.say(embed=embed)
 
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)
