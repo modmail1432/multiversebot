@@ -1248,11 +1248,7 @@ async def roles(context):
 @client.command(pass_context=True, aliases=['server'])
 @commands.has_permissions(kick_members=True)
 async def membercount(ctx, *args):
-    """
-    Shows stats and information about current guild.
-    ATTENTION: Please only use this on your own guilds or with explicit
-    permissions of the guilds administrators!
-    """
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     if ctx.message.channel.is_private:
         await bot.delete_message(ctx.message)
         return
@@ -1268,13 +1264,13 @@ async def membercount(ctx, *args):
     bots_on = str(len([m for m in g.members if m.bot and not m.status == Status.offline]))
     created = str(g.created_at)
     
-    em = Embed(title="Membercount")
-    em.description =    "```\n" \
+    em = Embed(title="Membercount", color = discord.Color((r << 16) + (g << 8) + b))
+    em.description =    "\n" \
                         "Members:   %s (%s)\n" \
                         "  Users:   %s (%s)\n" \
                         "  Bots:    %s (%s)\n" \
                         "Created:   %s\n" \
-                        "```" % (membs, membs_on, users, users_on, bots, bots_on, created)
+                        "" % (membs, membs_on, users, users_on, bots, bots_on, created)
 
     await client.send_message(ctx.message.channel, embed=em)
     await client.delete_message(ctx.message)
