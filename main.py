@@ -1248,11 +1248,12 @@ async def roles(context):
 @client.command(pass_context=True, aliases=['server'])
 @commands.has_permissions(kick_members=True)
 async def membercount(ctx, *args):
-    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     if ctx.message.channel.is_private:
         await bot.delete_message(ctx.message)
         return
+
     g = ctx.message.server
+
     gid = g.id
     membs = str(len(g.members))
     membs_on = str(len([m for m in g.members if not m.status == Status.offline]))
@@ -1261,12 +1262,17 @@ async def membercount(ctx, *args):
     bots = str(len([m for m in g.members if m.bot]))
     bots_on = str(len([m for m in g.members if m.bot and not m.status == Status.offline]))
     created = str(g.created_at)
-    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-    embed.set_author(name='Membercount')
-    embed.add_field(name = 'mv!unbanall(Unban members Permission Required)' value=f'Members:   {membs} {membs_on}\nUsers:   {users} {users_on}\nBots:    {bots} {bots_on}\nCreated:   {created}\n```'
-    await client.send_message(ctx.message.channel, embed=embed)
-    await client.delete_message(ctx.message)
-	
+    
+    em = Embed(title="Membercount")
+    em.description =    "```\n" \
+                        "Members:   %s (%s)\n" \
+                        "  Users:   %s (%s)\n" \
+                        "  Bots:    %s (%s)\n" \
+                        "Created:   %s\n" \
+                        "```" % (membs, membs_on, users, users_on, bots, bots_on, created)
+
+    await client.send_message(ctx.message.channel, embed=em)
+    await client.delete_message(ctx.message)	
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
 async def embed(ctx, *args):
