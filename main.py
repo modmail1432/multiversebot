@@ -937,7 +937,6 @@ async def serverinfo(ctx):
     embed.add_field(name="AFK Timeout", value=ctx.message.server.afk_timeout)
     embed.add_field(name="Verification Level", value=ctx.message.server.verification_level)
     embed.add_field(name="Role Names", value=", ".join([role.name for role in ctx.message.server.roles if role.name != "@everyone"]))
-    embed.set_thumbnail(url=ctx.message.server.icon_url)
     await client.send_message(ctx.message.channel, embed=embed)
    
 @client.command(pass_context=True)
