@@ -56,31 +56,37 @@ async def on_reaction_add(reaction, user):
       if reaction.emoji == '🇬':
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-        embed.add_field(name = 'mv!donate',value ='Sends donation link',inline = False)
-        embed.add_field(name = 'mv!invite or mv!authlink',value ='Use it to invite our bot to your server',inline = False)
-        embed.add_field(name = 'mv!upvote',value ='Use this command to upvote our bot(Link will be in dm)',inline = False)
-        embed.add_field(name = 'mv!google',value ='Use it like- ``mv!google <anything>`` to google anything',inline = False)
-        embed.add_field(name = 'mv!youtube',value ='Use it like- ``mv!youtube <anything>`` to search anything on youtube',inline = False)
-        embed.add_field(name = 'mv!kiss',value ='Use it like- ``mv!kiss @user`` to kiss @user xD!',inline = False)
-        embed.add_field(name = 'mv!hug',value ='Use it like- ``mv!hug @user`` to hug @user xD!',inline = False)
-        embed.add_field(name = 'mv!gender',value ='Use it like- ``mv!gender @user`` to get user gender!',inline = False)
-        embed.add_field(name = 'mv!virgin',value ='Use it like- ``mv!virgin @user`` to check if @user is virgin.',inline = False)
-        embed.add_field(name = 'mv!joke',value ='To read random jokes',inline = False)
-        embed.add_field(name = 'mv!skincolor',value ='Use it like- ``mv!skincolor @user`` to check skincolor of @user.',inline = False)
-        embed.add_field(name = 'mv!meme',value ='Use this command to get random memes.(Sometimes it sends same meme again and again)',inline = False)
-        embed.add_field(name = 'mv!serverinvite ',value ='Use it to get server invite link.',inline = False)
-        embed.add_field(name = 'mv!rolldice',value ='Use it like ``mv!rolldice <1-6 any number that you want to guess in dice>``',inline = False)
-        embed.add_field(name = 'mv!avatar',value ='Use it like ``mv!avatar or mv!avatar @user``',inline = False)
-        embed.add_field(name = 'mv!ping',value ='Use it to check ping of bot',inline = False)
-        embed.add_field(name = 'mv!flipcoin',value ='Use it like ``mv!rolldice <Your prediction>`` prediction = heads, tails or coin self destructed)``',inline = False)
-        embed.add_field(name = 'mv!enterme',value ='Use it like ``mv!enterme <giveaway channel>`` to enter in a giveaway running in a particular channel',inline = False)
-        embed.add_field(name = 'mv!poll ',value ='Use it like ``mv!poll "Question" "Option1" "Option2" ..... "Option9"``.',inline = False)
-        embed.add_field(name = 'mv!guess ',value ='To play guess game use ``mv!guess <number> and number should be between 1-10``',inline = False)
-        embed.add_field(name = 'mv!github ',value ='Use it like- ``mv!github uksoftworld/DarkBot``',inline = False)
-        embed.add_field(name = 'mv!bottutorial ',value ='Use it like ``mv!bottutorial <tutorial name by darklegend>``',inline = False)
-        embed.add_field(name = 'mv!dyno ',value ='Use it like ``mv!dyno <dyno command name>``',inline = False)
-        embed.add_field(name = 'mv!happybirthday @user ',value ='To wish someone happy birthday',inline = False)
-        embed.add_field(name = 'mv!verify ',value ='Use it to get verified role. Note- It needs proper setup.',inline = False)
+        embed.add_field(name = 'mv!donate',value ='Sends donation link')
+        embed.add_field(name = 'mv!invite or mv!authlink',value ='Use it to invite our bot to your server')
+        embed.add_field(name = 'mv!upvote',value ='Use this command to upvote our bot(Link will be in dm)')
+        embed.add_field(name = 'mv!google',value ='Use it like- ``mv!google <anything>`` to google anything')
+        embed.add_field(name = 'mv!youtube',value ='Use it like- ``mv!youtube <anything>`` to search anything on youtube')
+        embed.add_field(name = 'mv!kiss',value ='Use it like- ``mv!kiss @user`` to kiss @user xD!')
+        embed.add_field(name = 'mv!hug',value ='Use it like- ``mv!hug @user`` to hug @user xD!')
+        embed.add_field(name = 'mv!slap',value ='Use it like- ``mv!slap @user`` to slap @user xD!')
+        embed.add_field(name = 'mv!damn',value ='Use it for damn meme')
+        embed.add_field(name = 'mv!burned',value ='Use it for burned meme')
+        embed.add_field(name = 'mv!savage',value ='Use it for savage meme')
+        embed.add_field(name = 'mv!thuglife',value ='Use it for thuglife meme')
+	embed.add_field(name = 'mv!membernames',value ='Use it to get member names in dm')
+        embed.add_field(name = 'mv!gender',value ='Use it like- ``mv!gender @user`` to get user gender!')
+        embed.add_field(name = 'mv!virgin',value ='Use it like- ``mv!virgin @user`` to check if @user is virgin.')
+        embed.add_field(name = 'mv!joke',value ='To read random jokes')
+        embed.add_field(name = 'mv!skincolor',value ='Use it like- ``mv!skincolor @user`` to check skincolor of @user.')
+        embed.add_field(name = 'mv!meme',value ='Use this command to get random memes.(Sometimes it sends same meme again and again)')
+        embed.add_field(name = 'mv!serverinvite ',value ='Use it to get server invite link.')
+        embed.add_field(name = 'mv!rolldice',value ='Use it like ``mv!rolldice <1-6 any number that you want to guess in dice>``')
+        embed.add_field(name = 'mv!avatar',value ='Use it like ``mv!avatar or mv!avatar @user``')
+        embed.add_field(name = 'mv!ping',value ='Use it to check ping of bot')
+        embed.add_field(name = 'mv!flipcoin',value ='Use it like ``mv!rolldice <Your prediction>`` prediction = heads, tails or coin self destructed)``')
+        embed.add_field(name = 'mv!enterme',value ='Use it like ``mv!enterme <giveaway channel>`` to enter in a giveaway running in a particular channel')
+        embed.add_field(name = 'mv!poll ',value ='Use it like ``mv!poll "Question" "Option1" "Option2" ..... "Option9"``.')
+        embed.add_field(name = 'mv!guess ',value ='To play guess game use ``mv!guess <number> and number should be between 1-10``')
+        embed.add_field(name = 'mv!github ',value ='Use it like- ``mv!github uksoftworld/DarkBot``')
+        embed.add_field(name = 'mv!bottutorial ',value ='Use it like ``mv!bottutorial <tutorial name by darklegend>``')
+        embed.add_field(name = 'mv!dyno ',value ='Use it like ``mv!dyno <dyno command name>``')
+        embed.add_field(name = 'mv!happybirthday @user ',value ='To wish someone happy birthday')
+        embed.add_field(name = 'mv!verify ',value ='Use it to get verified role. Note- It needs proper setup.')
         await client.send_message(user,embed=embed)
       if reaction.emoji == '🇲':
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
@@ -1016,6 +1022,63 @@ async def skincolor(ctx, user: discord.Member):
     else:
         embed = discord.Embed(color=0xcb287a)
         embed.add_field(name=f"{user.name}'s skin color", value=random.choice(skins))
+        await client.say(embed=embed)
+	
+@client.command(pass_context=True)
+async def slap(ctx, user: discord.Member = None):
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    gifs = ["http://rs20.pbsrc.com/albums/b217/strangething/flurry-of-blows.gif?w=280&h=210&fit=crop", "https://media.giphy.com/media/LB1kIoSRFTC2Q/giphy.gif", "https://i.imgur.com/4MQkDKm.gif"]
+    if user == None:
+        await client.say(f"{ctx.message.author.mention} ```Proper usage is\n\n>slap <mention a user>```")
+    else:
+        embed = discord.Embed(title=f"{ctx.message.author.name} Just slapped the shit out of {user.name}!", color = discord.Color((r << 16) + (g << 8) + b))
+        embed.set_image(url=random.choice(gifs))
+        await client.say(embed=embed)
+
+@client.command(pass_context=True)
+async def damn(ctx):
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(title="DAMNNNNNNNN!!", color = discord.Color((r << 16) + (g << 8) + b))
+    embed.set_image(url="http://i.imgur.com/OKMogWM.gif")
+    await client.say(embed=embed)
+    await client.delete_message(ctx.message)
+
+@client.command(pass_context=True)
+async def burned(ctx):
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+    embed.set_image(url="https://i.imgur.com/wY4xbak.gif")
+    await client.say(embed=embed)
+    await client.delete_message(ctx.message)
+
+@client.command(pass_context=True)
+async def savage(ctx):
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    gifs = ["https://media.giphy.com/media/s7eezS6vxhACk/giphy.gif", "https://m.popkey.co/5bd499/gK00J_s-200x150.gif",
+            "https://i.imgur.com/XILk4Xv.gif"]
+    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+    embed.set_image(url=random.choice(gifs))
+    await client.say(embed=embed)
+    await client.delete_message(ctx.message)
+
+@client.command(pass_context=True)
+async def thuglife(ctx):
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    gifs = ["https://media.giphy.com/media/kU1qORlDWErOU/giphy.gif", "https://media.giphy.com/media/EFf8O7znQ6zRK/giphy.gif",
+            "https://i.imgur.com/XILk4Xv.gif", "http://www.goodbooksandgoodwine.com/wp-content/uploads/2011/11/make-it-rain-guys.gif"]
+    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+    embed.set_image(url=random.choice(gifs))
+    await client.say(embed=embed)
+    await client.delete_message(ctx.message)
+
+@client.command(pass_context=True)
+async def membernames(ctx):
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    try:
+        embed = discord.Embed(description="\n".join([member.name for member in ctx.message.server.members]), color=0x0093ff)
+        await client.send_message(ctx.message.author, embed=embed)
+    except:
+        embed = discord.Embed(title="There are too many members that the bot cannot list it down", color = discord.Color((r << 16) + (g << 8) + b))
         await client.say(embed=embed)
 	
 @client.command(pass_context = True)
