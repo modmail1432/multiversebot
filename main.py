@@ -1153,7 +1153,7 @@ async def authlink(ctx):
 
 @client.command(pass_context = True)
 async def bottutorial(ctx, *, msg = None):
-    new_message = ctx.message.replace(" ", "_")
+    new_message = msg.replace(" ", "_")
     if not msg: await client.say("You can check https://github.com/uksoftworld/discord.py-tutorial/ for more information")
     if '@here' in msg or '@everyone' in msg:
       return
