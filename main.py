@@ -900,32 +900,78 @@ async def bans(ctx):
 
 @client.command(pass_context=True)  
 @commands.has_permissions(kick_members=True)     
-
 async def serverinfo(ctx):
-    '''Displays Info About The Server!'''
-
-    server = ctx.message.server
-    roles = [x.name for x in server.role_hierarchy]
-    role_length = len(roles)
-
-    if role_length > 50: #Just in case there are too many roles...
-        roles = roles[:50]
-        roles.append('>>>> Displaying[50/%s] Roles'%len(roles))
-
-    roles = ', '.join(roles);
-    channelz = len(server.channels);
-    time = str(server.created_at); time = time.split(' '); time= time[0];
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-    join = discord.Embed(description= '%s '%(str(server)),title = 'Server Name', color = discord.Color((r << 16) + (g << 8) + b));
-    join.set_thumbnail(url = server.icon_url);
-    join.add_field(name = '__Owner__', value = str(server.owner) + '\n' + server.owner.id);
-    join.add_field(name = '__ID__', value = str(server.id))
-    join.add_field(name = '__Member Count__', value = str(server.member_count));
-    join.add_field(name = '__Text/Voice Channels__', value = str(channelz));
-    join.add_field(name = '__Roles (%s)__'%str(role_length), value = roles);
-    join.set_footer(text ='Created: %s'%time);
+    server = ctx.message.server
 
-    return await client.say(embed = join);
+
+    online = len([m.status for m in ctx.message.server.members
+
+
+                    if m.status == discord.Status.online or
+
+
+                    m.status == discord.Status.idle])
+
+
+
+
+
+    embed = discord.Embed(name="{} Server information".format(ctx.message.server.name), color = discord.Color((r << 16) + (g << 8) + b))
+
+
+    embed.add_field(name="Server name", value=ctx.message.server.name, inline=True)
+
+
+    embed.add_field(name="Owner", value=ctx.message.server.owner.mention)
+
+
+    embed.add_field(name="Server ID", value=ctx.message.server.id, inline=True)
+
+
+    embed.add_field(name="Roles", value=len(ctx.message.server.roles), inline=True)
+
+
+    embed.add_field(name="Members", value=len(ctx.message.server.members), inline=True)
+
+
+    embed.add_field(name="Online", value=f"**{online}/{len(ctx.message.server.members)}**")
+
+
+    embed.add_field(name="Created at", value=ctx.message.server.created_at.strftime("%d %b %Y %H:%M"))
+
+
+    embed.add_field(name="Emojis", value=f"{len(ctx.message.server.emojis)}/100")
+
+
+    embed.add_field(name="Server Region", value=str(ctx.message.server.region).title())
+
+
+    embed.add_field(name="Total Channels", value=len(ctx.message.server.channels))
+
+
+    embed.add_field(name="AFK Channel", value=str(ctx.message.server.afk_channel))
+
+
+    embed.add_field(name="AFK Timeout", value=ctx.message.server.afk_timeout)
+
+
+    embed.add_field(name="Verification Level", value=ctx.message.server.verification_level)
+
+
+    try:
+
+
+        embed.add_field(name="Role Names", value=", ".join([role.name for role in ctx.message.server.roles if role.name != "@everyone"]))
+
+
+    except:
+
+
+        pass
+
+
+    embed.set_thumbnail(url=ctx.message.server.icon_url)
 
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)
