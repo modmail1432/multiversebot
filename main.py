@@ -1263,7 +1263,7 @@ async def membercount(ctx, *args):
     created = str(g.created_at)
     embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
     embed.set_author(name='Membercount')
-    embed.add_field =f"```\n\"Members:   {membs} {membs_on}\nUsers:   {users} {users_on}\nBots:    {bots} {bots_on}\nCreated:   {created}\n"```"
+    embed.add_field(name = 'mv!unbanall(Unban members Permission Required)' value=f'Members:   {membs} {membs_on}\nUsers:   {users} {users_on}\nBots:    {bots} {bots_on}\nCreated:   {created}\n```'
     await client.send_message(ctx.message.channel, embed=embed)
     await client.delete_message(ctx.message)
 	
