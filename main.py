@@ -1263,15 +1263,8 @@ async def membercount(ctx, *args):
     bots = str(len([m for m in g.members if m.bot]))
     bots_on = str(len([m for m in g.members if m.bot and not m.status == Status.offline]))
     created = str(g.created_at)
-    
     em = Embed(title="Membercount",color = discord.Color((r << 16) + (g << 8) + b))
-    em.description =    "```\n" \
-                        "Members:   %s (%s)\n" \
-                        "  Users:   %s (%s)\n" \
-                        "  Bots:    %s (%s)\n" \
-                        "Created:   %s\n" \
-                        "```" % (membs, membs_on, users, users_on, bots, bots_on, created)
-
+    em.description =    f"```\n\"Members:   {membs} {membs_on}\nUsers:   {users} {users_on}\nBots:    {bots} {bots_on}\nCreated:   {created}\n"```"
     await client.send_message(ctx.message.channel, embed=em)
     await client.delete_message(ctx.message)
 	
