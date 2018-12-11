@@ -932,13 +932,10 @@ async def serverinfo(ctx):
     embed.add_field(name="AFK Channel", value=str(ctx.message.server.afk_channel))
     embed.add_field(name="AFK Timeout", value=ctx.message.server.afk_timeout)
     embed.add_field(name="Verification Level", value=ctx.message.server.verification_level)
-    try:
-        embed.add_field(name="Role Names", value=", ".join([role.name for role in ctx.message.server.roles if role.name != "@everyone"]))
-        embed.set_thumbnail(url=ctx.message.server.icon_url)
-        await client.say(embed=embed)
-    except:
-        pass
-
+    embed.add_field(name="Role Names", value=", ".join([role.name for role in ctx.message.server.roles if role.name != "@everyone"]))
+    embed.set_thumbnail(url=ctx.message.server.icon_url)
+    await client.say(embed=embed)
+   
 @client.command(pass_context=True)
 async def google(ctx, *, message):
     new_message = message.replace(" ", "+")
