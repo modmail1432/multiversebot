@@ -11,7 +11,9 @@ import functools
 import time
 import datetime
 import requests as rq
-
+import Pymoe
+import simplejson as json
+import apiai
 
 Forbidden= discord.Embed(title="Permission Denied", description="1) Please check whether you have permission to perform this action or not. \n2) Please check whether my role has permission to perform this action in this channel or not. \n3) Please check my role position.", color=0x00ff00)
 client = commands.Bot(description="MultiVerse Official Bot", command_prefix=commands.when_mentioned_or("mv!"), pm_help = True)
@@ -224,7 +226,7 @@ async def on_member_remove(member):
 	
 @client.command(pass_context=True) 
 async def randomanime(ctx):
-    """GENERATES A RANDOM ANIME TITLE WITH 10 SECOND COOL DOWN. EX: s.randomanime"""
+
     ra1 = rq.get(
         'https://private-anon-589c768a77-popcornofficial.apiary-proxy.com/random/anime')
     ra2 = rq.get('https://tv-v2.api-fetch.website/random/anime')
