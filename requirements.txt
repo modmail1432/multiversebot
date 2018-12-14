@@ -1,4 +1,10 @@
 discord.py
 asyncio
+Pymoe
+requests
+simplejson
+apiai
+bs4
+gspread
 Status
 PyNaCl
