@@ -231,7 +231,8 @@ async def tweet(ctx, usernamename:str, *, txt:str):
     async with aiohttp.ClientSession() as cs:
         async with cs.get(url) as r:
             res = await r.json()
-            embed = discord.Embed(color=0xDEADBF)
+            r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+            embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
             embed.set_image(url=res['message'])
             embed.title = "tweet.png"
             await client.say(embed=embed)
