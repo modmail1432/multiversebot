@@ -238,7 +238,10 @@ async def tweet(ctx, usernamename:str, *, txt:str):
             await client.say(embed=embed)
 
 @client.command(pass_context=True)
-async def animeface(self, ctx, user: discord.Member = None):
+async def animeface(ctx, user: discord.Member = None):
+    img = user.avatar_url
+    if not isinstance(img, str):
+       return img	
     async with aiohttp.ClientSession() as cs:
         async with cs.get("https://nekobot.xyz/api/imagegen?type=animeface&image=%s" % img) as r:
             res = await r.json()
