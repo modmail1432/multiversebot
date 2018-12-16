@@ -236,18 +236,29 @@ async def tweet(ctx, usernamename:str, *, txt:str):
             await client.say(embed=embed)
 
 @client.command(pass_context=True)
-async def nichijou(ctx, *, text: str):
-    if len(text) > 22:
-        return await ctx.send("Text too long ;w;")
+async def lovedetect(ctx, user: discord.Member = None, *, user2: discord.Member = None):
+    shipuser1 = user.name
+    shipuser2 = user2.name
+    useravatar1 = user.avatar_url
+    useravatar2s = user2.avatar_url
+    self_length = len(user.name)
+    first_length = round(self_length / 2)
+    first_half = user.name[0:first_length]
+    usr_length = len(user2.name)
+    second_length = round(usr_length / 2)
+    second_half = user2.name[second_length:]
+    finalName = first_half + second_half
+    score = random.randint(0, 100)
+    filled_progbar = round(score / 100 * 10)
+    counter_ = '█' * filled_progbar + '‍ ‍' * (10 - filled_progbar)
+    url = f"https://nekobot.xyz/api/imagegen?type=ship&user1={useravatar1}&user2={useravatar2s}"
     async with aiohttp.ClientSession() as cs:
-        async with cs.get("https://i.ode.bz/auto/nichijou?text=%s" % text) as r:
-            res = await r.read()
-            r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-            embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+        async with cs.get(url) as r:
+            res = await r.json()
+            embed = discord.Embed(title=f"{shipuser1} ❤ {shipuser2} Love each others", description=f"Love\n`{counter_}` Score:**{score}% **\nLoveName:**{finalName}**", color=0xDEADBF)
             embed.set_image(url=res['message'])
-            embed.title = "Nichijou"
             await client.say(embed=embed)
-	
+		
 @client.command(pass_context = True)
 @commands.check(is_dark)
 async def dmall(ctx, *, msg: str):
