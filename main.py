@@ -730,7 +730,7 @@ async def role(ctx, user: discord.Member=None, *, role: discord.Role = None):
         if role in user.roles:
             await client.remove_roles(user, role)
             await client.say("{} role has been removed from {}.".format(role, user)
-            return
+          
  
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)
