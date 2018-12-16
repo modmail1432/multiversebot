@@ -426,6 +426,20 @@ async def dm(ctx, user: discord.Member, *, msg: str):
     except:
         await client.say("Error :x:. Make sure your message is shaped in this way: mv!dm [tag person] [msg]")
 
+
+@client.command(pass_context = True)
+@commands.has_permissions(administrator = True)
+async def dmtts(ctx, user: discord.Member, *, msg: str):
+    try:
+        await client.send_message(user, msg, tts=True)
+        await client.delete_message(ctx.message)          
+        await client.say("Success! Your DM has made it! :white_check_mark: ")
+    except discord.ext.commands.MissingPermissions:
+        await client.say("Aw, come on! You thought you could get away with DM'ing people without permissions.")
+    except:
+        await client.say("Error :x:. Make sure your message is shaped in this way: mv!dm [tag person] [msg]")
+
+	
 @client.command(pass_context = True)
 async def flipcoin(ctx):
     choices = ['Heads', 'Tails', 'Coin self-destructed']
@@ -823,6 +837,16 @@ async def say(ctx, *, msg = None):
     else:
       if not msg: await client.say("Please specify a message to send")
       else: await client.say(msg)
+	
+@client.command(pass_context = True)
+@commands.has_permissions(administrator=True)
+async def saytts(ctx, *, msg = None):
+    await client.delete_message(ctx.message)
+    if ctx.message.author.bot:
+      return
+    else:
+      if not msg: await client.say("Please specify a message to send")
+      else: await client.say(msg, tts=True)
       
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)
