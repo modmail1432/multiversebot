@@ -355,6 +355,7 @@ async def mute(ctx, member: discord.Member=None, mutetime=None):
                   embed=discord.Embed(title="User unmuted!", description="**{0}** was unmuted!".format(member, ctx.message.author), color=0xFD1600)
                   await client.send_message(channel, embed=embed)
 
+
 @client.command(pass_context=True)
 async def slowmode(ctx, val: str = None):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
