@@ -364,9 +364,11 @@ async def lock(ctx, channelname: discord.Channel=None):
     if not channelname:
         role = discord.utils.get(ctx.message.server.roles, name='@everyone')
         await client.edit_channel_permissions(ctx.message.channel, role, overwrite)
+        await client.say(ctx.message.channel, "Channel locked by: {}".format(ctx.message.author))
     else:
         role = discord.utils.get(ctx.message.server.roles, name='@everyone')
         await client.edit_channel_permissions(channelname, role, overwrite)
+        await client.say(ctx.message.channel, "Channel locked by: {}".format(ctx.message.author))
 	
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
