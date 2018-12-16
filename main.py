@@ -370,7 +370,7 @@ async def slowmode(ctx, val: str = None):
                     for x in range(999999999999999999999):
                         mag = await client.wait_for_message(author=None, channel=ctx.message.channel, content=None)
                         clientid = "515403515217313795"
-			if ctx.message.author.id == clientid:
+                        if ctx.message.author.id == clientid:
                             return
                         else:
                             await asyncio.sleep(0.50)
