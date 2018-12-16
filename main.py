@@ -365,7 +365,7 @@ async def lock(ctx, channelname: discord.Channel=None):
         role = discord.utils.get(member.server.roles, name='@everyone')
         await client.edit_channel_permissions(ctx.message.channel, role, overwrite)
     else:
-	role = discord.utils.get(member.server.roles, name='@everyone')
+        role = discord.utils.get(member.server.roles, name='@everyone')
         await client.edit_channel_permissions(channelname, role, overwrite)
 	
 @client.command(pass_context = True)
@@ -377,7 +377,7 @@ async def unlock(ctx, channelname: discord.Channel=None):
         role = discord.utils.get(member.server.roles, name='@everyone')
         await client.edit_channel_permissions(ctx.message.channel, role, overwrite)
     else:
-	role = discord.utils.get(member.server.roles, name='@everyone')
+        role = discord.utils.get(member.server.roles, name='@everyone')
         await client.edit_channel_permissions(channelname, role, overwrite)
 	
 @client.command(pass_context = True)
