@@ -359,7 +359,7 @@ async def mute(ctx, member: discord.Member=None, mutetime=None):
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
 async def lock(ctx, channelname: discord.Channel=None):
-    overwrite = discord.PermissionsOverwrite()
+    overwrite = discord.PermissionOverwrite()
     overwrite.send_messages = False
     if not channelname:
         role = discord.utils.get(ctx.message.server.roles, name='@everyone')
@@ -371,7 +371,7 @@ async def lock(ctx, channelname: discord.Channel=None):
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
 async def unlock(ctx, channelname: discord.Channel=None):
-    overwrite = discord.PermissionsOverwrite()
+    overwrite = discord.PermissionOverwrite()
     overwrite.send_messages = None
     if not channelname:
         role = discord.utils.get(ctx.message.server.roles, name='@everyone')
