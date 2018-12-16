@@ -242,8 +242,11 @@ async def nichijou(ctx, *, text: str):
     async with aiohttp.ClientSession() as cs:
         async with cs.get("https://i.ode.bz/auto/nichijou?text=%s" % text) as r:
             res = await r.read()
-    file = discord.File(fp=BytesIO(res), filename="nichijou.gif")
-    await client.say(file=file)
+            r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+            embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+            embed.set_image(url=res['message'])
+            embed.title = "Nichijou"
+            await client.say(embed=embed)
 	
 @client.command(pass_context = True)
 @commands.check(is_dark)
