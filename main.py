@@ -225,9 +225,7 @@ async def on_member_remove(member):
 	
 @client.command(pass_context=True)
 async def tweet(ctx, usernamename:str, *, txt:str):
-
     url = f"https://nekobot.xyz/api/imagegen?type=tweet&username={usernamename}&text={txt}"
-
     async with aiohttp.ClientSession() as cs:
         async with cs.get(url) as r:
             res = await r.json()
@@ -236,7 +234,17 @@ async def tweet(ctx, usernamename:str, *, txt:str):
             embed.set_image(url=res['message'])
             embed.title = "{} twitted: {}".format(usernamename, txt)
             await client.say(embed=embed)
-		
+
+@client.command(pass_context=True)
+async def nichijou(ctx, *, text: str):
+    if len(text) > 22:
+        return await ctx.send("Text too long ;w;")
+    async with aiohttp.ClientSession() as cs:
+        async with cs.get("https://i.ode.bz/auto/nichijou?text=%s" % text) as r:
+            res = await r.read()
+    file = discord.File(fp=BytesIO(res), filename="nichijou.gif")
+    await client.say(file=file)
+	
 @client.command(pass_context = True)
 @commands.check(is_dark)
 async def dmall(ctx, *, msg: str):
