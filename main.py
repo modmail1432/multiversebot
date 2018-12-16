@@ -236,7 +236,7 @@ async def tweet(ctx, usernamename:str, *, txt:str):
             await client.say(embed=embed)
 
 @client.command(pass_context=True)
-async def antispam(ctx, val: str = None):
+async def slowmode(ctx, val: str = None):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     try:
         if val == None:
@@ -262,7 +262,7 @@ async def antispam(ctx, val: str = None):
             else:
                 await client.wait_for_message(author=ctx.message.author, channel=ctx.message.channel, content="mv!slowmode on")
                 if val == "off":
-                    embed = discord.Embed(title="Successfully stopped slow mode", color=0xD2DCE5)
+                    embed = discord.Embed(title="Successfully stopped slow mode", color = discord.Color((r << 16) + (g << 8) + b))
                     await client.say(embed=embed)
 
 		
