@@ -734,7 +734,7 @@ async def role(ctx, user: discord.Member=None, *, role: discord.Role = None):
  
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)
-async def warn(ctx, userName: discord.User=None, *, message:str=None): 
+async def warn(ctx, userName: discord.User=None,*, message:str=None): 
     if userName is None:
       await client.say('Please tag a person to warn user. Example- ``mv!warn @user <reason>``')
       return
