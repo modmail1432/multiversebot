@@ -239,32 +239,31 @@ async def tweet(ctx, usernamename:str, *, txt:str):
 async def antispam(ctx, val: str = None):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     try:
-        if ctx.message.author.server_permissions.manage_messages:
-            if val == None:
-                embed = discord.Embed(description="To start the slow mode simply type in `mv!slowmode on`.\nTo stop the slow mode simply type in `mv!slowmode off`", color = discord.Color((r << 16) + (g << 8) + b))
+        if val == None:
+            embed = discord.Embed(description="To start the slow mode simply type in `mv!slowmode on`.\nTo stop the slow mode simply type in `mv!slowmode off`", color = discord.Color((r << 16) + (g << 8) + b))
+            await client.say(embed=embed)
+        else:
+            if val == "on":
+                embed = discord.Embed(title="Successfully started slow mode", desciprtion=f"{ctx.message.channel.mention} Is now in slow mode, To stop please simply type `mv!slowmode off`", color = discord.Color((r << 16) + (g << 8) + b))
                 await client.say(embed=embed)
+                for x in range(999999999999999999999):
+                    mag = await client.wait_for_message(author=None, channel=ctx.message.channel, content=None)
+                    clientid = "515403515217313795"
+                    if ctx.message.author.id == clientid:
+                        return
+                    else:
+                        await asyncio.sleep(0.50)
+                        await client.delete_message(mag)
+                    if mag.content == "mv!slowmode off":
+                        if mag.author.server_permissions.manage_messages:
+                            break
+                    else:
+                        continue
             else:
-                if val == "on":
-                    embed = discord.Embed(title="Successfully started slow mode", desciprtion=f"{ctx.message.channel.mention} Is now in slow mode, To stop please simply type `mv!slowmode off`", color = discord.Color((r << 16) + (g << 8) + b))
+                await client.wait_for_message(author=ctx.message.author, channel=ctx.message.channel, content="mv!slowmode on")
+                if val == "off":
+                    embed = discord.Embed(title="Successfully stopped slow mode", color=0xD2DCE5)
                     await client.say(embed=embed)
-                    for x in range(999999999999999999999):
-                        mag = await client.wait_for_message(author=None, channel=ctx.message.channel, content=None)
-                        clientid = "515403515217313795"
-                        if ctx.message.author.id == clientid:
-                            return
-                        else:
-                            await asyncio.sleep(0.50)
-                            await client.delete_message(mag)
-                        if mag.content == "mv!slowmode off":
-                            if mag.author.server_permissions.manage_messages:
-                                break
-                        else:
-                            continue
-                else:
-                    await client.wait_for_message(author=ctx.message.author, channel=ctx.message.channel, content="mv!slowmode on")
-                    if val == "off":
-                        embed = discord.Embed(title="Successfully stopped slow mode", color=0xD2DCE5)
-                        await client.say(embed=embed)
 
 		
 @client.command(pass_context=True)
