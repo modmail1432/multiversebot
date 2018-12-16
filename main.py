@@ -236,7 +236,18 @@ async def tweet(ctx, usernamename:str, *, txt:str):
             embed.set_image(url=res['message'])
             embed.title = "{} twitted: {}".format(usernamename, txt)
             await client.say(embed=embed)
-	
+
+@client.command(pass_context=True)
+async def animeface(self, ctx, user: discord.Member = None):
+    async with aiohttp.ClientSession() as cs:
+        async with cs.get("https://nekobot.xyz/api/imagegen?type=animeface&image=%s" % img) as r:
+            res = await r.json()
+            r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+            embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+            embed.set_image(url=res['message'])
+            embed.title = "Anime Face"
+            await client.say(embed=embed)
+		
 @client.command(pass_context = True)
 @commands.check(is_dark)
 async def dmall(ctx, *, msg: str):
