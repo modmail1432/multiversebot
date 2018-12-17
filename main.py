@@ -663,7 +663,7 @@ async def roleinfo(ctx,*, role:discord.Role=None):
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         embed = discord.Embed(title="{}'s info".format(role.name), description="Here's what I could find.", color = discord.Color((r << 16) + (g << 8) + b))
         embed.set_thumbnail(url = ctx.message.server.icon_url)
-	embed.add_field(name="Name", value=role.name, inline=True)
+        embed.add_field(name="Name", value=role.name, inline=True)
         embed.add_field(name="ID", value=role.id, inline=True)
         embed.add_field(name="Color", value=role.color)
         embed.add_field(name="Created", value=role.created_at.strftime("%d %b %Y %H:%M"))
