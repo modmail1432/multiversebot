@@ -656,7 +656,7 @@ async def addrole(ctx, role:str=None):
 @client.command(pass_context = True)
 @commands.has_permissions(manage_roles=True)
 async def roleinfo(ctx,*, role:discord.Role=None):
-    if discord.utils.get(user.server.roles, name="{}".format(role)) is None:
+    if discord.utils.get(ctx.message.server.roles, name="{}".format(role)) is None:
         await client.say("No such role found")
         return
     else:
