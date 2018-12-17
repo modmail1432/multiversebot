@@ -91,7 +91,7 @@ async def on_reaction_add(reaction, user):
         embed.add_field(name = 'mv!happybirthday @user ',value ='To wish someone happy birthday')
         embed.add_field(name = 'mv!verify ',value ='Use it to get verified role. Note- It needs proper setup.')
         my_msg = await client.send_message(user,embed=embed)
-        await asyncio.sleep(60)
+        await asyncio.sleep(30)
         await client.delete_message(my_msg)
       if reaction.emoji == '🇲':
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
@@ -118,6 +118,8 @@ async def on_reaction_add(reaction, user):
         react_message = await client.send_message(user,embed=embed)
         reaction = '⏭'
         await client.add_reaction(react_message, reaction)
+        await asyncio.sleep(30)
+        await client.delete_message(react_message)
     
       if reaction.emoji == '⏭':
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
@@ -140,6 +142,8 @@ async def on_reaction_add(reaction, user):
         react_message = await client.send_message(user,embed=embed)
         reaction = '⏮'
         await client.add_reaction(react_message, reaction)
+        await asyncio.sleep(30)
+        await client.delete_message(react_message)
     
       if reaction.emoji == '⏮':
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
@@ -161,6 +165,8 @@ async def on_reaction_add(reaction, user):
         react_message = await client.send_message(user,embed=embed)
         reaction = '⏭'
         await client.add_reaction(react_message, reaction)
+        await asyncio.sleep(30)
+        await client.delete_message(react_message)
       if reaction.emoji == '🏵':
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
@@ -171,8 +177,10 @@ async def on_reaction_add(reaction, user):
         embed.add_field(name = 'Setting up Giveaway feature(Manage roles permission required) ',value ='Just add a role named ``Giveaways`` and give that role to user who wanna be giveaway manager. Then use ``mv!help`` and check giveaway commands.',inline = False)
         embed.add_field(name = 'Setting up Reaction Verification(Admin Permission required) ',value ='Just add a role named ``Verified`` then remove permission from everyone to send message in all channels. Also add permission of verified role to send message in chatting channels. Then use ``mv!setreactionverify`` it will automatically add a channel and post information about verification. **__Note__** **Sometimes it does not sends message in channel named #verify-for-chatting when this command is used so reuse that command in such case**',inline = False)
         embed.add_field(name = 'Setting up Multiverse bot log(Admin Permission required) ',value ='Use ``mv!setuplog`` and it will automatically add a log channel and log all stuffs there.',inline = False)
-        await client.send_message(user,embed=embed)
-	
+        react_message = await client.send_message(user,embed=embed)
+        await asyncio.sleep(30)
+        await client.delete_message(react_message)
+  else:	
       if reaction.emoji == '🎦':
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
@@ -193,12 +201,13 @@ async def on_reaction_add(reaction, user):
         embed.add_field(name = 'mv!mad',value ='Mad emoji <a:mad:517232301176913951>',inline = False)
         embed.add_field(name = 'mv!alien',value ='Alien emoji <a:alien:517232332663422986>',inline = False)
         embed.add_field(name = 'mv!hi',value ='Saying Hi emoji <a:hi:517232279148429313>',inline = False)
-        await client.send_message(user,embed=embed)
-  else:
-      for reaction.message.channel in reaction.message.server.channels:
-        if reaction.message.channel.name == '★verify-for-chatting★' and reaction.emoji == '🇻':
-            role = discord.utils.get(reaction.message.server.roles, name='Verified')
-            await client.add_roles(reaction.message.author, role)
+        react_message = await client.send_message(user,embed=embed)
+	await asyncio.sleep(30)
+        await client.delete_message(react_message)
+	
+      if reaction.emoji == '🇻':
+            role = discord.utils.get(user.server.roles, name='Verified')
+            await client.add_roles(user, role)
         
 @client.event
 async def on_member_join(member):
