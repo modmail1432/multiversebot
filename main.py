@@ -92,7 +92,7 @@ async def on_reaction_add(reaction, user):
         embed.add_field(name = 'mv!verify ',value ='Use it to get verified role. Note- It needs proper setup.')
         await client.send_message(user,embed=embed)
         await asyncio.sleep(60)
-        await client.delete_message(embed=embed)
+        await client.purge_from(user, limit=1)
       if reaction.emoji == '🇲':
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
