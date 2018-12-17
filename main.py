@@ -75,7 +75,7 @@ async def on_reaction_add(reaction, user):
         embed.add_field(name = 'mv!gender',value ='Use it like- ``mv!gender @user`` to get user gender!')
         embed.add_field(name = 'mv!virgin',value ='Use it like- ``mv!virgin @user`` to check if @user is virgin.')
         embed.add_field(name = 'mv!joke',value ='To read random jokes')
-        embed.add_field(name = 'mv!skincolor',value ='Use it like- ``mv!skincolor @user`` to check skincolor of @user.')
+        embed.add_field(name = 'mv!invites',value ='Use it like ``mv!invites @user or mv!invite for get invites done by you in server. __Note:__**If bot does not responds that means you do not have invited any member on that server.')
         embed.add_field(name = 'mv!meme',value ='Use this command to get random memes.(Sometimes it sends same meme again and again)')
         embed.add_field(name = 'mv!serverinvite ',value ='Use it to get server invite link.')
         embed.add_field(name = 'mv!rolldice',value ='Use it like ``mv!rolldice <1-6 any number that you want to guess in dice>``')
@@ -1173,19 +1173,6 @@ async def joke(ctx):
     embed.add_field(name=f"Here is a random joke that {ctx.message.author.name} requested", value=random.choice(joke))
     await client.say(embed=embed)
 
-@client.command(pass_context=True)
-async def skincolor(ctx, user: discord.Member):
-    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-    random.seed(user.id)
-    skins = ["White", "Black", "Blue", "Green", "Rainbow", "Purple", "Brown", "Pink", "Cream", "Orange"]
-    if user == ctx.message.author:
-        embed2 = discord.Embed(title="You should know your own skin color", color = discord.Color((r << 16) + (g << 8) + b))
-        await client.say(embed=embed2)
-    else:
-        embed = discord.Embed(color=0xcb287a)
-        embed.add_field(name=f"{user.name}'s skin color", value=random.choice(skins))
-        await client.say(embed=embed)
-	
 @client.command(pass_context=True)
 async def slap(ctx, user: discord.Member = None):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
