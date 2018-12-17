@@ -162,6 +162,8 @@ async def on_reaction_add(reaction, user):
         embed.add_field(name = 'mv!english(Kick members Permission Required)',value ='Use it like ``mv!english @user`` when someone speaks languages other than English.',inline = False)
         embed.add_field(name = 'mv!serverinfo(Kick members Permission Required) ',value ='Use it like ``mv!serverinfo`` to get server info',inline = False)
         embed.add_field(name = 'mv!userinfo(Kick members Permission Required) ',value ='Use it like ``mv!userinfo @user`` to get some basic info of tagged user',inline = False)
+        embed.add_field(name = 'mv!addrole(Manage roles Permission Required) ',value ='Use it like ``mv!addrole <rolename>`` to add that role in server',inline = False)
+        embed.add_field(name = 'mv!delrole(Manage roles Permission Required) ',value ='Use it like ``mv!delrole <rolename>`` to delete that role in server',inline = False)
         react_message = await client.send_message(user,embed=embed)
         reaction = '⏭'
         await client.add_reaction(react_message, reaction)
