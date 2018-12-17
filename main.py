@@ -640,6 +640,28 @@ async def iamdark(ctx):
         print('Added Dark role in ' + (ctx.message.author.name))
         await client.send_message(author, embed=embed)
 	
+@client.command(pass_context = True)
+@commands.has_permissions(manage_roles=True)
+async def addrole(ctx, role:str=None):
+    user = ctx.message.author
+    if discord.utils.get(user.server.roles, name="{}".format(role)) is None:
+        await client.create_role(user.server, name="{}".format(role), permissions=discord.Permissions.none())
+        await client.say("{} role has been added.".format(role))
+	return
+    else:
+        await client.say("{} role is already exists".format(role))
+	
+
+@client.command(pass_context = True)
+@commands.has_permissions(manage_roles=True)
+async def delrole(ctx,*, role: discord.Role = None):
+    user = ctx.message.author
+    if discord.utils.get(user.server.roles, name="{}".format(role)) is None:
+        await client.say("There is no role with this name in this server")
+    else:
+        await client.say("{} role has been deleted".format(role))
+        await client.delete_role(user.server, name="{}".format(role))
+
 @client.command(pass_context=True)
 @commands.has_permissions(ban_members=True)
 async def unbanall(ctx):
