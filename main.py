@@ -701,11 +701,11 @@ async def roleinfo(ctx,*, role:discord.Role=None):
 @commands.has_permissions(manage_roles=True)
 async def delrole(ctx,*, role: discord.Role = None):
     user = ctx.message.author
-    if discord.utils.get(user.server.roles, name="{}".format(role)) is None:
+    if discord.utils.get(ctx.message.server.roles, name="{}".format(role)) is None:
         await client.say("There is no role with this name in this server")
     else:
         await client.say("{} role has been deleted".format(role))
-        await client.delete_role(user.server, name="{}".format(role))
+        await client.delete_role(ctx.message.server, name="{}".format(role))
 
 @client.command(pass_context=True)
 @commands.has_permissions(ban_members=True)
