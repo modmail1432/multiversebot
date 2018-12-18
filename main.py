@@ -705,7 +705,7 @@ async def delrole(ctx,*, role: discord.Role = None):
         await client.say("There is no role with this name in this server")
     else:
         await client.say("{} role has been deleted".format(role))
-        await client.delete_role(ctx.message.server, name="{}".format(role))
+        await client.delete_role(ctx.message.server, role))
 
 @client.command(pass_context=True)
 @commands.has_permissions(ban_members=True)
