@@ -370,7 +370,7 @@ async def addchannel(ctx, channel: str=None):
         everyone_perms = discord.PermissionOverwrite(send_messages=None, read_messages=None)
         everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
         await client.create_channel(server, channel, everyone)
-        await client.say("{} channel has been created.".format(channel.name))
+        await client.say("{} channel has been created.".format(channel))
 
 	
 @client.command(pass_context = True)
