@@ -363,12 +363,13 @@ async def delchannel(ctx, channel: discord.Channel=None):
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True) 
 async def addchannel(ctx, channel: str=None):
+    server = ctx.message.server
     if channel is None:
         await client.say("Please specify a channel name")
     else:
         everyone_perms = discord.PermissionOverwrite(send_messages=None, read_messages=None)
         everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
-        await client.create_channel(ctx.message.server, channel, everyone)
+        await client.create_channel(server, channel, everyone)
         await client.say("{} channel has been created.".format(channel.name))
 
 	
