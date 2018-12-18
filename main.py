@@ -140,6 +140,8 @@ async def on_reaction_add(reaction, user):
         embed.add_field(name = 'mv!norole(Kick members Permission Required) ',value ='Use it like ``mv!norole @user`` to warn anyone if he/she asks for promotion',inline = False)
         embed.add_field(name = 'mv!getuser(Kick members Permission Required) ',value ='Use it like ``mv!getuser @rolename`` to get list of all users having a particular role',inline = False)
         embed.add_field(name = 'mv!roleinfo(Manage roles Permission Required) ',value ='Use it like ``mv!roleinfo <rolename>`` to get basic info about that role',inline = False)
+        embed.add_field(name = 'mv!addchannel(Administrator Permission Required) ',value ='Use it like ``mv!addchannel <channelname>`` to add that channel in server',inline = False)
+        embed.add_field(name = 'mv!addchannel(Administrator Permission Required) ',value ='Use it like ``mv!delchannel <channelname>`` to delete that channel in server',inline = False)
         react_message = await client.send_message(user,embed=embed)
         reaction = '⏮'
         await client.add_reaction(react_message, reaction)
