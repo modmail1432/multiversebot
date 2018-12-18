@@ -707,6 +707,8 @@ async def delrole(ctx,*, role: discord.Role = None):
         await client.delete_role(ctx.message.server, role)
         await client.say(f"{role} role has been deleted")
 
+
+	
 @client.command(pass_context=True)
 @commands.has_permissions(ban_members=True)
 async def unbanall(ctx):
@@ -1107,6 +1109,12 @@ async def serverinfo(ctx):
 async def google(ctx, *, message):
     new_message = message.replace(" ", "+")
     url = f"https://www.google.com/search?q={new_message}"
+    await client.say(url)
+
+@client.command(pass_context=True)
+async def darkyt(ctx, *, message):
+    new_message = message.replace(" ", "+")
+    url = f"https://www.youtube.com/channel/UCrHGGn1F_l0y8NMxR1KFekw/search?query={new_message}"
     await client.say(url)
 
 @client.command(pass_context=True)
