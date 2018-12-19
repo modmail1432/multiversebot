@@ -241,6 +241,39 @@ async def on_member_remove(member):
             await client.send_message(channel, embed=embed)
 	
 @client.command(pass_context=True)
+async def afk(ctx,*,reason : str):
+    user = ctx.message.author
+    msg = ctx.message
+    afk = open('afk.json').read()
+    afk = json.loads(afk)
+    afk[user.id] = reason
+    afk = json.dumps(afk)
+    x = await client.say('You are now afk: {}'.format(reason))
+    with open('afk.json', 'w') as f:
+        f.write(afk)
+    await asyncio.sleep(5)
+    await client.delete_messages([x,msg])
+
+
+async def on_message(message):
+    if message.content == message.mentions:
+        user = message.author
+        channel = message.channel
+        afk = open('afk.json').read()
+        afk = json.loads(afk)
+        if user.id in afk:
+            del afk[user.id]
+            x = await client.send_message(channel, 'You are now back from being afk.')
+        else:
+            mentions = message.mentions
+            for member in mentions:
+              if member.id in afk:
+                  y = await client.send_message(channel, '**{}** is afk: *{}*'.format(member.name, afk[member.id]))
+        afk = json.dumps(afk)
+        with open('afk.json','w') as f:
+            f.write(afk)
+	
+@client.command(pass_context=True)
 async def tweet(ctx, usernamename:str, *, txt:str):
     url = f"https://nekobot.xyz/api/imagegen?type=tweet&username={usernamename}&text={txt}"
     async with aiohttp.ClientSession() as cs:
