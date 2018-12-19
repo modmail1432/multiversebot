@@ -751,7 +751,7 @@ async def addrole(ctx, role:str=None):
         return
     else:
         await client.say("{} role is already exists".format(role))
-	
+		
 @client.command(pass_context = True)
 @commands.has_permissions(manage_roles=True)
 async def roleinfo(ctx,*, role:discord.Role=None):
@@ -767,6 +767,24 @@ async def roleinfo(ctx,*, role:discord.Role=None):
         embed.add_field(name="Color", value=role.color)
         embed.add_field(name="Created", value=role.created_at.strftime("%d %b %Y %H:%M"))
         await client.say(embed=embed)
+		
+
+@client.command(pass_context = True)
+@commands.has_permissions(manage_roles=True)
+async def rolecolor(ctx, role:discord.Role=None, value:str=None):
+    if discord.utils.get(ctx.message.server.roles, name="{}".format(role)) is None:
+        await client.say("No such role found")
+        return
+    if value is None:
+        await client.say("Invalid hex code")
+	return
+    else:
+        new_val = value.replace("#", "")
+        colour = '0x' + new_val
+        user = ctx.message.author
+        await client.edit_role(ctx.message.server, role, color = discord.Color(int(colour, base=16)))
+        await client.say("{} role colour has been edited.".format(role))
+
 		
 @client.command(pass_context = True)
 @commands.has_permissions(manage_roles=True)
