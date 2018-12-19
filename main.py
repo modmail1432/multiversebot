@@ -773,10 +773,10 @@ async def roleinfo(ctx,*, role:discord.Role=None):
 @commands.has_permissions(manage_roles=True)
 async def rolecolor(ctx, role:discord.Role=None, value:str=None):
     if discord.utils.get(ctx.message.server.roles, name="{}".format(role)) is None:
-        await client.say("No such role found")
+        await client.say("Use this command like ``mv!rolecolor (ROLENAME) (ROLECOLOUR IN HEXCODE)")
         return
     if value is None:
-        await client.say("Invalid hex code")
+        await client.say("Use this command like ``mv!rolecolor (ROLENAME) (ROLECOLOUR IN HEXCODE)")
         return
     else:
         new_val = value.replace("#", "")
