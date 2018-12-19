@@ -141,7 +141,7 @@ async def on_reaction_add(reaction, user):
         embed.add_field(name = 'mv!getuser(Kick members Permission Required) ',value ='Use it like ``mv!getuser @rolename`` to get list of all users having a particular role',inline = False)
         embed.add_field(name = 'mv!roleinfo(Manage roles Permission Required) ',value ='Use it like ``mv!roleinfo <rolename>`` to get basic info about that role',inline = False)
         embed.add_field(name = 'mv!addchannel(Administrator Permission Required) ',value ='Use it like ``mv!addchannel <channelname>`` to add that channel in server',inline = False)
-        embed.add_field(name = 'mv!addchannel(Administrator Permission Required) ',value ='Use it like ``mv!delchannel <channelname>`` to delete that channel in server',inline = False)
+        embed.add_field(name = 'mv!delchannel(Administrator Permission Required) ',value ='Use it like ``mv!delchannel <channelname>`` to delete that channel in server',inline = False)
         react_message = await client.send_message(user,embed=embed)
         reaction = '⏮'
         await client.add_reaction(react_message, reaction)
@@ -239,39 +239,7 @@ async def on_member_remove(member):
             embed.add_field(name='Your join position was', value=member.joined_at)
             embed.set_thumbnail(url=member.avatar_url)
             await client.send_message(channel, embed=embed)
-	
-@client.command(pass_context=True)
-async def afk(ctx,*,reason : str):
-    user = ctx.message.author
-    msg = ctx.message
-    afk = open('afk.json').read()
-    afk = json.loads(afk)
-    afk[user.id] = reason
-    afk = json.dumps(afk)
-    x = await client.say('You are now afk: {}'.format(reason))
-    with open('afk.json', 'w') as f:
-        f.write(afk)
-    await asyncio.sleep(5)
-    await client.delete_messages([x,msg])
 
-
-async def on_message(message):
-    if message.content == message.mentions:
-        user = message.author
-        channel = message.channel
-        afk = open('afk.json').read()
-        afk = json.loads(afk)
-        if user.id in afk:
-            del afk[user.id]
-            x = await client.send_message(channel, 'You are now back from being afk.')
-        else:
-            mentions = message.mentions
-            for member in mentions:
-              if member.id in afk:
-                  y = await client.send_message(channel, '**{}** is afk: *{}*'.format(member.name, afk[member.id]))
-        afk = json.dumps(afk)
-        with open('afk.json','w') as f:
-            f.write(afk)
 	
 @client.command(pass_context=True)
 async def tweet(ctx, usernamename:str, *, txt:str):
