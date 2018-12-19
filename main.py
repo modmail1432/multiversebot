@@ -167,6 +167,7 @@ async def on_reaction_add(reaction, user):
         embed.add_field(name = 'mv!userinfo(Kick members Permission Required) ',value ='Use it like ``mv!userinfo @user`` to get some basic info of tagged user',inline = False)
         embed.add_field(name = 'mv!addrole(Manage roles Permission Required) ',value ='Use it like ``mv!addrole <rolename>`` to add that role in server',inline = False)
         embed.add_field(name = 'mv!delrole(Manage roles Permission Required) ',value ='Use it like ``mv!delrole <rolename>`` to delete that role in server',inline = False)
+        embed.add_field(name = 'mv!rolecolor(Manage roles Permission Required) ',value ='Use it like ``mv!rolecolor <rolename> <color hex code>`` to delete that role in server',inline = False)
         react_message = await client.send_message(user,embed=embed)
         reaction = '⏭'
         await client.add_reaction(react_message, reaction)
@@ -773,10 +774,10 @@ async def roleinfo(ctx,*, role:discord.Role=None):
 @commands.has_permissions(manage_roles=True)
 async def rolecolor(ctx, role:discord.Role=None, value:str=None):
     if discord.utils.get(ctx.message.server.roles, name="{}".format(role)) is None:
-        await client.say("Use this command like ``mv!rolecolor (ROLENAME) (ROLECOLOUR IN HEXCODE)")
+        await client.say("Use this command like ``mv!rolecolor (ROLENAME) (ROLECOLOUR IN HEXCODE)``")
         return
     if value is None:
-        await client.say("Use this command like ``mv!rolecolor (ROLENAME) (ROLECOLOUR IN HEXCODE)")
+        await client.say("Use this command like ``mv!rolecolor (ROLENAME) (ROLECOLOUR IN HEXCODE)``")
         return
     else:
         new_val = value.replace("#", "")
