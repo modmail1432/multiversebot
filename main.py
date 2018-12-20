@@ -97,32 +97,21 @@ async def on_reaction_add(reaction, user):
                   index += 1
               await client.delete_message(msg)
       if reaction.emoji == '🇲':
-        r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-        embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-        embed.set_author(name='Moderation Commands Help')
-        embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
-        embed.add_field(name = 'mv!partner(Admin permission required) (Cooldown of 12hours)',value ='Use it like ``mv!partner <partnership description>`` to partner with many servers with are connected with MultiVerse Official bot',inline = False)
-        embed.add_field(name = 'mv!dm(Admin permission required) ',value ='Use it like ``mv!dm @user <text>`` to dm user from bot',inline = False)
-        embed.add_field(name = 'mv!say(Admin permission required) ',value ='Use it like ``mv!say <text>``',inline = False)
-        embed.add_field(name = 'mv!showme(Requires a role named Giveaways)',value ='To see how many people are taking part in giveaway',inline = False)
-        embed.add_field(name = 'mv!pickwinner(Requires a role named Giveaways)',value ='To pick winner',inline = False)
-        embed.add_field(name = 'mv!embed(Admin permission required) ',value ='Use it like ``mv!embed <text>``',inline = False)
-        embed.add_field(name = 'mv!membercount(Kick members Permission Required) ',value ='Use it like ``mv!membercount`` to get membercount',inline = False)
-        embed.add_field(name = 'mv!removemod(Admin Permission Required)',value ='Use it like ``mv!removemod @user`` to remove him from mod. Note-You need Moderator role in your server below bot to use it.',inline = False)
-        embed.add_field(name = 'mv!makemod(Admin Permission Required)',value ='Use it like ``mv!makemod @user`` to make him mod. Note-You need Moderator role in your server below darkbot to use it.',inline = False)
-        embed.add_field(name = 'mv!friend(Admin Permission Required) ',value ='Use it like ``mv!friend @user`` to give anyone Friend of Owner role',inline = False)
-        embed.add_field(name = 'mv!role(Manage Roles Permission Required)',value ='Use it like ``mv!role @user <rolename>``.',inline = False)
-        embed.add_field(name = 'mv!setnick(Manage nickname permission required)',value ='Use it like ``mv!setnick @user <New nickname>`` to change the nickname of tagged user.',inline = False)
-        embed.add_field(name = 'mv!english(Kick members Permission Required)',value ='Use it like ``mv!english @user`` when someone speaks languages other than English.',inline = False)
-        embed.add_field(name = 'mv!serverinfo(Kick members Permission Required) ',value ='Use it like ``mv!serverinfo`` to get server info',inline = False)
-        embed.add_field(name = 'mv!userinfo(Kick members Permission Required) ',value ='Use it like ``mv!userinfo @user`` to get some basic info of tagged user',inline = False)
-        embed.add_field(name = 'mv!lock(Kick members Permission Required) ',value ='Use it like ``mv!lock #channel or mv!lock`` to lock a channel',inline = False)
-        embed.add_field(name = 'mv!unlock(Kick members Permission Required) ',value ='Use it like ``mv!unlock #channel or mv!unlock`` to unlock a channel',inline = False)
-        react_message = await client.send_message(user,embed=embed)
-        reaction = '⏭'
-        await client.add_reaction(react_message, reaction)
-        await asyncio.sleep(30)
-        await client.delete_message(react_message)
+          index = 0
+          while True:
+              msg = await client.send_message(user, embed=mod_cmd[index])
+              l = index != 0
+              r = index != len(mod_cmd) - 1
+              if l:
+                  await client.add_reaction(msg, left) 
+              if r:
+                  await client.add_reaction(msg, right)
+              react, user = await client.wait_for_reaction(check=predicate(msg, l, r))
+              if react.emoji == left:
+                  index -= 1
+              elif react.emoji == right:
+                  index += 1
+              await client.delete_message(msg)
     
       if reaction.emoji == '⏭':
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
