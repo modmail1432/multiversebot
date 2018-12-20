@@ -918,6 +918,8 @@ async def help(ctx):
       await client.add_reaction(dmmessage, reaction3)
       await client.add_reaction(dmmessage, reaction4)
       await client.say('📨 Check DMs For Information')
+      await asyncio.sleep(30)
+      await client.delete_message(dmmessage)
 
 @client.command(pass_context=True)  
 @commands.has_permissions(kick_members=True)     
