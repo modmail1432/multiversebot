@@ -27,6 +27,30 @@ async def status_task():
         await client.change_presence(game=discord.Game(name='in '+str(len(client.servers))+' servers'))
         await asyncio.sleep(5)
 
+left = '⏪'
+right = '⏩'
+r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+general1=discord.Embed(title="General Commands | Page 1", description="**__mv!donate__** \nSends donation link \n\n**__mv!invite__** or **__mv!authlink__** \nUse it to invite our bot to your server \n\n**__mv!upvote__**\nUse this command to upvote our bot(Link will be in dm)\n\n **__mv!google__**\n Use it like- ``mv!google <anything>`` to google anything\n\n**__mv!youtube__**\nUse it like- ``mv!youtube <anything>`` to search anything on youtube\n\n**__mv!membernames__**\nUse it to get member names in dm\n\n**__mv!invites__** \nUse it like ``mv!invites @user`` or ``mv!invite`` for get invites done by you/tagged person in server. \n__Note:__**If bot does not responds that means you do not have invited any member on that server.**", color = discord.Color((r << 16) + (g << 8) + b))
+general2=discord.Embed(title="General Commands | Page 2", description="**__mv!serverinvite__** \nUse it to get server invite link.\n\n**__mv!avatar__**\nUse it like ``mv!avatar or mv!avatar @user``\n\n**__mv!ping__**\nUse it to check ping of bot\n\n**__mv!enterme__**\nUse it like ``mv!enterme <giveaway channel>`` to enter in a giveaway running in a particular channel\n\n**__mv!poll__**\nUse it like ``mv!poll Question Option1 Option2 ..... Option9``.\n\n**__mv!github__**\nUse it like- ``mv!github uksoftworld``\n\n**__mv!bottutorial__**\nUse it like ``mv!bottutorial <tutorial name by darklegend>``\n\n**__mv!dyno__**\nUse it like ``mv!dyno <dyno command name>``\n\n**__mv!happybirthday @user__**\nTo wish someone happy birthday\n\n**__mv!verify__**Use it to get verified role. Note- It needs proper setup.", color = discord.Color((r << 16) + (g << 8) + b))
+mod1=discord.Embed(title="Admin and Mod Commands | Page 1", description="**__mv!partner(Admin permission required) (Cooldown of 12hours)__** \nUse it like ``mv!partner <partnership description>`` to partner with many servers with are connected with MultiVerse Official bot \n\n**__mv!dm(Admin permission required)__** \nUse it like ``mv!dm @user <text>`` to dm user from bot \n\n**__mv!say(Admin permission required)__**\nUse it like ``mv!say <text>``\n\n **__mv!showme(Requires a role named Giveaways)__**\n To see how many people are taking part in giveaway\n\n**__mv!pickwinner(Requires a role named Giveaways)__**\nTo pick winner of currentmost giveaways\n\n**__mv!embed(Admin permission required__**\nUse it like ``mv!embed <text>``\n\n**__mv!membercount(Kick members Permission Required)__** \n Use it to get membercount of server\n\n**__mv!lock(Kick members Permission Required)__**\nUse it like ``mv!lock #channel or mv!lock`` to lock a channel\n\n**__mv!unlock(Kick members Permission Required)__**\nUse it like ``mv!unlock #channel or mv!unlock`` to unlock a channel", color = discord.Color((r << 16) + (g << 8) + b))
+mod2=discord.Embed(title="Admin and Mod Commands | Page 2", description="**__mv!removemod(Admin Permission Required)__** \nUse it like ``mv!removemod @user`` to remove him from mod. Note-You need Moderator role in your server below bot to use it.\n\n**__mv!makemod(Admin Permission Required)__**\nUse it like ``mv!makemod @user`` to make him mod. Note-You need Moderator role in your server below multiverse bot to use it.\n\n**__mv!friend(Admin Permission Required)__**\nUse it like ``mv!friend @user`` to give anyone Friend of Owner role\n\n**__mv!role(Manage Roles Permission Required)__**\nUse it like ``mv!role @user <rolename>``.\n\n**__mv!setnick(Manage nickname permission required)__**\nUse it like ``mv!setnick @user <New nickname>`` to change the nickname of tagged user.\n\n**__mv!english(Kick members Permission Required)__**\nUse it like ``mv!english @user`` when someone speaks languages other than English.\n\n**__mv!serverinfo(Kick members Permission Required)__**\nUse it like ``mv!serverinfo`` to get server info\n\n**__mv!userinfo(Kick members Permission Required)__**\nUse it like ``mv!userinfo @user`` to get some basic info of tagged user.", color = discord.Color((r << 16) + (g << 8) + b))
+
+gen_cmd = (general1, general2)
+mod_cmd = (mod1, mod2)
+
+def predicate(message, l, r):
+    def check(reaction, user):
+        if reaction.message.id != message.id or user == client.user:
+            return False
+        if l and reaction.emoji == left:
+            return True
+        if r and reaction.emoji == right:
+            return True
+        return False
+
+    return check
+
+
 
 @client.event
 async def on_ready():
@@ -57,42 +81,21 @@ async def on_message(message):
 async def on_reaction_add(reaction, user):
   if reaction.message.server is None:
       if reaction.emoji == '🇬':
-        r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-        embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-        embed.add_field(name = 'mv!donate',value ='Sends donation link')
-        embed.add_field(name = 'mv!invite or mv!authlink',value ='Use it to invite our bot to your server')
-        embed.add_field(name = 'mv!upvote',value ='Use this command to upvote our bot(Link will be in dm)')
-        embed.add_field(name = 'mv!google',value ='Use it like- ``mv!google <anything>`` to google anything')
-        embed.add_field(name = 'mv!youtube',value ='Use it like- ``mv!youtube <anything>`` to search anything on youtube')
-        embed.add_field(name = 'mv!kiss',value ='Use it like- ``mv!kiss @user`` to kiss @user xD!')
-        embed.add_field(name = 'mv!hug',value ='Use it like- ``mv!hug @user`` to hug @user xD!')
-        embed.add_field(name = 'mv!slap',value ='Use it like- ``mv!slap @user`` to slap @user xD!')
-        embed.add_field(name = 'mv!damn',value ='Use it for damn meme')
-        embed.add_field(name = 'mv!burned',value ='Use it for burned meme')
-        embed.add_field(name = 'mv!savage',value ='Use it for savage meme')
-        embed.add_field(name = 'mv!thuglife',value ='Use it for thuglife meme')
-        embed.add_field(name = 'mv!membernames',value ='Use it to get member names in dm')
-        embed.add_field(name = 'mv!gender',value ='Use it like- ``mv!gender @user`` to get user gender!')
-        embed.add_field(name = 'mv!virgin',value ='Use it like- ``mv!virgin @user`` to check if @user is virgin.')
-        embed.add_field(name = 'mv!joke',value ='To read random jokes')
-        embed.add_field(name = 'mv!invites',value ='Use it like ``mv!invites @user or mv!invite for get invites done by you in server. __Note:__**If bot does not responds that means you do not have invited any member on that server.')
-        embed.add_field(name = 'mv!meme',value ='Use this command to get random memes.(Sometimes it sends same meme again and again)')
-        embed.add_field(name = 'mv!serverinvite ',value ='Use it to get server invite link.')
-        embed.add_field(name = 'mv!rolldice',value ='Use it like ``mv!rolldice <1-6 any number that you want to guess in dice>``')
-        embed.add_field(name = 'mv!avatar',value ='Use it like ``mv!avatar or mv!avatar @user``')
-        embed.add_field(name = 'mv!ping',value ='Use it to check ping of bot')
-        embed.add_field(name = 'mv!flipcoin',value ='Use it like ``mv!rolldice <Your prediction>`` prediction = heads, tails or coin self destructed)``')
-        embed.add_field(name = 'mv!enterme',value ='Use it like ``mv!enterme <giveaway channel>`` to enter in a giveaway running in a particular channel')
-        embed.add_field(name = 'mv!poll ',value ='Use it like ``mv!poll "Question" "Option1" "Option2" ..... "Option9"``.')
-        embed.add_field(name = 'mv!guess ',value ='To play guess game use ``mv!guess <number> and number should be between 1-10``')
-        embed.add_field(name = 'mv!github ',value ='Use it like- ``mv!github uksoftworld/DarkBot``')
-        embed.add_field(name = 'mv!bottutorial ',value ='Use it like ``mv!bottutorial <tutorial name by darklegend>``')
-        embed.add_field(name = 'mv!dyno ',value ='Use it like ``mv!dyno <dyno command name>``')
-        embed.add_field(name = 'mv!happybirthday @user ',value ='To wish someone happy birthday')
-        embed.add_field(name = 'mv!verify ',value ='Use it to get verified role. Note- It needs proper setup.')
-        my_msg = await client.send_message(user,embed=embed)
-        await asyncio.sleep(30)
-        await client.delete_message(my_msg)
+          index = 0
+          while True:
+              msg = await client.say(embed=gen_cmd[index])
+              l = index != 0
+              r = index != len(gen_cmd) - 1
+              if l:
+                  await client.add_reaction(msg, left) 
+              if r:
+                  await client.add_reaction(msg, right)
+              react, user = await client.wait_for_reaction(check=predicate(msg, l, r))
+              if react.emoji == left:
+                  index -= 1
+              elif react.emoji == right:
+                  index += 1
+              await client.delete_message(msg)
       if reaction.emoji == '🇲':
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
