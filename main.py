@@ -34,9 +34,11 @@ general1=discord.Embed(title="General Commands | Page 1", description="**__mv!do
 general2=discord.Embed(title="General Commands | Page 2", description="**__mv!serverinvite__** \nUse it to get server invite link.\n\n**__mv!avatar__**\nUse it like ``mv!avatar or mv!avatar @user``\n\n**__mv!ping__**\nUse it to check ping of bot\n\n**__mv!enterme__**\nUse it like ``mv!enterme <giveaway channel>`` to enter in a giveaway running in a particular channel\n\n**__mv!poll__**\nUse it like ``mv!poll Question Option1 Option2 ..... Option9``.\n\n**__mv!github__**\nUse it like- ``mv!github uksoftworld``\n\n**__mv!bottutorial__**\nUse it like ``mv!bottutorial <tutorial name by darklegend>``\n\n**__mv!dyno__**\nUse it like ``mv!dyno <dyno command name>``\n\n**__mv!happybirthday @user__**\nTo wish someone happy birthday\n\n**__mv!verify__**Use it to get verified role. Note- It needs proper setup.", color = discord.Color((r << 16) + (g << 8) + b))
 mod1=discord.Embed(title="Admin and Mod Commands | Page 1", description="**__mv!partner(Admin permission required) (Cooldown of 12hours)__** \nUse it like ``mv!partner <partnership description>`` to partner with many servers with are connected with MultiVerse Official bot \n\n**__mv!dm(Admin permission required)__** \nUse it like ``mv!dm @user <text>`` to dm user from bot \n\n**__mv!say(Admin permission required)__**\nUse it like ``mv!say <text>``\n\n **__mv!showme(Requires a role named Giveaways)__**\n To see how many people are taking part in giveaway\n\n**__mv!pickwinner(Requires a role named Giveaways)__**\nTo pick winner of currentmost giveaways\n\n**__mv!embed(Admin permission required__**\nUse it like ``mv!embed <text>``\n\n**__mv!membercount(Kick members Permission Required)__** \n Use it to get membercount of server\n\n**__mv!lock(Kick members Permission Required)__**\nUse it like ``mv!lock #channel or mv!lock`` to lock a channel\n\n**__mv!unlock(Kick members Permission Required)__**\nUse it like ``mv!unlock #channel or mv!unlock`` to unlock a channel", color = discord.Color((r << 16) + (g << 8) + b))
 mod2=discord.Embed(title="Admin and Mod Commands | Page 2", description="**__mv!removemod(Admin Permission Required)__** \nUse it like ``mv!removemod @user`` to remove him from mod. Note-You need Moderator role in your server below bot to use it.\n\n**__mv!makemod(Admin Permission Required)__**\nUse it like ``mv!makemod @user`` to make him mod. Note-You need Moderator role in your server below multiverse bot to use it.\n\n**__mv!friend(Admin Permission Required)__**\nUse it like ``mv!friend @user`` to give anyone Friend of Owner role\n\n**__mv!role(Manage Roles Permission Required)__**\nUse it like ``mv!role @user <rolename>``.\n\n**__mv!setnick(Manage nickname permission required)__**\nUse it like ``mv!setnick @user <New nickname>`` to change the nickname of tagged user.\n\n**__mv!english(Kick members Permission Required)__**\nUse it like ``mv!english @user`` when someone speaks languages other than English.\n\n**__mv!serverinfo(Kick members Permission Required)__**\nUse it like ``mv!serverinfo`` to get server info\n\n**__mv!userinfo(Kick members Permission Required)__**\nUse it like ``mv!userinfo @user`` to get some basic info of tagged user.", color = discord.Color((r << 16) + (g << 8) + b))
+mod3=discord.Embed(title="Admin and Mod Commands | Page 3", description="**__mv!unbanall(Unban members Permission Required)__** \nUse it like ``mv!unbanall`` to unban all members\n\n**__mv!kick(Kick members Permission Required)__**\nUse it like ``mv!kick @user`` to kick any user\n\n**__mv!muteinchannel(Ban members Permission Required)__**\nUse it like ``mv!muteinchannel @user <time in minutes>`` Example- ``mv!muteinchannel @user 1`` to mute user for 1min.\n\n**__mv!unmuteinchannel(Ban members Permission Required)__**\nUse it like ``mv!unmuteinchannel @user`` to unmute user from that channel.\n\n**__mv!roles(Kick members Permission Required)__**\nUse it to check roles present in server.\n\n**__mv!purge(Manage Messages Permission Required)__**\nUse it like ``mv!purge <number>`` to clear any message.\n\n**__mv!mute(Mute members Permission Required)__**\nUse it like ``mv!mute @user <time in minutes>`` to mute any user. **Note-You need to add Muted role in your server if it is not already there also you must need to change permission of all channels and disable send_message permission for that role.**\n\n**__mv!unmute(Mute members Permission Required)__**\nUse it like ``mv!unmute @user`` to unmute anyone.", color = discord.Color((r << 16) + (g << 8) + b))
+mod4=discord.Embed(title="Admin and Mod Commands | Page 4", description="**__mv!ban(Ban members Permission Required)__** \nUse it like ``mv!ban @user`` to ban any user\n\n**__mv!rules(Kick members Permission Required)__**\nUse it like ``mv!rules @user <violation type>`` to warn user\n\n**__mv!warn(Kick members Permission Required)__**\nUse it like ``mv!warn @user <violation type>`` to warn any user.\n\n**__mv!norole(Kick members Permission Required)__**\nUse it like ``mv!norole @user`` to warn anyone if he/she asks for promotion.\n\n**__mv!getuser(Kick members Permission Required)__**\nUse it like ``mv!getuser rolename`` to get list of all users having a that role.\n\n**__mv!roleinfo(Manage roles Permission Required)__**\nUse it like ``mv!roleinfo <rolename>`` to get basic info about that role.\n\n**__mv!addchannel(Administrator Permission Required)__**\nUse it like ``mv!addchannel <channelname>`` to add that channel in server.\n\n**__mv!delchannel(Administrator Permission Required)__**\nUse it like ``mv!delchannel <channelname>`` to delete that channel in server.", color = discord.Color((r << 16) + (g << 8) + b))
 
 gen_cmd = (general1, general2)
-mod_cmd = (mod1, mod2)
+mod_cmd = (mod1, mod2, mod3, mod4)
 
 def predicate(message, l, r):
     def check(reaction, user):
@@ -113,58 +115,6 @@ async def on_reaction_add(reaction, user):
                   index += 1
               await client.delete_message(msg)
     
-      if reaction.emoji == '⏭':
-        r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-        embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-        embed.set_author(name='Moderation Commands Help')
-        embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
-        embed.add_field(name = 'mv!unbanall(Unban members Permission Required)',value ='Use it like ``mv!unbanall`` to unban all members',inline = False)
-        embed.add_field(name = 'mv!kick(Kick members Permission Required)',value ='Use it like ``mv!kick @user`` to kick any user',inline = False)
-        embed.add_field(name = 'mv!muteinchannel(Ban members Permission Required)',value ='Use it like ``mv!muteinchannel @user <time in minutes>`` Example- ``mv!muteinchannel @user 1`` to mute user for 1min.',inline = False)
-        embed.add_field(name = 'mv!unmuteinchannel(Ban members Permission Required)',value ='Use it like ``mv!unmuteinchannel @user`` to unmute user from that channel.',inline = False)
-        embed.add_field(name = 'mv!roles(Kick members Permission Required) ',value ='Use it to check roles present in server',inline = False)
-        embed.add_field(name = 'mv!clear(Manage Messages Permission Required)',value ='Use it like ``mv!purge <number>`` to clear any message',inline = False)
-        embed.add_field(name = 'mv!mute(Mute members Permission Required)',value ='Use it like ``mv!mute @user <time in minutes>`` to mute any user. **Note-You need to add Muted role in your server if it is not already there also you must need to change permission of all channels and disable send_message permission for fd role.**',inline = False)
-        embed.add_field(name = 'mv!unmute(Mute members Permission Required) ',value ='Use it like ``mv!unmute @user`` to unmute anyone',inline = False)
-        embed.add_field(name = 'mv!ban(Ban members Permission Required) ',value ='Use it like ``mv!ban @user`` to ban any user',inline = False)
-        embed.add_field(name = 'mv!rules(Kick members Permission Required)',value ='Use it like ``mv!rules @user <violation type>`` to warn user',inline = False)
-        embed.add_field(name = 'mv!warn(Kick members Permission Required)',value ='Use it like ``mv!warn @user <violation type>`` to warn any user',inline = False)    
-        embed.add_field(name = 'mv!norole(Kick members Permission Required) ',value ='Use it like ``mv!norole @user`` to warn anyone if he/she asks for promotion',inline = False)
-        embed.add_field(name = 'mv!getuser(Kick members Permission Required) ',value ='Use it like ``mv!getuser @rolename`` to get list of all users having a particular role',inline = False)
-        embed.add_field(name = 'mv!roleinfo(Manage roles Permission Required) ',value ='Use it like ``mv!roleinfo <rolename>`` to get basic info about that role',inline = False)
-        embed.add_field(name = 'mv!addchannel(Administrator Permission Required) ',value ='Use it like ``mv!addchannel <channelname>`` to add that channel in server',inline = False)
-        embed.add_field(name = 'mv!delchannel(Administrator Permission Required) ',value ='Use it like ``mv!delchannel <channelname>`` to delete that channel in server',inline = False)
-        react_message = await client.send_message(user,embed=embed)
-        reaction = '⏮'
-        await client.add_reaction(react_message, reaction)
-        await asyncio.sleep(30)
-        await client.delete_message(react_message)
-    
-      if reaction.emoji == '⏮':
-        r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-        embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-        embed.set_author(name='Moderation Commands Help')
-        embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
-        embed.add_field(name = 'mv!announce(Admin Permission required) ',value ='To make bot announce anything using ``mv!announce <channel> <msg>``. Note- It does not annoy people by tagging everyone or here.',inline = False)
-        embed.add_field(name = 'mv!say(Admin permission required) ',value ='Use it like ``mv!say <text>``',inline = False)
-        embed.add_field(name = 'mv!embed(Admin permission required) ',value ='Use it like ``mv!embed <text>``',inline = False)
-        embed.add_field(name = 'mv!membercount(Kick members Permission Required) ',value ='Use it like ``mv!membercount`` to get membercount',inline = False)
-        embed.add_field(name = 'mv!removemod(Admin Permission Required)',value ='Use it like ``mv!removemod @user`` to remove him from mod. Note-You need Moderator role in your server below bot to use it.',inline = False)
-        embed.add_field(name = 'mv!makemod(Admin Permission Required)',value ='Use it like ``mv!makemod @user`` to make him mod. Note-You need Moderator role in your server below darkbot to use it.',inline = False)
-        embed.add_field(name = 'mv!friend(Admin Permission Required) ',value ='Use it like ``mv!friend @user`` to give anyone Friend of Owner role',inline = False)
-        embed.add_field(name = 'mv!role(Manage Roles Permission Required)',value ='Use it like ``mv!role @user <rolename>``.',inline = False)
-        embed.add_field(name = 'mv!setnick(Manage nickname permission required)',value ='Use it like ``mv!setnick @user <New nickname>`` to change the nickname of tagged user.',inline = False)
-        embed.add_field(name = 'mv!english(Kick members Permission Required)',value ='Use it like ``mv!english @user`` when someone speaks languages other than English.',inline = False)
-        embed.add_field(name = 'mv!serverinfo(Kick members Permission Required) ',value ='Use it like ``mv!serverinfo`` to get server info',inline = False)
-        embed.add_field(name = 'mv!userinfo(Kick members Permission Required) ',value ='Use it like ``mv!userinfo @user`` to get some basic info of tagged user',inline = False)
-        embed.add_field(name = 'mv!addrole(Manage roles Permission Required) ',value ='Use it like ``mv!addrole <rolename>`` to add that role in server',inline = False)
-        embed.add_field(name = 'mv!delrole(Manage roles Permission Required) ',value ='Use it like ``mv!delrole <rolename>`` to delete that role in server',inline = False)
-        embed.add_field(name = 'mv!rolecolor(Manage roles Permission Required) ',value ='Use it like ``mv!rolecolor <rolename> <color hex code>`` to delete that role in server',inline = False)
-        react_message = await client.send_message(user,embed=embed)
-        reaction = '⏭'
-        await client.add_reaction(react_message, reaction)
-        await asyncio.sleep(30)
-        await client.delete_message(react_message)
       if reaction.emoji == '🏵':
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
