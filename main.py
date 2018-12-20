@@ -83,7 +83,7 @@ async def on_reaction_add(reaction, user):
       if reaction.emoji == '🇬':
           index = 0
           while True:
-              msg = await client.say(embed=gen_cmd[index])
+              msg = await client.send_message(user, embed=gen_cmd[index])
               l = index != 0
               r = index != len(gen_cmd) - 1
               if l:
