@@ -197,15 +197,14 @@ async def tweet(ctx, usernamename:str, *, txt:str):
             await client.say(embed=embed)
 
 @client.command(pass_context=True)
-async def remind(ctx, time=None, remind:str=None):
+async def remind(ctx, time=None, *,remind=None):
     time =int(time)
     time = time * 60
     output = time/60
-    new_val = remind.replace(" ", "_")
-    await client.say("I will remind {} after {} minutes for {}".format(ctx.message.author.name, output, new_val))
+    await client.say("I will remind {} after {} minutes for {}".format(ctx.message.author.name, output, remind))
     await asyncio.sleep(time)
-    await client.say("Reminder: {} by {}".format(new_val, ctx.message.author.mention))
-    await client.send_message(ctx.message.author, "Reminder: {}".format(new_val))
+    await client.say("Reminder: {} by {}".format(remind, ctx.message.author.mention))
+    await client.send_message(ctx.message.author, "Reminder: {}".format(remind))
 
 		
 @client.command(pass_context=True)
