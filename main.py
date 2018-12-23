@@ -202,6 +202,14 @@ async def tweet(ctx, usernamename:str, *, txt:str):
             embed.title = "{} twitted: {}".format(usernamename, txt)
             await client.say(embed=embed)
 
+@client.command(pass_context=True)
+async def ownerinfo(ctx):
+    embed = discord.Embed(title="Information about owner", description="Main Creator: DarkLegend", color=0x00ff00)
+    embed.set_footer(text="Copyright@UK Soft")
+    embed.set_author(name=" Bot Owner Names- DarkLegend#3807: 420525168381657090\nTag<!--Back-->#1488: 399274658027012098")
+    embed.add_field(name="Site- https://discordbots.org/bot/515403515217313795", value="Thanks for adding our bot", inline=True)
+    await client.say(embed=embed)
+
 	
 @client.command(pass_context=True)
 async def virus(ctx,user: discord.Member=None,*,hack=None):
