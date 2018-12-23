@@ -1363,7 +1363,6 @@ async def bottutorial(ctx, *,msg=None):
 
 @client.command(pass_context = True)
 async def docs(ctx, *,msg=None):
-    new_message = msg.replace(" ", "_")
     if not msg: await client.say("https://discordpy.readthedocs.io/en/latest/api.html")
     if '@here' in msg or '@everyone' in msg:
       return
