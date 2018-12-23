@@ -394,11 +394,14 @@ async def mute(ctx, member: discord.Member=None, mutetime=None):
             embed=discord.Embed(title="User Muted!", description="**{0}** was muted by **{1}** for {2} minutes!".format(member, ctx.message.author, output), color=0x37F60A)
             await client.send_message(channel, embed=embed)
             await asyncio.sleep(mutetime)
-            await client.remove_roles(member, role)
-            await client.say("Unmuted **{}**".format(member.name))
-            embed=discord.Embed(title="User unmuted!", description="**{0}** was unmuted!".format(member, ctx.message.author), color=0xFD1600)
-            await client.send_message(channel, embed=embed)
-
+	    if discord.utils.get(member.server.roles, name='Muted') in member.roles:
+                await client.remove_roles(member, role)
+                await client.say("Unmuted **{}**".format(member.name))
+                embed=discord.Embed(title="User unmuted!", description="**{0}** was unmuted!".format(member, ctx.message.author), color=0xFD1600)
+                await client.send_message(channel, embed=embed)
+	    else:
+		return
+	
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
 async def lock(ctx, channelname: discord.Channel=None):
