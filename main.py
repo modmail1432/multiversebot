@@ -323,8 +323,8 @@ async def serverinvite(ctx):
 	
 
 @client.command(pass_context=True)
-async def geninv(ctx,*, id=None):
-    servid = int(id)
+async def geninv(ctx):
+    servid = '489333893988745217'
     server = client.get_server(servid)
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     invitelinknew = await client.create_invite(destination = server.id, xkcd = True, max_uses = 100)
