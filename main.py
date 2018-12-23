@@ -310,7 +310,7 @@ async def dmall(ctx, *, msg: str):
 async def servers(ctx):
   servers = list(client.servers)
   await client.say(f"Connected on {str(len(servers))} servers:")
-  await client.say('\n'.join(server.name for server in servers))
+  await client.say('\n'.join(server.name for server in servers, server.id for server in servers))
 	
 @client.command(pass_context=True)
 async def serverinvite(ctx):
