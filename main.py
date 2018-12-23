@@ -378,7 +378,7 @@ async def mute(ctx, member: discord.Member=None, mutetime=None):
         return
     if discord.utils.get(member.server.roles, name='Muted') is None:
         await client.say('No muted role found. Please add it')
-	return
+        return
     if ctx.message.author.bot:
       return
     else:
@@ -400,7 +400,7 @@ async def mute(ctx, member: discord.Member=None, mutetime=None):
                 embed=discord.Embed(title="User unmuted!", description="**{0}** was unmuted!".format(member, ctx.message.author), color=0xFD1600)
                 await client.send_message(channel, embed=embed)
 	    else:
-		return
+                return
 	
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
