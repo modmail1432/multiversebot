@@ -1353,11 +1353,12 @@ async def authlink(ctx):
 
 @client.command(pass_context = True)
 async def bottutorial(ctx, *,msg=None):
-    new_message = msg.replace(" ", "_")
     if not msg: await client.say("You can check https://github.com/uksoftworld/discord.py-tutorial/ for more information")
     if '@here' in msg or '@everyone' in msg:
       return
-    else: await client.say(f'https://github.com/uksoftworld/discord.py-tutorial/blob/master/{new_message}' + '.py')
+    else:
+      new_message = msg.replace(" ", "_")
+      await client.say(f'https://github.com/uksoftworld/discord.py-tutorial/blob/master/{new_message}' + '.py')
     return
 
 @client.command(pass_context = True)
@@ -1366,8 +1367,10 @@ async def docs(ctx, *,msg=None):
     if not msg: await client.say("https://discordpy.readthedocs.io/en/latest/api.html")
     if '@here' in msg or '@everyone' in msg:
       return
-    else: await client.say(f'https://discordpy.readthedocs.io/en/latest/api.html#{new_message}')
-    return
+    else:
+      new_message = msg.replace(" ", "_")
+      await client.say(f'https://discordpy.readthedocs.io/en/latest/api.html#{new_message}')
+      return
 
 @client.command(pass_context = True)
 async def dyno(ctx, *, msg=None):
