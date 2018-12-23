@@ -1352,7 +1352,7 @@ async def authlink(ctx):
       await client.say(embed=embed)
 
 @client.command(pass_context = True)
-async def bottutorial(ctx, *, msg = None):
+async def bottutorial(ctx, *,msg:str=None):
     new_message = msg.replace(" ", "_")
     if not msg: await client.say("You can check https://github.com/uksoftworld/discord.py-tutorial/ for more information")
     if '@here' in msg or '@everyone' in msg:
@@ -1361,7 +1361,7 @@ async def bottutorial(ctx, *, msg = None):
     return
 
 @client.command(pass_context = True)
-async def docs(ctx, *, msg = None):
+async def docs(ctx, *,msg:str=None):
     new_message = msg.replace(" ", "_")
     if not msg: await client.say("https://discordpy.readthedocs.io/en/latest/api.html")
     if '@here' in msg or '@everyone' in msg:
@@ -1370,7 +1370,7 @@ async def docs(ctx, *, msg = None):
     return
 
 @client.command(pass_context = True)
-async def dyno(ctx, *, msg = None):
+async def dyno(ctx, *, msg:str=None):
     if not msg: await client.say("You can check https://github.com/uksoftworld/dynoCC for more information")
     if '@here' in msg or '@everyone' in msg:
       return
@@ -1378,7 +1378,7 @@ async def dyno(ctx, *, msg = None):
     return
 
 @client.command(pass_context = True)
-async def heroku(ctx, *, msg = None):
+async def heroku(ctx, *, msg:str=None):
     if not msg: await client.say("Tag a user please")
     if '@here' in msg or '@everyone' in msg:
       return
