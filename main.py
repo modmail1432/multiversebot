@@ -376,6 +376,9 @@ async def mute(ctx, member: discord.Member=None, mutetime=None):
     if member.server_permissions.kick_members:
         await client.say('**You cannot mute admin/moderator!**')
         return
+    if discord.utils.get(member.server.roles, name='Muted') is None:
+        await client.say('No muted role found. Please add it')
+	return
     if ctx.message.author.bot:
       return
     else:
@@ -395,23 +398,6 @@ async def mute(ctx, member: discord.Member=None, mutetime=None):
             await client.say("Unmuted **{}**".format(member.name))
             embed=discord.Embed(title="User unmuted!", description="**{0}** was unmuted!".format(member, ctx.message.author), color=0xFD1600)
             await client.send_message(channel, embed=embed)
-      else:
-          mutetime =int(mutetime)
-          mutetime = mutetime * 60
-          output = mutetime/60
-          role = discord.utils.get(member.server.roles, name='Muted')
-          await client.add_roles(member, role)
-          await client.say("Muted **{}**".format(member.name))
-          await client.send_message(member, "You are muted by {0} for {1} Minutes".format(ctx.message.author, output))
-          for channel in member.server.channels:
-              if channel.name == '╰☆☆-multiverse-log-☆☆╮':
-                  embed=discord.Embed(title="User Muted!", description="**{0}** was muted by **{1}** for {2} minutes!".format(member, ctx.message.author, output), color=0x37F60A)
-                  await client.send_message(channel, embed=embed)
-                  await asyncio.sleep(mutetime)
-                  await client.remove_roles(member, role)
-                  await client.say("Unmuted **{}**".format(member.name))
-                  embed=discord.Embed(title="User unmuted!", description="**{0}** was unmuted!".format(member, ctx.message.author), color=0xFD1600)
-                  await client.send_message(channel, embed=embed)
 
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
