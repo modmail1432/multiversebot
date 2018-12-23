@@ -436,11 +436,11 @@ async def unlock(ctx, channelname: discord.Channel=None):
 	
 @client.command(pass_context = True)
 async def meme(ctx):
-    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     async with aiohttp.ClientSession() as session:
+	colour = '0x' + '008000'
         async with session.get("https://api.reddit.com/r/me_irl/random") as r:
             data = await r.json()
-            embed = discord.Embed(title='<a:OnThaCoco:515853700682743809> <a:OnThaCoco:515853700682743809> Random Meme <a:OnThaCoco:515853700682743809> <a:OnThaCoco:515853700682743809>', description='', color = discord.Color((r << 16) + (g << 8) + b))
+            embed = discord.Embed(title='<a:OnThaCoco:515853700682743809> <a:OnThaCoco:515853700682743809> Random Meme <a:OnThaCoco:515853700682743809> <a:OnThaCoco:515853700682743809>', description='from reddit', color=discord.Color(int(colour, base=16)))
             embed.set_image(url=data[0]["data"]["children"][0]["data"]["url"])
             embed.set_footer(text=f'Requested by: {ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
             embed.timestamp = datetime.datetime.utcnow()
