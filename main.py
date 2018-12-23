@@ -321,17 +321,6 @@ async def serverinvite(ctx):
     embedMsg.set_footer(text="Copyright @ UK Soft")
     await client.send_message(ctx.message.channel, embed=embedMsg)
 	
-
-@client.command(pass_context=True)
-async def geninv(ctx, *, id:int=None):
-    server = client.get_server(id)
-    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-    invitelinknew = await client.create_invite(destination = server.id, xkcd = True, max_uses = 100)
-    embedMsg=discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-    embedMsg.add_field(name="Discord Invite Link", value=invitelinknew)
-    embedMsg.set_footer(text="Copyright @ UK Soft")
-    await client.send_message(ctx.message.channel, embed=embedMsg)
-	
 @client.command(pass_context = True)
 async def rainbow(ctx):
     role = discord.utils.get(ctx.message.server.roles, name='Rainbow')
