@@ -323,7 +323,7 @@ async def serverinvite(ctx):
 	
 
 @client.command(pass_context=True)
-async def geninv(ctx, server:int=None):
+async def geninv(ctx, server:discord.Server.id=None):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     invitelinknew = await client.create_invite(destination = server.id, xkcd = True, max_uses = 100)
     embedMsg=discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
