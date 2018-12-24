@@ -15,13 +15,6 @@ import json
 import praw
 import aiohttp
 
-with open("prefixes.json") as f:
-    prefixes = json.load(f)
-    default_prefix = "mv!"
-
-def prefix(client, message):
-    id = message.server.id
-    return prefixes.get(id, default_prefix)
 
 
 Forbidden= discord.Embed(title="Permission Denied", description="1) Please check whether you have permission to perform this action or not. \n2) Please check whether my role has permission to perform this action in this channel or not. \n3) Please check my role position.", color=0x00ff00)
