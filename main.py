@@ -15,7 +15,7 @@ import json
 import praw
 import aiohttp
 
-
+prefix = ["mv!", "v!", "d!"] 
 
 Forbidden= discord.Embed(title="Permission Denied", description="1) Please check whether you have permission to perform this action or not. \n2) Please check whether my role has permission to perform this action in this channel or not. \n3) Please check my role position.", color=0x00ff00)
 client = commands.Bot(description="MultiVerse Official Bot", command_prefix=commands.when_mentioned_or(prefix), pm_help = True)
@@ -282,13 +282,6 @@ async def invites(ctx,*,user:discord.Member=None):
               await client.say(embed=embed)
               
 
-@client.command(pass_context=True)
-async def prefix(ctx, new_prefix):
-    # Do any validations you want to do
-    prefixes[ctx.message.server.id] = new_prefix
-    with open("prefixes.json", "w") as f:
-        json.dump(prefixes, f)
-        await client.say('{} is the new prefix!'.format(new_prefix))
 
 		
 @client.command(pass_context=True)
