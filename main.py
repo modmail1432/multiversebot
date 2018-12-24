@@ -17,7 +17,7 @@ import aiohttp
 
 with open("prefixes.json") as f:
     prefixes = json.load(f)
-default_prefix = "mv!"
+    default_prefix = "mv!"
 
 def prefix(client, message):
     id = message.server.id
@@ -289,8 +289,8 @@ async def invites(ctx,*,user:discord.Member=None):
               await client.say(embed=embed)
               
 
-@client.command(name="prefix", pass_context=True)
-async def _prefix(ctx, new_prefix):
+@client.command(pass_context=True)
+async def prefix(ctx, new_prefix):
     # Do any validations you want to do
     prefixes[ctx.message.server.id] = new_prefix
     with open("prefixes.json", "w") as f:
