@@ -321,6 +321,11 @@ async def servers(ctx):
   await client.say('\n'.join(server.name for server in servers))
 	
 @client.command(pass_context=True)
+async def vpn(ctx):
+    embed=discord.Embed(title="**Welcome to AjaxVPN here you can get Support for the VPN, But you can also chill and meet new people, We have Chill and friendly staff who are willing to help.**", description="```┏━━━━ ⋆⋅✴AjaxVPN✴⋅⋆ ━━━━┓```\n ```●▬▬▬▬๑۩What We Offer۩๑▬▬▬▬●```\n3$USD8$USD- 1 Month No VIP\n15$USD- 6 Months No VIP\n25$USD- 1 Year VIP\n50$USD- Lifetime VIP\n```┗━━━━ ⋆⋅✴AjaxVPN✴⋅⋆ ━━━━┛```\n**Owner/Server [~Owner~]~MrAjax#1061**\n```╔══════.·:·.💻✧ Join Now! ✧💻.·:·.══════╗```\nServer Link: https://discord.gg/mjNkwyq\n╚══════.·:·.💻✧           ✧💻.·:·.══════╝", color = discord.Color((r << 16) + (g << 8) + b))
+    await client.say(embed=embed)
+	
+@client.command(pass_context=True)
 async def serverinvite(ctx):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     invitelinknew = await client.create_invite(destination = ctx.message.channel, xkcd = True, max_uses = 100)
