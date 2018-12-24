@@ -982,7 +982,7 @@ async def ban(ctx,user:discord.Member=None):
 @client.command(pass_context=True)  
 @commands.has_permissions(ban_members=True)     
 async def unban(ctx, identification:str=None):
-    user = await client.get_user_info(identification)
+    user = client.get_user_info(identification)
     await client.unban(user)
     try:
         await client.say(f'`{user}` has been unbanned from the server.')
