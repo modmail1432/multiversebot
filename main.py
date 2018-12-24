@@ -981,12 +981,12 @@ async def ban(ctx,user:discord.Member=None):
 
 @client.command(pass_context=True)  
 @commands.has_permissions(ban_members=True)     
-async def unban(ctx, identification:int):
+async def unban(ctx, identification:str):
     user = client.get_user_info(identification)
     await client.unban(ctx.message.server,user)
     try:
         await client.say(f'`{user}` has been unbanned from the server.')
-        for channel in member.server.channels:
+        for channel in ctx.message.server.channels:
           if channel.name == '╰☆☆-multiverse-log-☆☆╮':
               embed=discord.Embed(title="User unbanned!", description="**{0}** unbanned by **{1}**!".format(user.name, ctx.message.author), color=0x38761D)
               await client.send_message(channel, embed=embed)
