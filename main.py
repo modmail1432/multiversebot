@@ -190,6 +190,16 @@ async def on_member_remove(member):
             embed.set_thumbnail(url=member.avatar_url)
             await client.send_message(channel, embed=embed)
 
+@client.command(pass_context=True)
+async def merrychristmas(ctx, user:discord.Member=None):
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    if user is None:
+        embed=discord.Embed(title='Merry Christmas', description=f'I wanna wish {ctx.message.author} Merry Christmas {ctx.message.author}', color = discord.Color((r << 16) + (g << 8) + b))
+        embed.set_image(url = 'https://cdn.discordapp.com/attachments/486489391083159574/526968559994404874/gif-153062737.gif')
+        await client.say(embed=embed)
+    else:
+        embed=discord.Embed(title='Merry Christmas', description=f'I wanna wish {user} Merry Christmas {user}', color = discord.Color((r << 16) + (g << 8) + b))
+        embed.set_image(url = 'https://cdn.discordapp.com/attachments/486489391083159574/526968559994404874/gif-153062737.gif')
 	
 @client.command(pass_context=True)
 async def tweet(ctx, usernamename:str, *, txt:str):
