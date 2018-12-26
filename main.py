@@ -877,6 +877,23 @@ async def role(ctx, user: discord.Member=None, *, role: discord.Role = None):
             await client.remove_roles(user, role)
             await client.say("{} role has been removed from {}.".format(role, user)) 
           
+	
+
+@client.command(pass_context = True)
+@commands.check(is_dark)     
+async def giverole(ctx, user: discord.Member=None, *, role: discord.Role = None):
+        if user is None:
+            await client.say("You haven't specified a member! ")
+        if role is None:
+            await client.say("You haven't specified a role! ")
+        if role not in user.roles:
+            await client.add_roles(user, role)
+            await client.say("{} role has been added to {}.".format(role, user))
+            return
+        if role in user.roles:
+            await client.remove_roles(user, role)
+            await client.say("{} role has been removed from {}.".format(role, user)) 
+          
  
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)
