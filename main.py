@@ -200,7 +200,8 @@ async def merrychristmas(ctx, user:discord.Member=None):
     else:
         embed=discord.Embed(title='Merry Christmas', description=f'I wanna wish {user} Merry Christmas {user}', color = discord.Color((r << 16) + (g << 8) + b))
         embed.set_image(url = 'https://cdn.discordapp.com/attachments/486489391083159574/526968559994404874/gif-153062737.gif')
-	await client.say(embed=embed)
+        await client.say(embed=embed)
+	
 @client.command(pass_context=True)
 async def tweet(ctx, usernamename:str, *, txt:str):
     url = f"https://nekobot.xyz/api/imagegen?type=tweet&username={usernamename}&text={txt}"
