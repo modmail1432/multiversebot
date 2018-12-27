@@ -311,7 +311,7 @@ async def invites(ctx, user:discord.Member=None):
         await client.say(embed=embed)
     else:
         total_uses=0
-        embed=discord.Embed(title='__Invites from {}__'.format(user.name))
+        embed=discord.Embed(title='__Invites from {}__'.format(user.name), color = discord.Color((r << 16) + (g << 8) + b))
         invites = await client.invites_from(ctx.message.server)
         for invite in invites:
           if invite.inviter == user and invite.max_age==0:
