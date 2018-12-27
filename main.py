@@ -308,6 +308,7 @@ async def invites(ctx, user:discord.Member=None):
               embed.add_field(name='Uses',value=invite.uses)
               embed.add_field(name='Expires',value='Never')
         embed.add_field(name='__Total Uses__',value=total_uses)
+        embed.add_field(name='For More details',value='Use ``mv!detailedinvites``')
         await client.say(embed=embed)
     else:
         total_uses=0
@@ -320,6 +321,7 @@ async def invites(ctx, user:discord.Member=None):
               embed.add_field(name='Uses',value=invite.uses)
               embed.add_field(name='Expires',value='Never')
         embed.add_field(name='__Total Uses__',value=total_uses)
+        embed.add_field(name='For More details',value='Use ``mv!detailedinvites``')
         await client.say(embed=embed)
               
 
