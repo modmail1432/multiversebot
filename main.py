@@ -305,7 +305,7 @@ async def rps(ctx, *, message=None):
     embed=discord.Embed(title = "Bot VS {}".format(ctx.message.author.name), color = discord.Color((r << 16) + (g << 8) + b))
     embed.set_author(name = ctx.message.author.name, icon_url = ctx.message.author.avatar_url)
     if message is None:
-	await client.say('Use it like ``mv!rps rock or scissors or paper`` anyone of them to make this command work properly')
+        await client.say('Use it like ``mv!rps rock or scissors or paper`` anyone of them to make this command work properly')
     if message.lower() != ans[0] and message.lower() != ans[1] and message.lower() != ans[2] :
         return await client.say("Pick Rock Paper or Scissors")
     elif message.lower() == pick:
