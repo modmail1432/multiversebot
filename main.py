@@ -320,7 +320,7 @@ async def invites(ctx, user:discord.Member=None):
               embed.add_field(name='Invite',value=invite.id)
               embed.add_field(name='Uses',value=invite.uses)
               embed.add_field(name='Channel',value=invite.channel)
-              embed.set_footer(text=f'Requested by: {user.display_name}', icon_url=f'{user.avatar_url}')
+              embed.set_footer(text=f'Requested by: {ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
         embed.add_field(name='__Total Uses__',value=total_uses)
         await client.say(embed=embed)
               	
