@@ -297,12 +297,15 @@ async def virus(ctx,user: discord.Member=None,*,hack=None):
 	
 	
 @client.command(pass_context=True)
-async def rps(ctx, *, message):
+async def rps(ctx, *, message=None):
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     await client.send_typing(ctx.message.channel)
     ans = ["rock", "paper", "scissors"]
     pick=ans[random.randint(0, 2)]
-    embed=discord.Embed(title = "Bot VS {}".format(ctx.message.author.name), color = 0x3333cc)
+    embed=discord.Embed(title = "Bot VS {}".format(ctx.message.author.name), color = discord.Color((r << 16) + (g << 8) + b))
     embed.set_author(name = ctx.message.author.name, icon_url = ctx.message.author.avatar_url)
+    if message is None:
+	await client.say('Use it like ``mv!rps rock or scissors or paper`` anyone of them to make this command work properly')
     if message.lower() != ans[0] and message.lower() != ans[1] and message.lower() != ans[2] :
         return await client.say("Pick Rock Paper or Scissors")
     elif message.lower() == pick:
