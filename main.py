@@ -295,7 +295,25 @@ async def virus(ctx,user: discord.Member=None,*,hack=None):
         await client.say('**{}** has hacked himself ¯\_(ツ)_/¯.'.format(name.name))
         await client.send_message(name,'**Alert!**\n``You may have been hacked. {}-virus.exe has been found in your system\'s operating system.\nYour data may have been compromised. Please re-install your OS immediately.``'.format(hack))
 	
-	
+@client.command(pass_context=True, no_pm=True)
+async def urban(ctx, *, msg:str=None):
+    await client.send_typing(ctx.message.channel)
+    if msg is None:
+        await client.say('Use it like: ``mv!urban <string>``')
+	return
+    else:
+        r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+        word = ' '.join(msg)
+        api = "http://api.urbandictionary.com/v0/define"
+        response = requests.get(api, params=[("term", word)]).json()
+        if len(response["list"]) == 0:
+            return await client.say("Could not find that word!")
+        embed = discord.Embed(title = "🔍 Search Word", description = word, color = discord.Color((r << 16) + (g << 8) + b))
+        embed.add_field(name = "Top definition:", value = response['list'][0]['definition'])
+        embed.add_field(name = "Examples:", value = response['list'][0]["example"])
+        embed.set_footer(text = "Tags: " + ', '.join(response['tags']))
+        await client.say(embed=embed)
+		
 @client.command(pass_context=True)
 async def rps(ctx, *, message=None):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
