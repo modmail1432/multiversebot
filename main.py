@@ -294,7 +294,40 @@ async def virus(ctx,user: discord.Member=None,*,hack=None):
     else:
         await client.say('**{}** has hacked himself ¯\_(ツ)_/¯.'.format(name.name))
         await client.send_message(name,'**Alert!**\n``You may have been hacked. {}-virus.exe has been found in your system\'s operating system.\nYour data may have been compromised. Please re-install your OS immediately.``'.format(hack))
-		
+	
+	
+@client.command(pass_context=True)
+async def rps(ctx, *, message):
+    await client.send_typing(ctx.message.channel)
+    ans = ["rock", "paper", "scissors"]
+    pick=ans[random.randint(0, 2)]
+    embed=discord.Embed(title = "Bot VS {}".format(ctx.message.author.name), color = 0x3333cc)
+    embed.set_author(name = ctx.message.author.name, icon_url = ctx.message.author.avatar_url)
+    if message.lower() != ans[0] and message.lower() != ans[1] and message.lower() != ans[2] :
+        return await client.say("Pick Rock Paper or Scissors")
+    elif message.lower() == pick:
+        embed.add_field(name = "Its a draw!", value = "Bot picked {} too!".format(pick))
+        return await client.say(embed=embed)
+    else:
+        if message.lower()  == "rock" and pick == "paper":
+            embed.add_field(name = "Bot Wins!", value = "Bot picked {}!".format(pick))
+            await client.say(embed=embed)
+        elif message.lower()  == "rock" and pick == "scissors":
+            embed.add_field(name = "{} Wins!".format(ctx.message.author.name), value = "Bot picked {}!".format(pick))
+            await client.say(embed=embed)
+        elif message.lower()  == "paper" and pick == "rock":
+            embed.add_field(name = "{} Wins!".format(ctx.message.author.name), value = "Bot picked {}!".format(pick))
+            await client.say(embed=embed)
+        elif message.lower()  == "paper" and pick == "scissors":
+            embed.add_field(name = "Bot Wins!", value = "Bot picked {}!".format(pick))
+            await client.say(embed=embed)
+        elif message.lower()  == "scissors" and pick == "rock":
+            embed.add_field(name = "Bot Wins!", value = "Bot picked {}!".format(pick))
+            await client.say(embed=embed)
+        else:
+            embed.add_field(name = "{} Wins!".format(ctx.message.author.name), value = "Bot picked {}!".format(pick))
+            await client.say(embed=embed)
+	
 @client.command(pass_context=True)
 async def invites(ctx, user:discord.Member=None):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
