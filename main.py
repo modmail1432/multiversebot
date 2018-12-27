@@ -302,56 +302,24 @@ async def invites(ctx, user:discord.Member=None):
         embed=discord.Embed(title='__Invites from {}__'.format(ctx.message.author.name), color = discord.Color((r << 16) + (g << 8) + b))
         invites = await client.invites_from(ctx.message.server)
         for invite in invites:
-          if invite.inviter == ctx.message.author and invite.max_age==0:
+          if invite.inviter == ctx.message.author:
               total_uses += invite.uses
               embed.add_field(name='Invite',value=invite.id)
               embed.add_field(name='Uses',value=invite.uses)
-              embed.add_field(name='Expires',value='Never')
         embed.add_field(name='__Total Uses__',value=total_uses)
-        embed.add_field(name='For More details',value='Use ``mv!detailedinvites``')
         await client.say(embed=embed)
     else:
         total_uses=0
         embed=discord.Embed(title='__Invites from {}__'.format(user.name), color = discord.Color((r << 16) + (g << 8) + b))
         invites = await client.invites_from(ctx.message.server)
         for invite in invites:
-          if invite.inviter == user and invite.max_age==0:
+          if invite.inviter == user:
               total_uses += invite.uses
               embed.add_field(name='Invite',value=invite.id)
               embed.add_field(name='Uses',value=invite.uses)
-              embed.add_field(name='Expires',value='Never')
         embed.add_field(name='__Total Uses__',value=total_uses)
-        embed.add_field(name='For More details',value='Use ``mv!detailedinvites``')
         await client.say(embed=embed)
-              
-
-@client.command(pass_context = True)
-async def detailedinvites(ctx,*,user:discord.Member=None):
-    invite = await client.invites_from(ctx.message.server)
-    if user is None:
-        for invite in invite:
-          if invite.inviter == ctx.message.author:
-              r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-              embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-              embed.add_field(name = 'Link used for inviting:',value =f'{invite.url}'.format(), inline=False)
-              embed.add_field(name = 'Invites from this link:',value =f'{invite.uses}', inline=False)
-              embed.add_field(name = 'Created at:',value =f'{invite.created_at}', inline=False)
-              embed.add_field(name = 'Channel:',value =f'{invite.channel}', inline=False)
-              embed.add_field(name = 'ID:',value =f'{invite.id}', inline=False)
-              await client.say(embed=embed)
-    else:
-        for invite in invite:
-          if invite.inviter == user:
-              r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-              embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-              embed.add_field(name = 'Link used for inviting:',value =f'{invite.url}'.format(), inline=False)
-              embed.add_field(name = 'Invites from this link:',value =f'{invite.uses}', inline=False)
-              embed.add_field(name = 'Created at:',value =f'{invite.created_at}', inline=False)
-              embed.add_field(name = 'Channel:',value =f'{invite.channel}', inline=False)
-              embed.add_field(name = 'ID:',value =f'{invite.id}', inline=False)
-              await client.say(embed=embed)
-              
-		
+              		
 @client.command(pass_context=True)
 async def lovedetect(ctx, user: discord.Member = None, *, user2: discord.Member = None):
     shipuser1 = user.name
