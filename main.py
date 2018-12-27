@@ -205,7 +205,7 @@ async def merrychristmas(ctx, user:discord.Member=None):
 @client.command(pass_context=True)
 async def movie(ctx, *, name:str=None):
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-	await client.send_typing(ctx.message.channel)
+        await client.send_typing(ctx.message.channel)
 	if name is None:
 		embed=discord.Embed(description = "Please specify a movie, *eg. mv!movie Inception*", color = discord.Color((r << 16) + (g << 8) + b))
 		x = await client.say(embed=embed)
