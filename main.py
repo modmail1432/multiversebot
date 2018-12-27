@@ -295,7 +295,7 @@ async def virus(ctx,user: discord.Member=None,*,hack=None):
         await client.send_message(name,'**Alert!**\n``You may have been hacked. {}-virus.exe has been found in your system\'s operating system.\nYour data may have been compromised. Please re-install your OS immediately.``'.format(hack))
 		
 @client.command(pass_context=True)
-async def invite(ctx, user:discord.Member=None):
+async def invites(ctx, user:discord.Member=None):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     if user is None:
         total_uses=0
