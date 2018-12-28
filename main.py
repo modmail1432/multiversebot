@@ -832,7 +832,7 @@ async def iamdark(ctx):
 	
 @client.command(pass_context = True)
 @commands.has_permissions(manage_roles=True)
-async def addrole(ctx, role:str=None):
+async def addrole(ctx,*, role:str=None):
     user = ctx.message.author
     if discord.utils.get(user.server.roles, name="{}".format(role)) is None:
         await client.create_role(user.server, name="{}".format(role), permissions=discord.Permissions.none())
@@ -884,7 +884,6 @@ async def delrole(ctx,*, role: discord.Role = None):
     else:
         await client.delete_role(ctx.message.server, role)
         await client.say(f"{role} role has been deleted")
-
 
 	
 @client.command(pass_context=True)
