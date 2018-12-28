@@ -167,6 +167,8 @@ async def on_reaction_add(reaction, user):
 @client.event
 async def on_member_join(member):
     for channel in member.server.channels:
+        if member.bot:
+            return
         if channel.name == '★彡-welcome-彡★':
             r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
             embed = discord.Embed(title=f'Welcome {member.name} to {member.server.name}', description='Do not forget to check rules and never try to break any one of them', color = discord.Color((r << 16) + (g << 8) + b))
