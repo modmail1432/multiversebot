@@ -88,7 +88,7 @@ async def on_message(message):
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         embed=discord.Embed(title=f"{message.author.name} sent", description=f"{message.content}", color = discord.Color((r << 16) + (g << 8) + b))
         embed.set_thumbnail(url= message.author.avatar_url)
-        await client.send_message(channel, 'UserID: {}'.format(message.author.id))
+        await client.send_message(channel, f'{message.author.name} ID: {}'.format(message.author.id))
         await client.send_message(channel, embed=embed)
 
 @client.event
