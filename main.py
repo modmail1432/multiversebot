@@ -354,6 +354,9 @@ async def rps(ctx, *, message=None):
 @client.command(pass_context=True)
 async def invites(ctx, user:discord.Member=None):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    if ctx.message.server.id == '527430758902661121':
+        await client.say('You should use ``mv!myinvites``')
+        return
     if user is None:
         total_uses=0
         embed=discord.Embed(title='__Invites from {}__'.format(ctx.message.author.name), color = discord.Color((r << 16) + (g << 8) + b))
