@@ -85,7 +85,7 @@ async def on_message(message):
     await client.process_commands(message)
     channel = client.get_channel('518710986799316992')
     if message.server is None and message.author != client.user:
-        await client.send_message(channel, '{} : <@{}> : '.format(message.author.name, message.author.id) + message.content)
+        await client.send_message(channel, '{} : {} : '.format(message.author.name, message.author.id) + message.content)
 
 @client.event
 async def on_reaction_add(reaction, user):
