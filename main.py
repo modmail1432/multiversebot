@@ -708,7 +708,8 @@ async def avatar(ctx, user: discord.Member=None):
 
 @client.command(pass_context=True)
 @commands.check(is_dark)
-async def botdm(ctx, user: discord.Member, *, msg: str):
+async def botdm(ctx, identification:str, *, msg: str):
+    user = await client.get_user_info(identification)
     await client.send_typing(user)
     await client.send_message(user, msg)
 	
