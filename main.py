@@ -398,6 +398,22 @@ async def myinvites(ctx, user:discord.Member=None):
                   embed.set_footer(text=f'Requested by: {ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
             embed.add_field(name='__Total Uses__',value=total_uses)
             await client.say(embed=embed)
+            if invite.uses >= '20':
+                role = discord.utils.get(ctx.message.server.roles, name='Inviter I')
+                await client.add_roles(ctx.message.author, role)
+		await client.say('Congrats! You have got Inviter I role')
+            if invite.uses >= '30':
+                role = discord.utils.get(ctx.message.server.roles, name='Inviter II')
+                await client.add_roles(ctx.message.author, role)
+		await client.say('Congrats! You have got Inviter II role')
+            if invite.uses >= '50':
+                role = discord.utils.get(ctx.message.server.roles, name='Inviter III')
+                await client.add_roles(ctx.message.author, role)
+		await client.say('Congrats! You have got Inviter III role')
+            if invite.uses >= '80':
+                role = discord.utils.get(ctx.message.server.roles, name='Inviter IV')
+                await client.add_roles(ctx.message.author, role)
+		await client.say('Congrats! You have got Inviter IV role')
         else:
             total_uses=0
             embed=discord.Embed(title='__Invites from {}__'.format(user.name), color = discord.Color((r << 16) + (g << 8) + b))
@@ -411,6 +427,22 @@ async def myinvites(ctx, user:discord.Member=None):
                   embed.set_footer(text=f'Requested by: {ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
             embed.add_field(name='__Total Uses__',value=total_uses)
             await client.say(embed=embed)
+            if invite.uses >= '20':
+                role = discord.utils.get(user.server.roles, name='Inviter I')
+                await client.add_roles(user, role)
+		await client.say('Congrats! You have got Inviter I role')
+            if invite.uses >= '30':
+                role = discord.utils.get(user.server.roles, name='Inviter II')
+                await client.add_roles(user, role)
+		await client.say('Congrats! You have got Inviter II role')
+            if invite.uses >= '50':
+                role = discord.utils.get(user.server.roles, name='Inviter III')
+                await client.add_roles(user, role)
+		await client.say('Congrats! You have got Inviter III role')
+            if invite.uses >= '80':
+                role = discord.utils.get(user.server.roles, name='Inviter IV')
+                await client.add_roles(user, role)
+		await client.say('Congrats! You have got Inviter IV role')
     else:
         await client.say('You are not allowed to use this command in this server')
         return 
