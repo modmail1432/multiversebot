@@ -1616,6 +1616,10 @@ async def bottutorial(ctx, *,msg=None):
     return
 
 @client.command(pass_context = True)
+async def tutorial(ctx):
+      await client.say('https://automatetheboringstuff.com/ (for complete beginners to programming)\nhttps://learnxinyminutes.com/docs/python3/ (for people who know programming already)\nhttps://docs.python.org/3.5/tutorial/ (official tutorial)\nhttp://python.swaroopch.com/ (useful book)\nsee also: http://www.codeabbey.com/ (exercises for beginners)')
+
+@client.command(pass_context = True)
 async def docs(ctx, *,msg=None):
     if not msg: await client.say("https://discordpy.readthedocs.io/en/latest/api.html")
     if '@here' in msg or '@everyone' in msg:
