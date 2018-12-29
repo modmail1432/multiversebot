@@ -711,8 +711,10 @@ async def avatar(ctx, user: discord.Member=None):
 async def botdm(ctx, identification:str, *, msg: str):
     user = await client.get_user_info(identification)
     await client.send_typing(user)
-    await client.send_message(user, msg)
-	
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed=discord.Embed(title=f"{ctx.message.author.name} has replied", description=f"{msg}", color = discord.Color((r << 16) + (g << 8) + b))
+    embed.set_thumbnail(url= ctx.message.author.avatar_url)
+    await client.send_message(user, embed=embed)
 	
 @client.command(pass_context=True)
 async def apply(ctx, *, msg: str):
