@@ -403,20 +403,32 @@ async def checkinvites(ctx, user:discord.Member=None):
             await client.say(embed=embed)
             if total_uses >= 20:
                 role = discord.utils.get(ctx.message.server.roles, name='Inviter I')
-                await client.add_roles(ctx.message.author, role)
-                await client.say('Congrats! You have got Inviter I role')
+                if role in ctx.message.author.roles:
+                    return
+                else:
+                    await client.add_roles(ctx.message.author, role)
+                    await client.say('Congrats! You have got Inviter I role')
             if total_uses >= 30:
                 role = discord.utils.get(ctx.message.server.roles, name='Inviter II')
-                await client.add_roles(ctx.message.author, role)
-                await client.say('Congrats! You have got Inviter II role')
+                if role in ctx.message.author.roles:
+                    return
+                else:
+                    await client.add_roles(ctx.message.author, role)
+                    await client.say('Congrats! You have got Inviter II role')
             if total_uses >= 50:
                 role = discord.utils.get(ctx.message.server.roles, name='Inviter III')
-                await client.add_roles(ctx.message.author, role)
-                await client.say('Congrats! You have got Inviter III role')
+                if role in ctx.message.author.roles:
+                    return
+                else:
+                    await client.add_roles(ctx.message.author, role)
+                    await client.say('Congrats! You have got Inviter III role')
             if total_uses >= 80:
                 role = discord.utils.get(ctx.message.server.roles, name='Inviter IV')
-                await client.add_roles(ctx.message.author, role)
-                await client.say('Congrats! You have got Inviter IV role')
+                if role in ctx.message.author.roles:
+                    return
+                else:
+                    await client.add_roles(ctx.message.author, role)
+                    await client.say('Congrats! You have got Inviter IV role')
         else:
             total_uses=0
             embed=discord.Embed(title='__Invites from {}__'.format(user.name), color = discord.Color((r << 16) + (g << 8) + b))
@@ -432,20 +444,32 @@ async def checkinvites(ctx, user:discord.Member=None):
             await client.say(embed=embed)
             if total_uses >= 20:
                 role = discord.utils.get(user.server.roles, name='Inviter I')
-                await client.add_roles(user, role)
-                await client.say(f'Congrats! {user.name}, You have got Inviter I role')
+                if role in user.roles:
+                    return
+                else:
+                    await client.add_roles(user, role)
+                    await client.say(f'Congrats! {user.name}, You have got Inviter I role')
             if total_uses >= 30:
                 role = discord.utils.get(user.server.roles, name='Inviter II')
-                await client.add_roles(user, role)
-                await client.say(f'Congrats! {user.name} You have got Inviter II role')
+                if role in user.roles:
+                    return
+                else:
+                    await client.add_roles(user, role)
+                    await client.say(f'Congrats! {user.name} You have got Inviter II role')
             if total_uses >= 50:
                 role = discord.utils.get(user.server.roles, name='Inviter III')
-                await client.add_roles(user, role)
-                await client.say(f'Congrats! {user.name} You have got Inviter III role')
+                if role in user.roles:
+                    return
+                else:
+                    await client.add_roles(user, role)
+                    await client.say(f'Congrats! {user.name} You have got Inviter III role')
             if total_uses >= 80:
                 role = discord.utils.get(user.server.roles, name='Inviter IV')
-                await client.add_roles(user, role)
-                await client.say(f'Congrats! {user.name} You have got Inviter IV role')
+                if role in user.roles:
+                    return
+                else:
+                    await client.add_roles(user, role)
+                    await client.say(f'Congrats! {user.name} You have got Inviter IV role')
     else:
         await client.say('You are not allowed to use this command in this server')
         return 
