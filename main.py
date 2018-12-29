@@ -412,8 +412,9 @@ async def myinvites(ctx, user:discord.Member=None):
             embed.add_field(name='__Total Uses__',value=total_uses)
             await client.say(embed=embed)
     else:
-	await client.say('You are not allowed to use this command in this server')
-        return              	
+        await client.say('You are not allowed to use this command in this server')
+        return 
+
 @client.command(pass_context = True)
 async def detailedinvites(ctx,*,user:discord.Member=None):
     invite = await client.invites_from(ctx.message.server)
