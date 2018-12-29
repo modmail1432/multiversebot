@@ -355,7 +355,7 @@ async def rps(ctx, *, message=None):
 async def invites(ctx, user:discord.Member=None):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     if ctx.message.server.id == '527430758902661121':
-        await client.say('You should use ``mv!myinvites``')
+        await client.say('You should use ``mv!checkinvites``')
         return
     if user is None:
         total_uses=0
@@ -385,7 +385,7 @@ async def invites(ctx, user:discord.Member=None):
         await client.say(embed=embed)
 	
 @client.command(pass_context=True)
-async def myinvites(ctx, user:discord.Member=None):
+async def checkinvites(ctx, user:discord.Member=None):
     if ctx.message.server.id == '527430758902661121':
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         if user is None:
