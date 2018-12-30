@@ -208,6 +208,19 @@ async def merrychristmas(ctx, user:discord.Member=None):
         embed=discord.Embed(title='Merry Christmas', description=f'I wanna wish {user} Merry Christmas {user}', color = discord.Color((r << 16) + (g << 8) + b))
         embed.set_image(url = 'https://cdn.discordapp.com/attachments/486489391083159574/526968559994404874/gif-153062737.gif')
         await client.say(embed=embed)
+
+@client.command(pass_context=True)
+async def inviteb(ctx):
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    server = ctx.message.channel.server
+    invites = await client.invites_from(server)
+    invlb = f'Invites of {ctx.message.server.name}\n'
+    for invite in invites:
+      invlb += f'User: {invite.inviter.name}\nInvites: {invite.uses}\n'
+    embed=discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+    embed.add_field(name='Invites List',value=invlb)
+    embed.set_footer(text=f'Requested by: {ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    await client.say(embed=embed)
 	
 @client.command(pass_context=True)
 async def movie(ctx, *, name:str=None):
