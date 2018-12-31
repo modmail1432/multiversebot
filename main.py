@@ -210,19 +210,6 @@ async def merrychristmas(ctx, user:discord.Member=None):
         await client.say(embed=embed)
 
 @client.command(pass_context=True)
-async def inviteb(ctx):
-    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-    server = ctx.message.channel.server
-    invites = await client.invites_from(server)
-    invlb = f'Invites of {ctx.message.server.name}\n'
-    for invite in invites:
-      invlb += f'User: {invite.inviter.name}\nInvites: {invite.uses}\n'
-    embed=discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-    embed.add_field(name='Invites List',value=invlb)
-    embed.set_footer(text=f'Requested by: {ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
-    await client.say(embed=embed)
-	
-@client.command(pass_context=True)
 async def movie(ctx, *, name:str=None):
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         await client.send_typing(ctx.message.channel)
@@ -367,7 +354,23 @@ async def rps(ctx, *, message=None):
         else:
             embed.add_field(name = "{} Wins!".format(ctx.message.author.name), value = "Bot picked {}!".format(pick))
             await client.say(embed=embed)
-	
+
+@client.command(pass_context=True)
+async def inviteb(ctx):
+    total_uses=0
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    server = ctx.message.channel.server
+    invites = await client.invites_from(server)
+    invlb = f'Invites of {ctx.message.server.name}\n'
+    for invite in invites:
+      total_uses += invite.uses
+      invlb += f'User: {invite.inviter.name}\nInvites: {invite.uses}\n'
+    embed=discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+    embed.add_field(name='Invites List',value=invlb)
+    embed.add_field(name='Total Invites',value=total_uses)
+    embed.set_footer(text=f'Requested by: {ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+    await client.say(embed=embed)
+		
 @client.command(pass_context=True)
 async def invites(ctx, user:discord.Member=None):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
