@@ -210,6 +210,14 @@ async def merrychristmas(ctx, user:discord.Member=None):
         await client.say(embed=embed)
 
 @client.command(pass_context=True)
+@commands.check(is_dark)
+async def setgame(ctx, *, game:str):
+    await client.delete_message(ctx.message)
+    await client.change_presence(game=discord.Game(name=game))
+    await asyncio.sleep(10)
+
+	
+@client.command(pass_context=True)
 async def movie(ctx, *, name:str=None):
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         await client.send_typing(ctx.message.channel)
