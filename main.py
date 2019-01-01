@@ -1160,7 +1160,7 @@ async def setnick(ctx, user: discord.Member=None, *, nickname=None):
             await client.send_message(channel, embed=embed)
 		
 @client.command(pass_context = True)
-@commands.has_permissions(manage_nicknames=True)     
+@commands.has_permissions(administrator=True)     
 async def setnickall(ctx,*, nickname:str=None):
     if nickname is None:
       await client.say('Please use this command like:``mv!setnickall <new nickname>``')
