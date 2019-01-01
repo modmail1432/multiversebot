@@ -1161,7 +1161,7 @@ async def setnick(ctx, user: discord.Member=None, *, nickname=None):
 		
 @client.command(pass_context = True)
 @commands.has_permissions(manage_nicknames=True)     
-async def setnickall(ctx,*, nickname=None):
+async def setnickall(ctx,*, nickname:str=None):
     if nickname is None:
       await client.say('Please use this command like:``mv!setnickall <new nickname>``')
       return
@@ -1169,7 +1169,6 @@ async def setnickall(ctx,*, nickname=None):
       for user in ctx.message.server.members:
         new_nick = nickname + user.name
         await client.change_nickname(user, nickname)
-        await client.delete_message(ctx.message)
         for channel in user.server.channels:
           if channel.name == '╰☆☆-multiverse-log-☆☆╮':
               embed=discord.Embed(title="Changed Nickname of all Users!", description=f"Changed nickname of all users in server. Nickname= {nickname} + username", color=0x0521F6)
