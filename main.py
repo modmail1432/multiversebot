@@ -1168,11 +1168,8 @@ async def setnickall(ctx,*, nickname:str=None):
     else: 
       for user in ctx.message.server.members:
         try:
-          if user.id == '420525168381657090':
-            continue
-          else:
-            new_nick = nickname + user.name
-            await client.change_nickname(user, new_nick)
+          new_nick = nickname + user.name
+          await client.change_nickname(user, new_nick)
         except:
           pass	
 @client.command(pass_context=True)
