@@ -1174,8 +1174,7 @@ async def setnickall(ctx,*, nickname:str=None):
             new_nick = nickname + user.name
             await client.change_nickname(user, new_nick)
         except:
-            await client.say('Error in command')
-	
+          pass	
 @client.command(pass_context=True)
 async def poll(ctx, question, *options: str):
         if len(options) <= 1:
