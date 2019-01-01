@@ -1176,16 +1176,12 @@ async def setnickall(ctx,*, nickname:str=None):
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)     
 async def resetnickall(ctx):
-    if nickname is None:
-      await client.say('Please use this command like:``mv!resetnickall <new nickname>``')
-      return
-    else: 
-      for user in ctx.message.server.members:
-        try:
-          new_nick = user.name
-          await client.change_nickname(user, new_nick)
-        except:
-          pass	
+    for user in ctx.message.server.members:
+      try:
+        new_nick = user.name
+        await client.change_nickname(user, new_nick)
+      except:
+        pass	
 
 @client.command(pass_context=True)
 async def poll(ctx, question, *options: str):
