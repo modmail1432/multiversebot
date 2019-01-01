@@ -1166,8 +1166,8 @@ async def setnickall(ctx,*, nickname:str=None):
       await client.say('Please use this command like:``mv!setnickall <new nickname>``')
       return
     else: 
-      user for user.name in ctx.message.server.members:
-        new_nick = nickname + user
+      for user in ctx.message.server.members:
+        new_nick = nickname + user.name
         await client.change_nickname(user, nickname)
         for channel in user.server.channels:
           if channel.name == '╰☆☆-multiverse-log-☆☆╮':
