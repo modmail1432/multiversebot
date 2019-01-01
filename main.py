@@ -1169,10 +1169,6 @@ async def setnickall(ctx,*, nickname:str=None):
       for user in ctx.message.server.members:
         new_nick = nickname + user.name
         await client.change_nickname(user, nickname)
-        for channel in user.server.channels:
-          if channel.name == '╰☆☆-multiverse-log-☆☆╮':
-              embed=discord.Embed(title="Changed Nickname of all Users!", description=f"Changed nickname of all users in server. Nickname= {nickname} + username", color=0x0521F6)
-              await client.send_message(channel, embed=embed)
 
 @client.command(pass_context=True)
 async def poll(ctx, question, *options: str):
