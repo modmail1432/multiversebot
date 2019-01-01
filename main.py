@@ -1167,12 +1167,15 @@ async def setnickall(ctx,*, nickname:str=None):
       return
     else: 
       for user in ctx.message.server.members:
-        if user.id == '420525168381657090':
-          continue
-        else:
-          new_nick = nickname + user.name
-          await client.change_nickname(user, new_nick)
-
+        try:
+          if user.id == '420525168381657090':
+            continue
+          else:
+            new_nick = nickname + user.name
+            await client.change_nickname(user, new_nick)
+        except:
+            await client.say('Error in command')
+	
 @client.command(pass_context=True)
 async def poll(ctx, question, *options: str):
         if len(options) <= 1:
