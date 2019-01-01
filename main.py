@@ -1149,7 +1149,7 @@ async def warn(ctx, userName: discord.User=None,*, message:str=None):
 @commands.has_permissions(manage_nicknames=True)     
 async def setnick(ctx, user: discord.Member=None, *, nickname=None):
     if user is None:
-      await client.say('Please tag a person to change nickname. Example- ``mv!nickname @user <new nickname>``')
+      await client.say('Please tag a person to change nickname. Example- ``mv!setnick @user <new nickname>``')
       return
     else:
       await client.change_nickname(user, nickname)
@@ -1158,6 +1158,22 @@ async def setnick(ctx, user: discord.Member=None, *, nickname=None):
         if channel.name == '╰☆☆-multiverse-log-☆☆╮':
             embed=discord.Embed(title="Changed Nickname of User!", description="**{0}** nickname was changed by **{1}**!".format(member, ctx.message.author), color=0x0521F6)
             await client.send_message(channel, embed=embed)
+		
+@client.command(pass_context = True)
+@commands.has_permissions(manage_nicknames=True)     
+async def setnickall(ctx,*, nickname=None):
+    if nickname is None:
+      await client.say('Please use this command like:``mv!setnickall <new nickname>``')
+      return
+    else: 
+      for user in ctx.message.server.members:
+        new_nick = nickname + user.name
+        await client.change_nickname(user, nickname)
+        await client.delete_message(ctx.message)
+        for channel in user.server.channels:
+          if channel.name == '╰☆☆-multiverse-log-☆☆╮':
+              embed=discord.Embed(title="Changed Nickname of all Users!", description=f"Changed nickname of all users in server. Nickname= {nickname} + username", color=0x0521F6)
+              await client.send_message(channel, embed=embed)
 
 @client.command(pass_context=True)
 async def poll(ctx, question, *options: str):
