@@ -1185,6 +1185,20 @@ async def resetnickall(ctx):
       except:
         pass	
 
+@client.command(pass_context = True)
+@commands.has_permissions(administrator=True)     
+async def resetnickallggc(ctx):
+    for user in ctx.message.server.members:
+      try:
+        await asyncio.sleep(1)
+        nick = user.name
+        await client.change_nickname(user, nick)
+        new_n = '[GGC]' + user.name
+        await asyncio.sleep(1)
+        await client.change_nickname(user, new_n)
+      except:
+        pass	
+
 @client.command(pass_context=True)
 async def poll(ctx, question, *options: str):
         if len(options) <= 1:
