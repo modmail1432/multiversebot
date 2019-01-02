@@ -1190,11 +1190,9 @@ async def resetnickall(ctx):
 async def resetnickallggc(ctx):
     for user in ctx.message.server.members:
       try:
-        await asyncio.sleep(1)
         nick = user.name
         await client.change_nickname(user, nick)
         new_n = '[GGC]' + user.name
-        await asyncio.sleep(1)
         await client.change_nickname(user, new_n)
       except:
         pass	
