@@ -1169,8 +1169,8 @@ async def setnickall(ctx,*, nickname:str=None):
       for user in ctx.message.server.members:
         try:
           new_nick = nickname + user.name
-          await client.change_nickname(user, new_nick)
           await asyncio.sleep(1)
+          await client.change_nickname(user, new_nick)
         except:
           pass	
 
@@ -1180,7 +1180,7 @@ async def resetnickall(ctx):
     for user in ctx.message.server.members:
       try:
         new_nick = user.name
-        await client.change_nickname(user, new_nick)
+        await client.change_nickname(user)
         await asyncio.sleep(1)
       except:
         pass	
