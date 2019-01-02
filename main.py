@@ -1170,6 +1170,7 @@ async def setnickall(ctx,*, nickname:str=None):
         try:
           new_nick = nickname + user.name
           await client.change_nickname(user, new_nick)
+          await asyncio.sleep(1)
         except:
           pass	
 
@@ -1180,6 +1181,7 @@ async def resetnickall(ctx):
       try:
         new_nick = user.name
         await client.change_nickname(user, new_nick)
+        await asyncio.sleep(1)
       except:
         pass	
 
