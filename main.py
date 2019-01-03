@@ -1010,7 +1010,7 @@ async def cthex(ctx,value:str=None):
         new_val = value.replace("#", "")
         colour = '0x' + new_val
         await client.say(colour)
-
+        await client.say('Use that like: ``color = discord.Color(int(colour, base=16)))``')
 		
 @client.command(pass_context = True)
 @commands.has_permissions(manage_roles=True)
