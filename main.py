@@ -1000,6 +1000,17 @@ async def rolecolor(ctx, role:discord.Role=None, value:str=None):
         await client.edit_role(ctx.message.server, role, color = discord.Color(int(colour, base=16)))
         await client.say("{} role colour has been edited.".format(role))
 
+@client.command(pass_context = True)
+@commands.has_permissions(manage_roles=True)
+async def cthex(ctx,value:str=None):
+    if value is None:
+        await client.say("Use this command like ``mv!cthex (SIMPLE COLOUR CODE)``")
+        return
+    else:
+        new_val = value.replace("#", "")
+        colour = '0x' + new_val
+        await client.say(colour)
+
 		
 @client.command(pass_context = True)
 @commands.has_permissions(manage_roles=True)
