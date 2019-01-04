@@ -1208,7 +1208,7 @@ async def resetnickallggc(ctx):
         pass	
 
 @client.command(pass_context=True)
-async def poll(ctx, question, *options: str):
+async def poll(ctx, question, *,options: str):
         if len(options) <= 1:
             await client.say('You need more than one option to make a poll!')
             return
