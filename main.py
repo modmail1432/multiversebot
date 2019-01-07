@@ -218,7 +218,9 @@ async def merrychristmas(ctx, user:discord.Member=None):
         await client.say(embed=embed)
 
 @client.command(pass_context=True)
-async def imgursearch(ctx, *, term: str=None):
+async def imgursearch(ctx, *, term: str):
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(title=f'{ctx.message.author} requested for', description=f'{term}', color = discord.Color((r << 16) + (g << 8) + b))
     task = functools.partial(imgur.gallery_search, term,
                              advanced=None, sort='time',
                              window='all', page=0)
@@ -232,9 +234,11 @@ async def imgursearch(ctx, *, term: str=None):
             shuffle(results)
             msg = "Search results...\n"
             for r in results[:3]:
-                msg += r.gifv if hasattr(r, "gifv") else r.link
+                msg += embed.set_image(url=r.gifv if hasattr(r, "gifv") else r.link)
                 msg += "\n"
-            await client.say(msg)
+            embed.set_footer(text=f'Requested by: {ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+            embed.timestamp = datetime.datetime.utcnow()
+            await client.say(embed=embed)
         else:
             await client.say("Your search terms gave no results.")
 
