@@ -27,6 +27,9 @@ CLIENT_ID = "1fd3ef04daf8cab"
 CLIENT_SECRET = "f963e574e8e3c17993c933af4f0522e1dc01e230"
 imgur = ImgurClient(CLIENT_ID,CLIENT_SECRET)
 
+GIPHY_API_KEY = "dc6zaTOxFJmzC"
+
+
 client.remove_command('help')
 
 
@@ -234,6 +237,25 @@ async def imgursearch(ctx, *, term: str=None):
             await client.say(msg)
         else:
             await client.say("Your search terms gave no results.")
+
+@client.command(pass_context=True)
+async def gif(self, ctx, *keywords=None):
+    if keywords:
+        keywords = "+".join(keywords)
+    else:
+        await client.say('Invalid args')
+        return
+    url = ("http://api.giphy.com/v1/gifs/search?&api_key={}&q={}"
+           "".format(GIPHY_API_KEY, keywords))
+    async with aiohttp.get(url) as r:
+        result = await r.json()
+        if r.status == 200:
+            if result["data"]:
+                await client.say(result["data"][0]["url"])
+            else:
+                await client.say("No results found.")
+        else:
+            await client.say("Error contacting the API")
 
 	
 @client.command(pass_context=True)
