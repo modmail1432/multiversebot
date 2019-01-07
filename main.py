@@ -239,7 +239,7 @@ async def imgursearch(ctx, *, term: str=None):
             await client.say("Your search terms gave no results.")
 
 @client.command(pass_context=True)
-async def gif(self, ctx, *keywords=None):
+async def gif(ctx, *keywords=None):
     if keywords:
         keywords = "+".join(keywords)
     else:
