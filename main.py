@@ -218,6 +218,7 @@ async def imgursearch(ctx, *, term: str=None):
     task = functools.partial(imgur.gallery_search, term,
                              advanced=None, sort='time',
                              window='all', page=0)
+    task = client.loop.run_in_executor(None, task)
     try:
         results = await asyncio.wait_for(task, timeout=10)
     except asyncio.TimeoutError:
