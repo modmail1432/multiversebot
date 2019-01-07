@@ -212,7 +212,7 @@ async def merrychristmas(ctx, user:discord.Member=None):
         await client.say(embed=embed)
 
 @client.command(pass_context=True)
-async def imgur_search(self, ctx, *, term: str):
+async def imgursearch(ctx, *, term: str=None):
     task = functools.partial(imgur.gallery_search, term,
                              advanced=None, sort='time',
                              window='all', page=0)
