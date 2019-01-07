@@ -14,13 +14,15 @@ import requests
 import json
 import praw
 import aiohttp
-
+from imgurpython import ImgurClient
 
 Forbidden= discord.Embed(title="Permission Denied", description="1) Please check whether you have permission to perform this action or not. \n2) Please check whether my role has permission to perform this action in this channel or not. \n3) Please check my role position.", color=0x00ff00)
 client = commands.Bot(description="MultiVerse Official Bot", command_prefix=commands.when_mentioned_or("mv!" ), pm_help = True)
 reddit = praw.Reddit(client_id='G-SK66FZT8at9g',
                      client_secret='DLqIkkdoD0K8xKpxuaMAhRscrS0',
                      user_agent='android:com.G-SK66FZT8at9g.SolarBot:v1.2.3 (by /u/LaidDownRepaer)')
+
+imgur = ImgurClient(CLIENT_ID = "1fd3ef04daf8cab",CIENT_SECRET = "f963e574e8e3c17993c933af4f0522e1dc01e230")
 
 client.remove_command('help')
 
@@ -209,6 +211,27 @@ async def merrychristmas(ctx, user:discord.Member=None):
         embed.set_image(url = 'https://cdn.discordapp.com/attachments/486489391083159574/526968559994404874/gif-153062737.gif')
         await client.say(embed=embed)
 
+@client.command(pass_context=True)
+async def imgur_search(self, ctx, *, term: str):
+    task = functools.partial(imgur.gallery_search, term,
+                             advanced=None, sort='time',
+                             window='all', page=0)
+    try:
+        results = await asyncio.wait_for(task, timeout=10)
+    except asyncio.TimeoutError:
+        await client.say("Error: request timed out")
+    else:
+        if results:
+            shuffle(results)
+            msg = "Search results...\n"
+            for r in results[:3]:
+                msg += r.gifv if hasattr(r, "gifv") else r.link
+                msg += "\n"
+            await client.say(msg)
+        else:
+            await client.say("Your search terms gave no results.")
+
+	
 @client.command(pass_context=True)
 @commands.check(is_dark)
 async def setgame(ctx, *, game:str):
