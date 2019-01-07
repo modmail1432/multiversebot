@@ -23,7 +23,7 @@ reddit = praw.Reddit(client_id='G-SK66FZT8at9g',
                      user_agent='android:com.G-SK66FZT8at9g.SolarBot:v1.2.3 (by /u/LaidDownRepaer)')
 
 CLIENT_ID = "1fd3ef04daf8cab"
-CIENT_SECRET = "f963e574e8e3c17993c933af4f0522e1dc01e230"
+CLIENT_SECRET = "f963e574e8e3c17993c933af4f0522e1dc01e230"
 imgur = ImgurClient(CLIENT_ID,CLIENT_SECRET)
 
 client.remove_command('help')
