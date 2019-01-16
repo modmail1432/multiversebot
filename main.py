@@ -180,13 +180,12 @@ async def on_reaction_add(reaction, user):
 async def on_member_join(member):
     for channel in member.server.channels:
         if channel.name == '★彡-welcome-彡★':
-            r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-            embed = discord.Embed(title=f'Welcome {member.name} to {member.server.name}', description='Do not forget to check rules and never try to break any one of them', color = discord.Color((r << 16) + (g << 8) + b))
+            embed = discord.Embed(title=f'Welcome {member.name} to {member.server.name}', description='Do not forget to check rules and never try to break any one of them', color = 0x36393E)
             embed.add_field(name='__Thanks for joining__', value='**Hope you will be active here.**', inline=True)
             embed.set_thumbnail(url='https://media.giphy.com/media/OkJat1YNdoD3W/giphy.gif') 
             embed.add_field(name='__Join position__', value='{}'.format(str(member.server.member_count)), inline=True)
             embed.add_field(name='Time of joining', value=member.joined_at)
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.4)
             await client.send_message(channel, embed=embed) 
             
 @client.event
