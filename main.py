@@ -266,6 +266,7 @@ async def setgame(ctx, *, game:str):
 
 @client.command(pass_context=True)
 async def jointest(ctx):
+    member = ctx.message.author
     for channel in member.server.channels:
         if channel.name == '★彡-welcome-彡★':
             embed = discord.Embed(title=f'Welcome {member.name} to {member.server.name}', description='Do not forget to check rules and never try to break any one of them', color = 0x36393E)
